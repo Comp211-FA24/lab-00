@@ -32,11 +32,11 @@ Read Chapters 1 and 2 of *Learn a Command-line Interface* by Kris Jordan: [The S
 
 ### Learn Vim
 
-Vim is an extensible text-editor program that is included in most Linux systems. It is designed to make changing any kind of text very efficient, though it may not seem so at first. Start your Linux environment that you set up earlier and enter the `vimtutor` command. When you press enter, a tutorial document will be opened with `vim` explaining how to use it.
+Vim is an extensible text-editor program that is included in most Linux systems. It is designed to make changing any kind of text very efficient, though it may not seem so at first. Start your Linux environment that you set up earlier and enter the `vimtutor` command. When you press enter, a tutorial document will be opened with `vim` explaining how to use it. If you touch-type and normally have your right hand in home row position (that is, index finger on J, middle finger on K, ring finger on L, and pinky on ;), then we recommend that you do so for vim use as well.
 
 Most likely, you will not remember everything from the tutor. We recommend you just learn enough from `vimtutor` to be comfortable enough to complete Part 1 of the assignment in vim, then later you can go back to `vimtutor` or look at online guides to learn more as you go.
 
-The following labs will assume that you are using vim, and we encourage you to take the opportunity to get a basic familiarity with vim during this class. Even if you do not become proficient in `vim`, a basic understanding can help you in later courses and in life, even outside of the domain of systems development.
+The following labs will assume that you are using vim, and we encourage you to take the opportunity to get a basic familiarity with vim during this class. A basic understanding can help you in later courses and in life, even outside of the domain of systems development.
 
 The `vim` in your Docker image has been customized for the C programming language and may look different from `vim` on your home computer. Specifically, to view the customizations, run `vim ~/.vimrc` in your container. The commands in this file are automatically run every time the container is started. The `rc` at the end of the file name stands for "run commands". Another example of such a file is `~/.bashrc`, which contains, on lines 101-112, the `echo` commands that display the "UNC CS" ASCII art on startup.
 
