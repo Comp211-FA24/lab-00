@@ -154,7 +154,7 @@ To submit your assignment, you must commit and push your work to this repository
 
 ## Check your understanding
 
-The purpose of this lab is to make sure you have some basic familiarity with the tools of this course, namely: your Ubuntu environment, vim, and git. You will earn full credit for this lab by simply submitting the short `hello.c` program, but it would be a good idea for you to spend some extra time learning the shell commands, vim keystrokes and understanding git. If you would like to learn more beyond what was included in the lab writeup, here are some additional resources created by Kris Jordan:
+The purpose of this lab is to make sure you have some basic familiarity with the tools of this course: your Ubuntu environment, vim, and git. You will earn full credit for this lab simply by submitting the short `hello.c` program, but it would be a good idea for you to spend some extra time learning the shell commands, vim keystrokes and understanding git. If you would like to learn more beyond what was included in the lab writeup, here are some additional resources created by Kris Jordan:
 
 * [vim Tutorial - A beginner's guide to vim, a powerful text editor with a grammar.](https://www.youtube.com/playlist?list=PLKUb7MEve0Tj3MLYDIyYpIZtnJehmlR0s)
 * [What is a version control system? What is git?](https://www.youtube.com/watch?v=h2xylPqXO8M&list=PLKUb7MEve0TjHQSKUWChAWyJPCpYMRovO&index=4)
