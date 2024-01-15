@@ -8,6 +8,7 @@
     - [Set up your environment](#set-up-your-environment)
     - [Learn the CLI](#learn-the-cli)
     - [Learn Vim](#learn-vim)
+    - [workdir](#workdir)
     - [Setting up SSH authentication](#setting-up-ssh-authentication)
         - [Locally](#locally)
         - [GitHub](#github)
@@ -35,6 +36,12 @@ Vim is an extensible text-editor program that is included in most Linux systems.
 
 Most likely, you will not remember everything from the tutor. We recommend you just learn enough from `vimtutor` to be comfortable enough to complete Part 1 of the assignment in vim, then later you can go back to `vimtutor` or look at online guides to learn more as you go.
 
+The following labs will assume that you are using vim, and we encourage you to take the opportunity to get a basic familiarity with vim during this class. Even if you do not become proficient in `vim`, a basic understanding can help you in later courses and in life, even outside of the domain of systems development.
+
+Note that the `vim` in your Docker image has been customized for the C programming language and may look different from `vim` on your home computer. Specifically, to view the customizations, run `vim ~/.vimrc` in your container.
+
+### workdir
+
 In case the environment is compromised, all files are in `learncli211/workdir`.
 
 **Mac/Linux:** When you run `./learncli.sh` and start the Docker image, Docker will create the `workdir` directory that is bridged between the image and your native operating system, where you can copy and move files between the the two.
@@ -43,18 +50,14 @@ In case the environment is compromised, all files are in `learncli211/workdir`.
 
 Running `exit` in the Docker container will exit that container.
 
-The following labs will assume that you are using vim, and we encourage you to take the opportunity to get a basic familiarity with vim during this class. Even if you do not become proficient in `vim`, a basic understanding can help you in later courses and in life, even outside of the domain of systems development.
-
-*Note that the `vim` in your Docker image has been optimized for the C programming language and may look different from `vim` on your home computer.*
-
 ### Setting up SSH authentication
 
 In order to interact with GitHub from the command line, SSH authentication must be set up. This is a standard procedure and should only need to be done once. There is a nice [YouTube video](https://www.youtube.com/watch?v=1fR0BHzzgOI) created by Ryan Good (former 211 LA) that walks through the three steps provided below.
 
 #### Locally
 
-1. Navigate to the `learncli211` directory that contains the `learncli.sh` and `learncli.ps1`files, but do not execute them! This must be done outside of the container. If you are not sure whether or not your are in a container, then restart your console, and `cd` into `learncli211`.
-2. Type `ssh-keygen`, type `.ssh/id_rsa` as the location to save the key, and press enter for no passphrase at the password prompt.
+1. Navigate to the `learncli211` directory that contains the `learncli.sh` and `learncli.ps1`files, but do not execute them! This must be done outside of the container. If you are not sure whether or not you are in a container, then restart your terminal, and `cd` into `learncli211`.
+2. Type `ssh-keygen`, type `.ssh/id_rsa` as the location to save the key, and press enter twice for no passphrase at the password prompt.
 
 ```text
 $ ssh-keygen
@@ -87,13 +90,13 @@ The key's randomart image is:
 1. Click your profile in the top right corner.
 2. Click Settings -> SSH and GPG keys -> New SSH Key.
 3. Paste the contents of `.ssh/id_rsa.pub` into the "Key" section.
-4. Give it a Title and click "Add SSH Key".
+4. Give it a title and click "Add SSH Key".
 
 ## Part 1. Hello World
 
-After authentication is set up, return to the container environment. Then, clone this Git repository within your container with the command `git clone <respository>` In place of where `<respository>` is, you should enter the SSH-based URL of your repository; e.g. `git clone git@github.com:Comp211-FA23/lab-00-username.git`. You can get this URL by clicking Code -> SSH.
+After SSH authentication is set up, return to the container environment. Then, clone this Git repository within your container with the command `git clone <respository>`. In place of where `<respository>` is, you should enter the SSH-based URL of your repository; e.g. `git clone git@github.com:Comp211-SP24/lab-00-username.git`. You can get this URL by going to the GitHub page and clicking Code -> SSH.
 
-In your repository, use `mkdir` to make a new directory named exactly `0-hello-world`. Use `cd` to change your working directory to be this subdirectory. For reference on how to carry out either of these tasks, please refer to Chapter 2: [Directories, Files, and Paths](https://uncch.instructure.com/users/9947/files/4534607?verifier=Ay7tjnpmx7Cdhg7TzNXg7zfPD6wbBhBJOy8NqWXK&wrap=1).
+In your repository, use `mkdir` to make a new directory named `0-hello-world`. Use `cd` to change your working directory to be this subdirectory. For reference on how to carry out either of these tasks, please refer to Chapter 2: [Directories, Files, and Paths](https://uncch.instructure.com/users/9947/files/4534607?verifier=Ay7tjnpmx7Cdhg7TzNXg7zfPD6wbBhBJOy8NqWXK&wrap=1).
 
 Next, you’ll want to edit a new file named `hello.c`. To begin editing this file in vim, simply run the command:
 
@@ -101,11 +104,10 @@ Next, you’ll want to edit a new file named `hello.c`. To begin editing this fi
 vim hello.c
 ```
 
-Each source file in COMP 211 will begin with the standard header comment below. Note, the format of this header is checked by the autograder for an exact match. And if the format is not correct, the autograder will fail. To avoid this issue, please ensure you:
+Each source file in COMP 211 will begin with the standard header comment below. The format of this header is checked by the autograder for an exact match. To avoid having the autograder fail, please ensure you:
+
 - format your PID as a single 9-digit number with no spaces nor dashes, and
 - your capitalization and punctuation of the honor code pledge are correct.
-
-Since we do grade manually for style we do not include names on code listings to avoid biasing the grading.
 
 ```c
 // PID: 9DigitPidNoSpacesOrDashes
@@ -116,11 +118,11 @@ Now refer to section 1.1 of *C Programming Language* to complete the rest of the
 
 ### `hello.c` requirements
 
-The purpose of `hello.c` is to slightly extend the book's (*C Programming Language*) implementation of the same program on Page 9. Your implementation should print `Hello, world.` on one line, `Welcome to C!` on another line. This is case and punction-sensitive. It should then return `EXIT_SUCCESS`; to return `EXIT_SUCCESS` you will need to import `stdlib.h`, the header file which defines this constant. When main returns `EXIT_SUCCESS`, it indicates the program completed successfully via a success exit status. We will explore the idea of exit statuses later this semester. Additionally, in 211 we expect all function return types to be defined and main should return an `int` that represents a signed integer value.
+The purpose of `hello.c` is to slightly extend the book's (*C Programming Language*) implementation of the same program on Page 9. Your implementation should print `Hello, world.` on one line and `Welcome to C!` on another line. This is case and punction-sensitive. It should then return `EXIT_SUCCESS`. To return `EXIT_SUCCESS`, you will need to import `stdlib.h`, the header file which defines this constant. When `main` returns `EXIT_SUCCESS`, it indicates the program completed successfully via a success exit status. We will explore the idea of exit statuses later this semester. Additionally, we expect all function return types to be defined, and `main` should return an `int`, a signed integer value.
 
 ### Compiling and executing
 
-You can compile and execute your program with the following shell commands:
+Compile and execute your program with the following shell commands:
 
 ```sh
 gcc -Wall hello.c
@@ -129,23 +131,23 @@ gcc -Wall hello.c
 
 The `-Wall` flag tells `gcc` to print out all warnings.
 
-Once your program compiles without warnings and meets the requirements, you can continue on.
+Once your program compiles without warnings and meets the requirements, you should submit your assignment.
 
 ## Submit your assignment
 
 Assignment submissions will be made through [Gradescope](https://www.gradescope.com).
 
-You should already be enrolled in the COMP 211 course on Gradescope. If you are not, please self enroll with entry code listed on the Canvas home page. If you're unable to self enroll, please contact your cohort leader and we'll manually add you.
+You should already be enrolled in the COMP 211 course on Gradescope. If you are not, please self-enroll with entry code listed on the Canvas home page. If you're unable to self-enroll, please contact your cohort leader and we'll manually add you.
 
-To submit your assignment, you must commit and push your work to this repository using git. You are likely unfamiliar with git at this point, so just follow these steps:
+To submit your assignment, you must commit and push your work to this repository using git.
 
-1. Navigate to the base folder of the repository within your container. **Enter the command `ls` to confirm that it contains the directory named `0-hello-world` and ensure that your `hello.c` file is in the `0-hello-world` directory.**
+1. Navigate to the base folder of the repository within your container. Enter the command `ls` to confirm that it contains the directory named `0-hello-world`, and ensure that your `hello.c` file is in the `0-hello-world` directory.
 2. Type `git status`. You should see a list of changes that have been made to the repository.
 3. Type `git add -A`. This signals that you want to place all modified/new files on the "stage" so that their changes can take effect.
-4. Type `git commit -m "Your Message Here"`. This shows that you are "committing" to the changes you put on the stage. Instead of Your Message Here, you should write a meaningful message about what changes you have made.
-5. Type `git push`. This takes the commit that was made locally on your machine and "pushes" it to GitHub. Now, when you view this repository on GitHub you should be able to see the changes you've made.
+4. Type `git commit -m "Your Message Here"`. This shows that you are "committing" the changes you put on the stage. Instead of Your Message Here, you should write a meaningful message about what changes you have made.
+5. Type `git push`. This takes the commit that was made locally on your machine and "pushes" it to GitHub. Now, when you view this repository on GitHub, you should be able to see the changes you've made.
 6. Go to the COMP 211 course in Gradescope and click on the assignment called **Lab 00**.
-7. Click on the option to **Submit Assignment** and choose GitHub as the submission method. You will be prompted to sign in to your GitHub account to grant access to Gradescope. When this occurs, **make sure to grant access to the Comp211-FA23 organization**.
+7. Click on the option to **Submit Assignment** and choose GitHub as the submission method. You will be prompted to sign in to your GitHub account to grant access to Gradescope. When this occurs, **make sure to grant access to the Comp211-SP24 organization**.
 8. You should see a list of your public repositories. Select the one named **lab-00-yourname** and submit it.
 9. Your assignment should be autograded within a few seconds and you will receive feedback.
 10. If you receive all the points, then you have completed this preliminary lab! Otherwise, you are free to keep pushing commits to your GitHub repository and submit for regrading up until the deadline of the lab.
