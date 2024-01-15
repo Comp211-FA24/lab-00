@@ -38,15 +38,13 @@ Most likely, you will not remember everything from the tutor. We recommend you j
 
 The following labs will assume that you are using vim, and we encourage you to take the opportunity to get a basic familiarity with vim during this class. Even if you do not become proficient in `vim`, a basic understanding can help you in later courses and in life, even outside of the domain of systems development.
 
-Note that the `vim` in your Docker image has been customized for the C programming language and may look different from `vim` on your home computer. Specifically, to view the customizations, run `vim ~/.vimrc` in your container.
+The `vim` in your Docker image has been customized for the C programming language and may look different from `vim` on your home computer. Specifically, to view the customizations, run `vim ~/.vimrc` in your container. The commands in this file are automatically run every time the container is started. The `rc` at the end of the file name stands for "run commands". Another example of such a file is `~/.bashrc`, which contains, on lines 101-112, the `echo` commands that display the "UNC CS" ASCII art on startup.
 
 ### workdir
 
-In case the environment is compromised, all files are in `learncli211/workdir`.
+In case the environment is compromised, all files are in `learncli211/workdir` (relative path in your native file system). In the container, this directory is **m**ou**nt**ed at `/mnt/learncli/workdir` (absolute path).
 
-**Mac/Linux:** When you run `./learncli.sh` and start the Docker image, Docker will create the `workdir` directory that is bridged between the image and your native operating system, where you can copy and move files between the the two.
-
-**Windows:** When you run `./learncli.ps1` and start the Docker image, Docker will create the `workdir` directory that is bridged between the image and your native operating system, where you can copy and move files between the the two.
+When you run the start script (`learncli.ps1` or `learncli.sh`) and start the Docker image, Docker will create the `workdir` directory that is bridged between the image and your native operating system, where you can copy and move files between the two.
 
 Running `exit` in the Docker container will exit that container.
 
