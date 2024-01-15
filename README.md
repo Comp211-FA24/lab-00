@@ -144,8 +144,8 @@ To submit your assignment, you must commit and push your work to this repository
 3. Type `git add -A`. This signals that you want to place all modified/new files on the "stage" so that their changes can take effect.
 4. Type `git commit -m "Your Message Here"`. This shows that you are "committing" the changes you put on the stage. Instead of Your Message Here, you should write a meaningful message about what changes you have made.
 5. Type `git push`. This takes the commit that was made locally on your machine and "pushes" it to GitHub. Now, when you view this repository on GitHub, you should be able to see the changes you've made.
-6. Go to the COMP 211 course in Gradescope and click on the assignment called **Lab 00**.
-7. Click on the option to **Submit Assignment** and choose GitHub as the submission method. You will be prompted to sign in to your GitHub account to grant access to Gradescope. When this occurs, **make sure to grant access to the Comp211-SP24 organization**.
+6. Go to the COMP 211 course in Gradescope, and click on the assignment called **Lab 0**.
+7. Click on the option to **Submit Assignment**, and choose GitHub as the submission method. You may be prompted to sign in to your GitHub account to grant access to Gradescope. If this occurs, **make sure to grant access to the Comp211-SP24 organization**.
 8. You should see a list of your public repositories. Select the one named **lab-00-yourname** and submit it.
 9. Your assignment should be autograded within a few seconds and you will receive feedback.
 10. If you receive all the points, then you have completed this preliminary lab! Otherwise, you are free to keep pushing commits to your GitHub repository and submit for regrading up until the deadline of the lab.
