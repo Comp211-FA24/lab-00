@@ -116,7 +116,7 @@ Now refer to section 1.1 of *C Programming Language* to complete the rest of the
 
 ### `hello.c` requirements
 
-The purpose of `hello.c` is to slightly extend the book's (*C Programming Language*) implementation of the same program on Page 9. Your implementation should print `Hello, world.` on one line and `Welcome to C!` on another line. This is case and punction-sensitive. It should then return `EXIT_SUCCESS`. To return `EXIT_SUCCESS`, you will need to import `stdlib.h`, the header file which defines this constant. When `main` returns `EXIT_SUCCESS`, it indicates the program completed successfully via a success exit status. We will explore the idea of exit statuses later this semester. Additionally, we expect all function return types to be defined, and `main` should return an `int`, a signed integer value.
+The purpose of `hello.c` is to slightly extend the book's (*C Programming Language*) implementation of the same program on Page 9. Your implementation should print `Hello, world.` on one line and `Welcome to C!` on another line. This is case and punctuation-sensitive. It should then return `EXIT_SUCCESS`. To return `EXIT_SUCCESS`, you will need to import `stdlib.h`, the header file which defines this constant. When `main` returns `EXIT_SUCCESS`, it indicates the program completed successfully via a success exit status. We will explore the idea of exit statuses later this semester. Additionally, we expect all function return types to be defined, and `main` should return an `int`, a signed integer value.
 
 ### Compiling and executing
 
