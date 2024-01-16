@@ -92,7 +92,7 @@ The key's randomart image is:
 
 ## Part 1. Hello World
 
-After SSH authentication is set up, return to the container environment. Then, clone this Git repository within your container with the command `git clone <respository>`. In place of where `<respository>` is, you should enter the SSH-based URL of your repository; e.g. `git clone git@github.com:Comp211-SP24/lab-00-username.git`. You can get this URL by going to the GitHub page and clicking Code -> SSH.
+After SSH authentication is set up, return to the container environment. Then, clone this Git repository within your container with the command `git clone <repository>`. In place of where `<repository>` is, you should enter the SSH-based URL of your repository; e.g. `git clone git@github.com:Comp211-SP24/lab-00-username.git`. You can get this URL by going to the GitHub page and clicking Code -> SSH.
 
 In your repository, use `mkdir` to make a new directory named `0-hello-world`. Use `cd` to change your working directory to be this subdirectory. For reference on how to carry out either of these tasks, please refer to Chapter 2: [Directories, Files, and Paths](https://uncch.instructure.com/users/9947/files/4534607?verifier=Ay7tjnpmx7Cdhg7TzNXg7zfPD6wbBhBJOy8NqWXK&wrap=1).
 
