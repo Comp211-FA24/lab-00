@@ -44,7 +44,7 @@ The `vim` in your Docker image has been customized for the C programming languag
 
 In case the environment is compromised, all files are in `learncli211/workdir` (relative path in your native file system). In the container, this directory is **m**ou**nt**ed at `/mnt/learncli/workdir` (absolute path).
 
-When you run the start script (`learncli.ps1` or `learncli.sh`) and start the Docker image, Docker will create the `workdir` directory that is bridged between the image and your native operating system, where you can copy and move files between the two.
+When you run the start script (`./learncli.ps1` or `./learncli.sh`) and start the Docker image, Docker will create the `workdir` directory that is bridged between the image and your native operating system, where you can copy and move files between the two.
 
 Running `exit` in the Docker container will exit that container.
 
@@ -92,7 +92,7 @@ The key's randomart image is:
 
 ## Part 1. Hello World
 
-After SSH authentication is set up, return to the container environment. Then, clone this Git repository within your container with the command `git clone <repository>`. In place of where `<repository>` is, you should enter the SSH-based URL of your repository; e.g. `git clone git@github.com:Comp211-SP24/lab-00-username.git`. You can get this URL by going to the GitHub page and clicking Code -> SSH.
+After SSH authentication is set up, return to the container environment by using './learncli.ps1' on Windows or './learncli.sh' on Mac. Then, clone this Git repository within your container with the command `git clone <repository>`. In place of where `<repository>` is, you should enter the SSH-based URL of your repository; e.g. `git clone git@github.com:Comp211-SP24/lab-00-username.git`. You can get this URL by going to the GitHub page and clicking Code -> SSH.
 
 In your repository, use `mkdir` to make a new directory named `0-hello-world`. Use `cd` to change your working directory to be this subdirectory. For reference on how to carry out either of these tasks, please refer to Chapter 2: [Directories, Files, and Paths](https://uncch.instructure.com/users/9947/files/4534607?verifier=Ay7tjnpmx7Cdhg7TzNXg7zfPD6wbBhBJOy8NqWXK&wrap=1).
 
