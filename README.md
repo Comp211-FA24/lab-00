@@ -1,18 +1,21 @@
 <!-- omit in toc -->
-# Lab 00
+# Lab 0
 
 <details open>
     <summary>Contents</summary>
 
-- [Part 0. Setup](#part-0-setup)
-    - [Set up your environment](#set-up-your-environment)
+- [Setup](#setup)
+    - [Set up Linux environment](#set-up-linux-environment)
+        - [Enter container](#enter-container)
     - [Learn the CLI](#learn-the-cli)
-    - [Learn Vim](#learn-vim)
+    - [Learn vim](#learn-vim)
+        - [Vim demo](#vim-demo)
+        - [Vim tutorial](#vim-tutorial)
     - [workdir](#workdir)
     - [Setting up SSH authentication](#setting-up-ssh-authentication)
         - [Locally](#locally)
         - [GitHub](#github)
-- [Part 1. Hello World](#part-1-hello-world)
+- [Hello World](#hello-world)
     - [`hello.c` requirements](#helloc-requirements)
     - [Compiling and executing](#compiling-and-executing)
 - [Submit your assignment](#submit-your-assignment)
@@ -20,25 +23,47 @@
 
 </details>
 
-## Part 0. Setup
+## Setup
 
-### Set up your environment
+### Set up Linux environment
 
-To complete the labs for this course, you will need to learn how to work inside a Linux command-line interface. If you haven't already, please carefully read the [Linux Programming Environment](https://uncch.instructure.com/courses/48862/pages/linux-programming-environment) page on Canvas, and complete the Docker installation steps on your computer. Having everyone use the same Linux environment simplifies the coding and grading process.
+To complete the labs for this course, you need to use a Linux environment. If you haven't already, carefully follow the instructions on the [Linux Programming Environment](https://uncch.instructure.com/courses/48862/pages/linux-programming-environment) page on Canvas to install Docker and the COMP 211 Docker container on your computer. This container contains all tools needed for the course and works the same on everyone's computer (regardless of OS or files/settings on your host computer). Essentially, there won't be any "It works on my machine" bugs because Docker ensures that everyone uses the same "machine" (container).
+
+#### Enter container
+
+To reiterate a part of the Canvas instructions, to enter the container, `cd`  into your `learncli211/` directory, then run `./learncli.ps1` (Windows) or `./learncli.sh` (macOS).
 
 ### Learn the CLI
 
-Read Chapters 1 and 2 of *Learn a Command-line Interface* by Kris Jordan: [The Sorcerer's Shell](https://uncch.instructure.com/users/9947/files/4534606?verifier=OtzqqS8AJ9vtBgYkQDnjzhdQCkb6fk4YT47bMMXA&wrap=1) and [Directories, Files, and Paths](https://uncch.instructure.com/users/9947/files/4534607?verifier=Ay7tjnpmx7Cdhg7TzNXg7zfPD6wbBhBJOy8NqWXK&wrap=1). This will teach you everything you need to know about running programs and navigating directories in your Linux environment. Make sure you practice running the commands in the environment! The shell will be your playground for the semester, so gain familiarity with it.
+Read Chapters 1 and 2 of *Learn a Command-line Interface* by Kris Jordan: [The Sorcerer's Shell](https://uncch.instructure.com/users/9947/files/4534606?verifier=OtzqqS8AJ9vtBgYkQDnjzhdQCkb6fk4YT47bMMXA&wrap=1) and [Directories, Files, and Paths](https://uncch.instructure.com/users/9947/files/4534607?verifier=Ay7tjnpmx7Cdhg7TzNXg7zfPD6wbBhBJOy8NqWXK&wrap=1). This will teach you everything you need to know about running commands and navigating directories in your Linux environment. Please practice running the commands in your new Linux environment! The shell will be your playground for the semester, so gain familiarity with it.
 
-### Learn Vim
+### Learn vim
 
-Vim is an extensible text-editor program that is included in most Linux systems. It is designed to make changing any kind of text very efficient, though it may not seem so at first. Start your Linux environment that you set up earlier and enter the `vimtutor` command. When you press enter, a tutorial document will be opened with `vim` explaining how to use it. If you touch-type and normally have your right hand in home row position (that is, index finger on J, middle finger on K, ring finger on L, and pinky on ;), then we recommend that you do so for vim use as well.
+Vim is an extensible text-editor program that is included in most Linux systems. It is designed to make changing any kind of text very efficient, though it may not seem so at first. In part, this is because nearly all vim controls use the keyboard, and you do not have to use your mouse at all. Vim has a very high skill ceiling (much higher than normal editing controls) but a high skill floor (you will need to take some time to get used to it).
 
-Most likely, you will not remember everything from the tutor. We recommend you just learn enough from `vimtutor` to be comfortable enough to complete Part 1 of the assignment in vim, then later you can go back to `vimtutor` or look at online guides to learn more as you go.
+For example, here are just two useful capabilities of vim that you cannot get out of normal text editing controls.
+
+#### Vim demo
+
+![](https://i.imgur.com/TtjyNrT.gif)
+
+<p align="center"><em>Instantly jump cursor to any word (here, <code>printf</code>) or jump to any 2-character sequence (here, <strong>su</strong>m)</em></p>
+
+![](https://i.imgur.com/zgjXCm4.gif)
+
+<p align="center"><em>Remove 2 parameters from <code>sum</code>, delete everything inside <code>main</code>'s <code>{ }</code>, and modify function bodies</code></em></p>
+
+#### Vim tutorial
+
+[Enter your Linux container](#enter-container), and run the command `vimtutor`. This will use vim to open a tutorial document that explains how to use it.
+
+For vim, we recommend having your right hand in home row position (index finger on `J`, middle finger on `K`, ring finger on `L`, and pinky on `;`).
+
+Most likely, you will not remember everything from the tutorial. We recommend you just learn enough from `vimtutor` to be comfortable enough to complete Part 1 of the assignment in vim, then later you can go back to `vimtutor` or look at online guides to learn more as you go.
 
 The following labs will assume that you are using vim, and we encourage you to take the opportunity to get a basic familiarity with vim during this class. A basic understanding can help you in later courses and in life, even outside of the domain of systems development.
 
-The `vim` in your Docker image has been customized for the C programming language and may look different from `vim` on your home computer. Specifically, to view the customizations, run `vim ~/.vimrc` in your container. The commands in this file are automatically run every time the container is started. The `rc` at the end of the file name stands for "run commands". Another example of such a file is `~/.bashrc`, which contains, on lines 101-112, the `echo` commands that display the "UNC CS" ASCII art on startup.
+The vim in your Docker image has been customized for the C programming language and may look different from vim on your home computer. Specifically, to view the customizations, run `vim ~/.vimrc` in your container. The commands in this file are automatically run every time the container is started. The `rc` at the end of the file name stands for "run commands". Another example of such a file is `~/.bashrc`, which contains, on lines 101-112, the `echo` commands that display the "UNC CS" ASCII art on startup.
 
 ### workdir
 
@@ -90,7 +115,7 @@ The key's randomart image is:
 3. Paste the contents of `.ssh/id_rsa.pub` into the "Key" section.
 4. Give it a title and click "Add SSH Key".
 
-## Part 1. Hello World
+## Hello World
 
 After SSH authentication is set up, return to the container environment by using `./learncli.ps1` on Windows or `./learncli.sh` on Mac. Then, clone this Git repository within your container with the command `git clone <repository>`. In place of where `<repository>` is, you should enter the SSH-based URL of your repository; e.g. `git clone git@github.com:Comp211-SP24/lab-00-username.git`. You can get this URL by going to the GitHub page and clicking Code -> SSH.
 
