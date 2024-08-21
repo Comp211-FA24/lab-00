@@ -5,11 +5,11 @@
     <summary>Contents</summary>
 
 - [Setup](#setup)
-    - [Set up Linux environment](#set-up-linux-environment)
+    - [Set up Docker container](#set-up-docker-container)
         - [Enter container](#enter-container)
     - [Learn the CLI](#learn-the-cli)
     - [Learn vim](#learn-vim)
-        - [Vim demo](#vim-demo)
+        - [Vim demos](#vim-demos)
         - [Vim tutorial](#vim-tutorial)
     - [workdir](#workdir)
     - [Setting up SSH authentication](#setting-up-ssh-authentication)
@@ -25,13 +25,19 @@
 
 ## Setup
 
-### Set up Linux environment
+### Set up Docker container
 
-To complete the labs for this course, you need to use a Linux environment. If you haven't already, carefully follow the instructions on the [Linux Programming Environment](https://uncch.instructure.com/courses/48862/pages/linux-programming-environment) page on Canvas to install Docker and the COMP 211 Docker container on your computer. This container contains all tools needed for the course and works the same on everyone's computer (regardless of OS or files/settings on your host computer). Essentially, there won't be any "It works on my machine" bugs because Docker ensures that everyone uses the same "machine" (container).
+To complete the labs for this course, you need to use a Linux environment. If you haven't already, carefully follow the instructions on the [Linux Programming Environment](https://uncch.instructure.com/courses/48862/pages/linux-programming-environment) page on Canvas to install Docker and the COMP 211 Docker container on your computer.
+
+To summarize Docker's functionality and why we're using it, a common programmer complaint is "But the code works on my computer." Docker avoids this by "shipping your computer."
+
+The COMP 211 container contains all tools needed for the course and works the same on everyone's computer (regardless of OS, files, or settings on your host computer). There won't be any "It works on your machine but not mine" bugs because Docker ensures that everyone uses the same "machine" (container).
 
 #### Enter container
 
-To reiterate a part of the Canvas instructions, to enter the container, `cd`  into your `learncli211/` directory, then run `./learncli.ps1` (Windows) or `./learncli.sh` (macOS).
+To reiterate part of the Canvas instructions, to enter the container, `cd`  into your `learncli211/` directory, then run `./learncli.ps1` (Windows) or `./learncli.sh` (macOS).
+
+You are in the container if your command-line prompt is `learncli$ `. Otherwise, you are in your host OS.
 
 ### Learn the CLI
 
@@ -41,9 +47,9 @@ Read Chapters 1 and 2 of *Learn a Command-line Interface* by Kris Jordan: [The S
 
 Vim is an extensible text-editor program that is included in most Linux systems. It is designed to make changing any kind of text very efficient, though it may not seem so at first. In part, this is because nearly all vim controls use the keyboard, and you do not have to use your mouse at all. Vim has a very high skill ceiling (much higher than normal editing controls) but a high skill floor (you will need to take some time to get used to it).
 
-For example, here are just two useful capabilities of vim that you cannot get out of normal text editing controls.
+For example, here are two vim demos showing useful capabilities that you cannot get out of normal text editing controls. You aren't expected to understand how to do the actions shown, but you should be able to see how the code is navigated/edited using only a few keystrokes.
 
-#### Vim demo
+#### Vim demos
 
 ![](https://i.imgur.com/TtjyNrT.gif)
 
@@ -57,9 +63,9 @@ For example, here are just two useful capabilities of vim that you cannot get ou
 
 [Enter your Linux container](#enter-container), and run the command `vimtutor`. This will use vim to open a tutorial document that explains how to use it.
 
-For vim, we recommend having your right hand in home row position (index finger on `J`, middle finger on `K`, ring finger on `L`, and pinky on `;`).
+For vim, we recommend having your right hand in home row position (index finger on `J`, middle finger on `K`, ring finger on `L`, and pinky on `;`), the same position that is used for touch-typing.
 
-Most likely, you will not remember everything from the tutorial. We recommend you just learn enough from `vimtutor` to be comfortable enough to complete Part 1 of the assignment in vim, then later you can go back to `vimtutor` or look at online guides to learn more as you go.
+Most likely, you will not remember everything from the tutorial. We recommend you just learn enough to be comfortable enough to complete Part 1 of the assignment in vim, then later you can go back to `vimtutor` or look at/search for guides to learn more as you go. For example, we strongly recommend this [vim lesson](https://missing.csail.mit.edu/2020/editors/) from MIT's [The Missing Semester](https://missing.csail.mit.edu/) course.
 
 The following labs will assume that you are using vim, and we encourage you to take the opportunity to get a basic familiarity with vim during this class. A basic understanding can help you in later courses and in life, even outside of the domain of systems development.
 
