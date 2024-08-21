@@ -11,10 +11,11 @@
     - [Learn vim](#learn-vim)
         - [Vim demos](#vim-demos)
         - [Vim tutorial](#vim-tutorial)
-    - [workdir](#workdir)
-    - [Setting up SSH authentication](#setting-up-ssh-authentication)
-        - [Locally](#locally)
-        - [GitHub](#github)
+    - [Mounted directory /mnt/learncli](#mounted-directory-mntlearncli)
+    - [Set up SSH authentication](#set-up-ssh-authentication)
+        - [Generate SSH keys](#generate-ssh-keys)
+        - [Add SSH public key to GitHub](#add-ssh-public-key-to-github)
+        - [Verify that SSH authentication works](#verify-that-ssh-authentication-works)
 - [Hello World](#hello-world)
     - [`hello.c` requirements](#helloc-requirements)
     - [Compiling and executing](#compiling-and-executing)
@@ -29,35 +30,39 @@
 
 To complete the labs for this course, you need to use a Linux environment. If you haven't already, carefully follow the instructions on the [Linux Programming Environment](https://uncch.instructure.com/courses/48862/pages/linux-programming-environment) page on Canvas to install Docker and the COMP 211 Docker container on your computer.
 
-To summarize Docker's functionality and why we're using it, a common programmer complaint is "But the code works on my computer." Docker avoids this by "shipping your computer."
+To summarize Docker's functionality and why we're using it, a common problem for programmers is that code can work on one computer but not another. Docker avoids this by "shipping your computer."
 
-The COMP 211 container contains all tools needed for the course and works the same on everyone's computer (regardless of OS, files, or settings on your host computer). There won't be any "It works on your machine but not mine" bugs because Docker ensures that everyone uses the same "machine" (container).
+The COMP 211 container contains all tools needed for the course and works the same on everyone's computer (regardless of OS, files, or settings on your host computer). There won't be any bugs like the above because Docker ensures that everyone uses the same "machine" (container).
 
 #### Enter container
 
-To reiterate part of the Canvas instructions, to enter the container, `cd`  into your `learncli211/` directory, then run `./learncli.ps1` (Windows) or `./learncli.sh` (macOS).
+To reiterate part of the Canvas instructions, to enter the container, first ensure that Docker Desktop is running. You should see the blue Docker icon in your taskbar. Then open a terminal, run `cd learncli211`, and run `./learncli.ps1` (Windows) or `./learncli.sh` (macOS).
 
-You are in the container if your command-line prompt is `learncli$ `. Otherwise, you are in your host OS.
+You are in the container (Linux) if your command-line prompt is `learncli$ `. Otherwise, you are in your host OS (likely Windows or macOS).
+
+Exit the container by running the command `exit` or by pressing `Ctrl+D`.
 
 ### Learn the CLI
 
-Read Chapters 1 and 2 of *Learn a Command-line Interface* by Kris Jordan: [The Sorcerer's Shell](https://uncch.instructure.com/users/9947/files/4534606?verifier=OtzqqS8AJ9vtBgYkQDnjzhdQCkb6fk4YT47bMMXA&wrap=1) and [Directories, Files, and Paths](https://uncch.instructure.com/users/9947/files/4534607?verifier=Ay7tjnpmx7Cdhg7TzNXg7zfPD6wbBhBJOy8NqWXK&wrap=1). This will teach you everything you need to know about running commands and navigating directories in your Linux environment. Please practice running the commands in your new Linux environment! The shell will be your playground for the semester, so gain familiarity with it.
+Read Chapters 1 and 2 of *Learn a Command-line Interface* by Kris Jordan: [The Sorcerer's Shell](https://uncch.instructure.com/users/9947/files/4534606?verifier=OtzqqS8AJ9vtBgYkQDnjzhdQCkb6fk4YT47bMMXA&wrap=1) and [Directories, Files, and Paths](https://uncch.instructure.com/users/9947/files/4534607?verifier=Ay7tjnpmx7Cdhg7TzNXg7zfPD6wbBhBJOy8NqWXK&wrap=1). In particular, in this lab, we will use content from the following sections: 1.1, 1.11, 2.1-2.7, 2.10, 2.12-2.13. This is not to say that the other sections are unimportant (they will be used in future labs), but the given sections are the bare minimum necessary to complete this lab.
+
+These readings will teach you everything you need to know about running commands and navigating directories in your Linux environment. Please practice running the commands in your new Linux environment! The shell will be your playground for the semester, so gain familiarity with it.
 
 ### Learn vim
 
-Vim is an extensible text-editor program that is included in most Linux systems. It is designed to make changing any kind of text very efficient, though it may not seem so at first. In part, this is because nearly all vim controls use the keyboard, and you do not have to use your mouse at all. Vim has a very high skill ceiling (much higher than normal editing controls) but a high skill floor (you will need to take some time to get used to it).
+Vim is a customizable text-editor program that is included in most Linux systems. It is designed to make editing text text very efficient, though it may not seem so at first. In part, this is because nearly all vim controls use the keyboard, and you do not have to use your mouse at all. Vim has a very high skill ceiling (much higher than normal editing controls) but a high skill floor (you will need to take some time to get used to it).
 
-For example, here are two vim demos showing useful capabilities that you cannot get out of normal text editing controls. You aren't expected to understand how to do the actions shown, but you should be able to see how the code is navigated/edited using only a few keystrokes.
+For example, here are two vim demos showing useful capabilities that you cannot get out of normal text editing controls. You aren't expected to understand how to do the actions shown, but you should be able to see how the code is navigated/edited using only a few keystrokes compared to normal editing controls.
 
 #### Vim demos
 
-![](https://i.imgur.com/TtjyNrT.gif)
+![](https://i.imgur.com/sDvPDR3.gif)
 
-<p align="center"><em>Instantly jump cursor to any word (here, <code>printf</code>) or jump to any 2-character sequence (here, <strong>su</strong>m)</em></p>
+<p align="center"><em>Instantly jump cursor to any 2-letter sequence (here, <code><strong>su</strong>m</code>), then jump to starting line</em></p>
 
-![](https://i.imgur.com/zgjXCm4.gif)
+![](https://i.imgur.com/91nOisx.gif)
 
-<p align="center"><em>Remove 2 parameters from <code>sum</code>, delete everything inside <code>main</code>'s <code>{ }</code>, and modify function bodies</code></em></p>
+<p align="center"><em>Remove 2 parameters from <code>sum</code>, clear everything inside <code>main</code>'s <code>{ }</code>, and modify function bodies</code></em></p>
 
 #### Vim tutorial
 
@@ -67,26 +72,36 @@ For vim, we recommend having your right hand in home row position (index finger 
 
 Most likely, you will not remember everything from the tutorial. We recommend you just learn enough to be comfortable enough to complete Part 1 of the assignment in vim, then later you can go back to `vimtutor` or look at/search for guides to learn more as you go. For example, we strongly recommend this [vim lesson](https://missing.csail.mit.edu/2020/editors/) from MIT's [The Missing Semester](https://missing.csail.mit.edu/) course.
 
-The following labs will assume that you are using vim, and we encourage you to take the opportunity to get a basic familiarity with vim during this class. A basic understanding can help you in later courses and in life, even outside of the domain of systems development.
+As you begin to learn vim, you will edit slower than normal, of course. It should take a few weeks to a month for your vim editing speed to catch up to your normal editing speed. After that point, you will only improve, and you will eventually be able to edit at the speed at which you think.
+
+Beyond improving editing speed, you will need to use vim in later courses and in your career (especially in the domain of systems development) because you will run into situations in which an IDE is not available but vim is (such as in this Docker container).
+
+<!-- TODO: maybe edit vimrc, document vimrc with instructions -->
 
 The vim in your Docker image has been customized for the C programming language and may look different from vim on your home computer. Specifically, to view the customizations, run `vim ~/.vimrc` in your container. The commands in this file are automatically run every time the container is started. The `rc` at the end of the file name stands for "run commands". Another example of such a file is `~/.bashrc`, which contains, on lines 101-112, the `echo` commands that display the "UNC CS" ASCII art on startup.
 
-### workdir
+### Mounted directory /mnt/learncli
 
-In case the environment is compromised, all files are in `learncli211/workdir` (relative path in your native file system). In the container, this directory is **m**ou**nt**ed at `/mnt/learncli/workdir` (absolute path).
+As mentioned in the reading (2.6), the container's filesystem is isolated from that of your host OS. Thus, any changes to files you make in the container's filesystem will be reverted when you exit and re-enter the container.
 
-When you run the start script (`./learncli.ps1` or `./learncli.sh`) and start the Docker image, Docker will create the `workdir` directory that is bridged between the image and your native operating system, where you can copy and move files between the two.
+However, the `/mnt/learncli` directory is different. This directory belongs to your host computer and is "**m**ou**nt**ed into" the container when you enter the container. Thus, you need to use this directory to share files between your host OS and the container. So when you're coding in the container, all code files need to be in `/mnt/learncli/workdir`.
 
-Running `exit` in the Docker container will exit that container.
+You can prove this to yourself by running `ls -a /mnt/learncli` in the container to list **a**ll files (including hidden ones) in `/mnt/learncli`.
 
-### Setting up SSH authentication
+Then exit the container, and you'll be in your host OS's `learncli211` directory. Run `ls -a`, and you'll see that the files in the two directories are the same (because they're the same directory).
 
-In order to interact with GitHub from the command line, SSH authentication must be set up. This is a standard procedure and should only need to be done once. There is a nice [YouTube video](https://www.youtube.com/watch?v=1fR0BHzzgOI) created by Ryan Good (former 211 LA) that walks through the three steps provided below.
+### Set up SSH authentication
 
-#### Locally
+Reading/writing to GitHub requires authentication, which needs to be set up in the container. Previously, you may have cloned URL's that begin with `https`, which requires a username/password, personal access token, or your web browser. This is insecure and inconvenient. We will use SSH authentication, a standard procedure that needs to be done only once.
 
-1. Navigate to the `learncli211` directory that contains the `learncli.sh` and `learncli.ps1`files, but do not execute them! This must be done outside of the container. If you are not sure whether or not you are in a container, then restart your terminal, and `cd` into `learncli211`.
-2. Type `ssh-keygen`, type `.ssh/id_rsa` as the location to save the key, and press enter twice for no passphrase at the password prompt.
+There is a [YouTube video](https://www.youtube.com/watch?v=1fR0BHzzgOI) created by a former 211 LA that walks through the steps below.
+
+#### Generate SSH keys
+
+1. In your **host OS** (Windows/macOS, **not** Linux container), open a terminal.
+    - If you are unsure whether or not you are in the container, review [this](#enter-container).
+2. `cd` to your `learncli211` directory that you cloned earlier.
+3. Run `ssh-keygen`. Then type `.ssh/id_rsa` as the location to save the key. Then press enter twice for no passphrase.
 
 ```text
 $ ssh-keygen
@@ -112,14 +127,25 @@ The key's randomart image is:
 +----[SHA256]-----+
 ```
 
-3. Inside of your `learncli211` folder, a folder called `.ssh` should now exist. Running `cat .ssh/id_rsa.pub` should output the needed key as text to the console, which you should copy for the next part. For the macOS Terminal, highlighting the key and then pressing `CTRL` + `C` should copy it; on Windows Terminal, you must highlight it and then *right-click* the highlighted text to copy it. If nothing is highlighted in Windows Terminal, a right-click will paste.
+<!-- todo confirm -->
+3. Inside your `learncli211` directory, confirm that the directory `.ssh` exists. Recall from the reading (2.10) that files beginning with `.` (such as `.ssh`) are hidden. On Windows, run `dir /a` to list all files, including hidden ones. On macOS, run `ls -a`.
+<!-- todo confirm -->
+4. To print your SSH public key's contents, run `cat .ssh/id_rsa.pub`. Copy the text. To do so, in the macOS terminal, highlight the text and press CMD+C. In Windows Terminal, highlight the text and press Ctrl+C.
+    - Your SSH private key is in `.ssh/id_rsa`. You may share your public key with anyone, but **never share your private key**.
 
-#### GitHub
+#### Add SSH public key to GitHub
 
-1. Click your profile in the top right corner.
-2. Click Settings -> SSH and GPG keys -> New SSH Key.
-3. Paste the contents of `.ssh/id_rsa.pub` into the "Key" section.
-4. Give it a title and click "Add SSH Key".
+1. In your web browser, navigate to [GitHub](https://github.com).
+2. Click your profile picture in the top right corner.
+3. Click Settings > SSH and GPG keys > New SSH Key.
+4. In the "Key" section, paste the public key that you copied earlier.
+5. In the "Title" section, write any title, and click "Add SSH Key".
+
+#### Verify that SSH authentication works
+
+1. Enter your container.
+    - If you forgot how to do so, review [this](#enter-container).
+2. 
 
 ## Hello World
 
