@@ -148,8 +148,8 @@ The key's randomart image is:
 #### Verify that SSH authentication works
 
 1. [Enter your container](#enter-container), if you are not already in it.
-2. Clone this git repository (`lab-0-your_GH_username`).
-    1. Go to this repository on [GitHub](https://github.com).
+2. Clone this [GitHub repository]() (`lab-00-your_GH_username`).
+    1. Go to [this repository].
     2. Click the green <span style="color:#1cb139">Code</span> button.
     3. Select "SSH" (**not** HTTPS).
     4. Copy the URL.
@@ -166,13 +166,13 @@ Please make sure you have the correct access rights
 and the repository exists.
 ```
 
-Otherwise, if no errors, then it was successful, and you can confirm by running `ls`. The output should include `lab-0-your_GH_username`.
+Otherwise, if no errors, then it was successful, and you can confirm by running `ls`. The output should include `lab-00-your_GH_username`.
 
 ## Hello world
 
 The following steps involve sections 2.1-2.5 and 2.7 of the reading. If you have trouble with any of the following instructions (though they should be straightforward), refer to those sections.
 
-1. `cd` into `lab-0-your_GH_username`.
+1. `cd` into `lab-00-your_GH_username`.
 2. In your repository, use `mkdir` to create a directory named `hello_world`.
 3. Use `cd` to change your working directory to be this new subdirectory. You can confirm with `pwd`.
 
@@ -184,9 +184,9 @@ To create and edit this file in vim, run the command `vim hello.c`. If the file 
 
 A simple "Hello world" C program is given on page 9 of [*The C Programming Language*](https://uncch.instructure.com/users/9947/files/4526296?verifier=bzWbUsKclOVAAJ7MfuwOyS5v8DDILep0R7HtGh7t&wrap=1). We will slightly extend it.
 
-Your implementation should print `Hello, world.` on one line and `Welcome to C!` on another line. There should be a trailing newline at the end of that line as well. This is case, punctuation, and spacing-sensitive.
+Your implementation should print `Hello, world.` on one line and `Welcome to C!` on another line. There should be a trailing newline at the end of the latter line as well. This is case, punctuation, and whitespace-sensitive.
 
-It should work like so:
+The program should work like so:
 
 ```text
 learncli$ ./a.out
@@ -218,9 +218,9 @@ Confirm that your program compiles without errors and that its output matches th
 
 Nothing is more contentious in programming than coding style. As you become a more senior programmer, others will expect you to follow good coding style. Your code should be neatly formatted (i.e., easy to read) and well-documented so that others can maintain code you wrote.
 
-Fortunately, there are tools you can use to ensure your code follows style conventions. One popular tool is [`clang-format`](https://clang.llvm.org/docs/ClangFormat.html), which we will use and is installed in the container.
+Fortunately, there are tools you can use to automatically format your code. One popular tool is [`clang-format`](https://clang.llvm.org/docs/ClangFormat.html), which we'll use and is installed in the container.
 
-We will use our custom `clang-format-all` command that formats all C files in a directory. 
+We will use our custom `clang-format-all` command that formats all C files in a directory.
 
 ## Submit your assignment
 
@@ -232,7 +232,7 @@ To submit your assignment, you must commit your work using git, then push to Git
 
 Before we do so, 
 
-1. `cd` to the base of the repository, which is `lab-0-your_GH_username`. To confirm, you can run `pwd`, which should output `/mnt/learncli/workdir/lab-0-your_GH_username`.
+1. `cd` to the base of the repository, which is `lab-00-your_GH_username`. To confirm, you can run `pwd`, which should output `/mnt/learncli/workdir/lab-00-your_GH_username`.
 2. Type `git add -A`. This signals that you want to place all modified/new files on the "stage" so that their changes can take effect.
 3. Type `git commit -m "Your Message Here"`. This shows that you are "committing" the changes you put on the stage. Instead of Your Message Here, you should write a meaningful message about what changes you have made.
 4. Type `git push`. This takes the commit that was made locally on your machine and "pushes" it to GitHub. Now, when you view this repository on GitHub, you should be able to see the changes you've made.

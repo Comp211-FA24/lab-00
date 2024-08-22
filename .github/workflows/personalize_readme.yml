@@ -1,0 +1,22 @@
+name: Personalize README
+
+on: [push]
+
+jobs:
+  personalize-readme:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Check out the repository
+      uses: actions/checkout@v2
+    
+    - name: Replace placeholder with GitHub username
+      run: |
+        sed -i 's/{{username}}/${{ github.actor }}/g' README.md
+    
+    - name: Commit changes
+      run: |
+        git config --global user.name "github-actions"
+        git config --global user.email "github-actions@github.com"
+        git commit -am "Personalize README for ${{ github.actor }}"
+        git push origin HEAD
