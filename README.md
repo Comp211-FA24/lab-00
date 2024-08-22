@@ -20,6 +20,7 @@
     - [hello.c requirements](#helloc-requirements)
     - [Compile and execute](#compile-and-execute)
     - [Format your code](#format-your-code)
+- [Git config name and email](#git-config-name-and-email)
 - [Submit your assignment](#submit-your-assignment)
 - [Check your understanding](#check-your-understanding)
 
@@ -97,7 +98,7 @@ You can prove this to yourself by running `ls -a /mnt/learncli` in the container
 
 Then exit the container, and you'll be in your host OS's `learncli211` directory. Run `ls -a`, and you'll see that the files in the two directories are the same (because they're the same directory).
 
-When you enter the container, your current working directory (cwd) will always initially be `/mnt/learncli/workdir`. Recall from the reading (2.3) that you can print your cwd with `pwd`.
+When you enter the container, your current working directory (cwd) will always initially be `/mnt/learncli/workdir`. Recall from the reading (2.3) that you can print your working directory with `pwd`.
 
 ### Set up SSH authentication
 
@@ -172,17 +173,32 @@ Otherwise, if no errors, then it was successful, and you can confirm by running 
 
 The following steps involve sections 2.1-2.5 and 2.7 of the reading. If you have trouble with any of the following instructions (though they should be straightforward), refer to those sections.
 
+First, we will set up our directory structure. The goal is to make it look like this:
+
+```text
+learncli$ pwd
+/mnt/learncli/workdir
+learncli$ tree .
+.
+`-- lab-00-your_GH_username
+    `-- hello_world
+        `-- hello.c
+
+2 directories, 1 file
+```
+
+To do so,
+
 1. `cd` into `lab-00-your_GH_username`.
-2. In your repository, use `mkdir` to create a directory named `hello_world`.
-3. Use `cd` to change your working directory to be this new subdirectory. You can confirm with `pwd`.
-
-In `hello_world`, we need to create a `hello.c` program that prints some text.
-
-To create and edit this file in vim, run the command `vim hello.c`. If the file does not already exist, vim will create it; otherwise, vim will edit it.
+2. Use `mkdir` to create a directory named `hello_world`.
+3. `cd` into `hello_world`.
+4. To verify that the steps were done correctly, you can use `pwd` to verify that your working directory is indeed `/mnt/learncli/workdir/lab-00-your_GH_username/hello_world`. You can also view the entire directory structure with the `tree` command shown above, e.g., `tree ../..` (relative path).
+5. In `hello_world`, we need to create a `hello.c` program that prints some text. To create and edit this file in vim, run the command `vim hello.c`.
+    - If the file does not already exist, vim will create it; otherwise, vim will edit it.
 
 ### hello.c requirements
 
-A simple "Hello world" C program is given on page 9 of [*The C Programming Language*](https://uncch.instructure.com/users/9947/files/4526296?verifier=bzWbUsKclOVAAJ7MfuwOyS5v8DDILep0R7HtGh7t&wrap=1). We will slightly extend it.
+A simple "Hello world" C program is given on [*The C Programming Language*](https://uncch.instructure.com/users/9947/files/4526296?verifier=bzWbUsKclOVAAJ7MfuwOyS5v8DDILep0R7HtGh7t&wrap=1) pg. 9. We'll slightly extend it.
 
 Your implementation should print `Hello, world.` on one line and `Welcome to C!` on another line. There should be a trailing newline at the end of the latter line as well. This is case, punctuation, and whitespace-sensitive.
 
@@ -195,7 +211,7 @@ Welcome to C!
 learncli$
 ```
 
-The `main` function must be defined with a return type of `int`, a signed integer value. Specifically, it should return `EXIT_SUCCESS`. To return `EXIT_SUCCESS`, you will need to import `stdlib.h`, the header file which defines this constant.
+The `main` function must be defined with a return type of `int`, a signed integer value. Specifically, it should return `EXIT_SUCCESS`. To return `EXIT_SUCCESS`, you need to import `stdlib.h`, the header file which defines this constant.
 
 ### Compile and execute
 
@@ -222,6 +238,43 @@ Fortunately, there are tools you can use to automatically format your code. One 
 
 We will use our custom `clang-format-all` command that formats all C files in a directory.
 
+Running this command with `-h` or `--help` prints the following syntax: `clang-format-all [-h] DIR...`. This command's expected argument(s) is a directory or directories, not individual file(s). If your working directory is still `hello_world`, you can run `clang-format-all ..` to format all files in your repository. Alternatively, you can use the absolute path anywhere, regardless of your working directory, i.e. `clang-format-all /mnt/learncli/workdir/lab-00-your_GH_username`. As mentioned in Sorcerer's Shell (2.9), if there is no output, then the command was successful.
+
+If this is not done (for this and future lab assignments), there will be a small deduction in points. The points are essentially free, so this is just to remind you that code style is important. We emphasize that formatting is a relatively small (and the most easily fixable) facet of code style but important nonetheless. You may read COMP 530's [Lab Style Guide](https://www.cs.unc.edu/~porter/courses/comp530/f24/style.html) for more facets of code style and examples of C code with good and bad style.
+
+## Git config name and email
+
+One last configuration step before submitting the assignment. Git has certain configuration values it relies on, e.g. your name and email, which are transcribed in git commit logs.
+
+If these are not set up, you will get an error message when you commit.
+
+Normally, we would run `git config --global user.email "you@example.com"`, but this change would be cleared once you end your Docker session. Instead, you can edit the environment variables created once the container starts as follows:
+
+1. [Enter your container](#enter-container), if you are not already in it.
+2. Use vim to edit a file named `.bash_profile`. Run `vim /mnt/learncli/.bash_profile`.
+3. Change the following lines from
+
+```text
+#export GIT_AUTHOR_NAME=""
+#export GIT_COMMITTER_NAME=""
+#export GIT_AUTHOR_EMAIL=""
+#export GIT_COMMITTER_EMAIL=""
+```
+
+to
+
+```text
+export GIT_AUTHOR_NAME="Ram Zees"
+export GIT_COMMITTER_NAME="Ram Zees"
+export GIT_AUTHOR_EMAIL="ramzs@live.unc.edu"
+export GIT_COMMITTER_EMAIL="ramzs@live.unc.edu"
+```
+
+but with your own name and email, of course.
+
+4. Save the file.
+5. Restart the container.
+
 ## Submit your assignment
 
 Assignment submissions will be made through [Gradescope](https://www.gradescope.com).
@@ -230,17 +283,21 @@ You should already be enrolled in the COMP 211 course on Gradescope. If you are 
 
 To submit your assignment, you must commit your work using git, then push to GitHub.
 
-Before we do so, 
-
-1. `cd` to the base of the repository, which is `lab-00-your_GH_username`. To confirm, you can run `pwd`, which should output `/mnt/learncli/workdir/lab-00-your_GH_username`.
-2. Type `git add -A`. This signals that you want to place all modified/new files on the "stage" so that their changes can take effect.
-3. Type `git commit -m "Your Message Here"`. This shows that you are "committing" the changes you put on the stage. Instead of Your Message Here, you should write a meaningful message about what changes you have made.
-4. Type `git push`. This takes the commit that was made locally on your machine and "pushes" it to GitHub. Now, when you view this repository on GitHub, you should be able to see the changes you've made.
-5. Go to the COMP 211 course in Gradescope, and click on the assignment called **Lab 0**.
-6. Click on the option to **Submit Assignment**, and choose GitHub as the submission method. You may be prompted to sign in to your GitHub account to grant access to Gradescope. If this occurs, **make sure to grant access to the Comp211-SP24 organization**.
-7. You should see a list of your public repositories. Select the one named **lab-00-yourname** and submit it.
-8. Your assignment should be autograded within a few seconds and you will receive feedback.
-9. If you receive all the points, then you have completed this preliminary lab! Otherwise, you are free to keep pushing commits to your GitHub repository and submit for regrading up until the deadline of the lab.
+1. `cd` to the base of the repository, which is `lab-00-your_GH_username`. To confirm that your working directory is correct, you can run `pwd`.
+2. (Optional) Run `git status` to display the state of the working directory and staging area. Some useful information here might be untracked files, files that have been modified but not staged, and files that have been staged (with `git add`) and are ready to be committed.
+3. Run `git add -A`. This adds all modified files to the staging area. This applies to all files in the git repository, regardless of your working directory.
+4. Run `git commit -m "Your Message Here"`. This creates a new commit based on the files in the staging area and associates the commit with a message. Instead of Your Message Here, you should write a meaningful but concise message about what changes you have made. Here are three good general rules.
+    1. You can actually have a subject line and, optionally, a body. For example, see [here](https://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html). Separate the subject and body with a blank line.
+    2. Limit the subject line to 50 characters.
+    3. Use the body to explain **what** and **why**, not **how**.
+        - Other developers (and you, once enough time has passed) can read the code changes to figure out "how". Additionally, for expressing how code works, English is often imprecise (i.e., can contradict the actual code logic).
+        - Whoever is reading the commit message is much more interested in what was changed and why rather than how it was done (implementation details).
+5. Run `git push`. This takes the commit that was made locally on your machine and "pushes" it to GitHub. Now, when you view this repository on GitHub, you should be able to see the changes you've made.
+6. Go to the COMP 211 course in Gradescope, and click on the assignment called **Lab 0**.
+7. Click on the option to **Submit Assignment**, and choose GitHub as the submission method. You may be prompted to sign in to your GitHub account to grant access to Gradescope. If this occurs, **make sure to grant access to the Comp211-SP24 organization**.
+8. You should see a list of your public repositories. Select the one named **lab-00-yourname** and submit it.
+9. Your assignment should be autograded within a few seconds and you will receive feedback.
+10. If you receive all the points, then you have completed this preliminary lab! Otherwise, you are free to keep pushing commits to your GitHub repository and submit for regrading up until the deadline of the lab.
 
 ## Check your understanding
 
