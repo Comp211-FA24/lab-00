@@ -15,7 +15,7 @@ In this lab, you'll set up the COMP 211 Linux (Ubuntu) environment on your compu
     - [Learn vim](#learn-vim)
         - [Vim demos](#vim-demos)
         - [Vim tutorial](#vim-tutorial)
-        - [Relative line numbers](#relative-line-numbers)
+        - [Relative line numbering](#relative-line-numbering)
         - [Vim customization](#vim-customization)
         - [File tree and EasyMotion](#file-tree-and-easymotion)
 - [Set up SSH authentication](#set-up-ssh-authentication)
@@ -123,21 +123,19 @@ As you begin to learn vim, you will edit slower than normal, of course. It shoul
 
 Beyond improving editing speed, you will need to use vim in later courses and in your career (especially in the domain of systems development) when you run into situations in which an IDE is not available but vim is (e.g., in this Docker container).
 
-<!-- TODO: maybe edit vimrc, document vimrc with instructions -->
+#### Relative line numbering
 
-<!-- The vim in your Docker image has been customized for the C programming language and may look different from vim on your home computer. Specifically, to view the customizations, run `vim ~/.vimrc` in your container. The commands in this file are automatically run every time the container is started. The `rc` at the end of the file name stands for "run commands". Another example of such a file is `~/.bashrc`, which contains, on lines 101-112, the `echo` commands that display the "UNC CS" ASCII art on startup. -->
+In the above [demos](#vim-demos), you may have noticed a weird line numbering system called relative line numbering. This is the default setting in the container because, as you saw in `vimtutor` (2.5), many operators accept a count, such as `2dd` to delete two lines. Although omitted in the tutorial, another useful application is something like `4j` to move down 4 lines. These numbers are relative to the current line and are not absolute line numbers. So, relative line numbering is useful for these operations (see the demos).
 
-#### Relative line numbers
+For example, consider that with absolute line numbers (only), if the current line is 897 and you wish to move down to line 912, you would have to compute `{912-897}j` = `15j`. With relative line numbers, you would simply see line 912 labeled as 15.
 
-In the above [demos](#vim-demos), you may have noticed a weird line numbering system called relative line numbering. This is the default setting in the container because, as you saw in `vimtutor` (2.5), many operators accept a count, such as `2dd` to delete two lines. Although omitted in the tutorial, another useful application is something like `4j` to move down 4 lines. These numbers are relative to the current line and are not absolute line numbers. So, relative line numbering is useful for these operations (see the demos). Consider that with absolute line numbers (only), if the current line is 897 and you wish to move down to line 912, you would have to compute `{912-897}j` = `15j`.
-
-We encourage you to try this setting, and note that the absolute line number of the current line is still shown. If you dislike it, you can turn it off.
+We encourage you to try this setting, and note that the absolute line number of the current line is still shown. If you dislike this setting, you can turn it off.
 
 #### Vim customization
 
 As mentioned, vim is highly customizable. Specifically, vim looks for settings in a file named `.vimrc` in your home directory (`~`) (i.e., `~/.vimrc`). That file contains the line `set relativenumber`, which enables the above setting.
 
-To turn it off, comment that line out. However, recall from [earlier](#mounted-directory-mntlearncli) that changes to `~/.vimrc` won't persist. So, you must edit `/mnt/learncli/.vimrc` instead. When the container is entered, it automatically copies that file to `~/.vimrc`.
+To turn off relative line numbering, comment that line out. However, recall from [earlier](#mounted-directory-mntlearncli) that changes to `~/.vimrc` won't persist. So, you must edit `/mnt/learncli/.vimrc` instead. When the container is entered, it automatically copies that file to `~/.vimrc`.
 
 #### File tree and EasyMotion
 
@@ -148,7 +146,6 @@ The bottom of `.vimrc` explains how to open a file tree (via the plugin [NERDTre
 </p>
 
 <p align="center"><em>NERDTree and window splits</em></p>
-
 
 ## Set up SSH authentication
 
@@ -348,13 +345,16 @@ You should already be enrolled in the COMP 211 course on Gradescope. If you are 
 
 To submit your assignment, you must commit your work using git, then push to GitHub.
 
-1. `cd` to the base of the repository, which is `lab-00-your_GH_username`. To confirm that your working directory is correct, you can run `pwd`.
+1. `cd` to the base of the repository, which is `lab-00-your_GH_username`.
+    - To confirm that your working directory is correct, you can run `pwd`.
 2. (Optional) Run `git status` to display the state of the working directory and staging area.
-    - Some useful information here might be untracked files, files that have been modified but not staged, and files that have been staged (with `git add`) and are ready to be committed.
+    - Some useful information here: files that have been staged (with `git add`) and are ready to be committed, untracked files, and files that have been modified but not staged.
 3. Run `git add -A`.
-    - This adds all modified files to the staging area. This applies to all files in the git repository, regardless of your working directory.
+    - `git add` adds modified files to the staging area.
+    - `-A` makes it apply to all files in the git repository, regardless of your working directory.
 4. Run `git commit -m "Your Message Here"`.
-    - This creates a new commit based on the files in the staging area and associates the commit with a message. Instead of Your Message Here, you should write a meaningful but concise message about what changes you have made. Here are three good general rules:
+    - This creates a new commit based on the files in the staging area and associates the commit with a message.
+    - Instead of Your Message Here, you should write a meaningful but concise message about what changes you have made. Here are three good general rules:
         1. You can actually have a subject line and, optionally, a body. For example, see [here](https://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html). Separate the subject and body with a blank line.
         2. Limit the subject line to 50 characters.
         3. Use the body to explain **what** and **why**, not **how**.
