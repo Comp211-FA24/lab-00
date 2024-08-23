@@ -1,62 +1,101 @@
 <!-- omit in toc -->
 # Lab 0
 
+In this lab, you'll set up the COMP 211 Linux (Ubuntu) environment on your computer, learn how to use the command-line interface (CLI) and vim, and code a simple "Hello world" program in C.
+
 <details open>
     <summary>Contents</summary>
 
+- [Background reading](#background-reading)
 - [Setup](#setup)
-    - [Set up Docker container](#set-up-docker-container)
-        - [Enter container](#enter-container)
-    - [Learn the CLI](#learn-the-cli)
+    - [Install Docker container](#install-docker-container)
+    - [Enter container](#enter-container)
+- [Learn the CLI](#learn-the-cli)
+    - [Mounted directory /mnt/learncli](#mounted-directory-mntlearncli)
     - [Learn vim](#learn-vim)
         - [Vim demos](#vim-demos)
         - [Vim tutorial](#vim-tutorial)
-    - [Mounted directory /mnt/learncli](#mounted-directory-mntlearncli)
-    - [Set up SSH authentication](#set-up-ssh-authentication)
-        - [Generate SSH keys](#generate-ssh-keys)
-        - [Add SSH public key to GitHub](#add-ssh-public-key-to-github)
-        - [Verify that SSH authentication works](#verify-that-ssh-authentication-works)
+        - [Relative line numbers](#relative-line-numbers)
+        - [Vim customization](#vim-customization)
+        - [File tree and EasyMotion](#file-tree-and-easymotion)
+- [Set up SSH authentication](#set-up-ssh-authentication)
+    - [Generate SSH keys](#generate-ssh-keys)
+    - [Add SSH public key to GitHub](#add-ssh-public-key-to-github)
+    - [Verify that SSH authentication works](#verify-that-ssh-authentication-works)
 - [Hello world](#hello-world)
     - [hello.c requirements](#helloc-requirements)
     - [Compile and execute](#compile-and-execute)
     - [Format your code](#format-your-code)
-- [Git config name and email](#git-config-name-and-email)
+- [Git configure name and email](#git-configure-name-and-email)
 - [Submit your assignment](#submit-your-assignment)
-- [Check your understanding](#check-your-understanding)
 
 </details>
 
+## Background reading
+
+1. Required: *Learn a Command-line Interface* by Kris Jordan
+    - Read **after** [Setup](#setup).
+    - [The Sorcerer's Shell](https://uncch.instructure.com/users/9947/files/4534606?verifier=OtzqqS8AJ9vtBgYkQDnjzhdQCkb6fk4YT47bMMXA&wrap=1)
+    - [Directories, Files, and Paths](https://uncch.instructure.com/users/9947/files/4534607?verifier=Ay7tjnpmx7Cdhg7TzNXg7zfPD6wbBhBJOy8NqWXK&wrap=1)
+    - In particular, in this lab, we will use content from the following sections: 1.1-1.2, 1.5, 1.11, 2.1-2.7, 2.9-2.13.
+        - This doesn't mean the other sections are unimportant (all sections are useful, and some will be required knowledge for future labs), but the given sections are necessary to complete this lab.
+        - These readings will teach you everything you need to know about running commands and navigating directories in your Linux environment. However, in addition to reading, you should also practice running the given commands in your new Linux environment! The shell will be your playground for the entire semester, so gain familiarity with it.
+2. Optional but highly recommended: [The Missing Semester of Your CS Education](https://missing.csail.mit.edu/). In particular, their [vim lesson](https://missing.csail.mit.edu/2020/editors/).
+    - Read the vim lesson **after** or during [Learn vim](#learn-vim).
+    - Lessons 1-6 (excluding 4, which is Data Wrangling) of the course are highly relevant for this course.
+        - Lesson 1 will be used in the next lab.
+        - Lesson 10 (Potpourri) content regarding Docker and GitHub is tangentially relevant.
+    - These lessons are highly recommended because they will be useful for the entire semester and beyond, in future classes and your career.
+    - The COMP 211 labs (especially this one) will cover some of the same topics, such as the shell, CLI, vim, git, and gdb, but you are encouraged to learn more via this resource. Consider referring to it throughout the semester. <!-- TODO: delete resources under 3? -->
+3. Optional resources from Kris Jordan
+    - [vim Tutorial - A beginner's guide to vim, a powerful text editor with a grammar.](https://www.youtube.com/playlist?list=PLKUb7MEve0Tj3MLYDIyYpIZtnJehmlR0s)
+    - [What is a version control system? What is git?](https://www.youtube.com/watch?v=h2xylPqXO8M&list=PLKUb7MEve0TjHQSKUWChAWyJPCpYMRovO&index=4)
+    - [git Fundamentals - add, commit, branch, checkout, merge](https://www.youtube.com/watch?v=R8E29zB8tMc&list=PLKUb7MEve0TjHQSKUWChAWyJPCpYMRovO&index=5)
+
 ## Setup
 
-### Set up Docker container
+### Install Docker container
 
-To complete the labs for this course, you need to use a Linux environment. If you haven't already, carefully follow the instructions on the [Linux Programming Environment](https://uncch.instructure.com/courses/48862/pages/linux-programming-environment) page on Canvas to install Docker and the COMP 211 Docker container on your computer.
+To complete the labs for this course, you need to use a Linux environment. If you haven't already, carefully follow the instructions on the [Linux Programming Environment](https://uncch.instructure.com/courses/48862/pages/linux-programming-environment) page to install Docker and the COMP 211 Docker container on your computer.
 
-To summarize Docker's functionality and why we're using it, a common problem for programmers is that code can work on one computer but not another. Docker avoids this by "shipping your computer."
+To summarize Docker's functionality and why we're using it, a common problem for programmers is that code can work on one computer but not another. Docker solves this problem by "shipping your computer." More accurately, you will pull the COMP 211 Docker image that contains instructions for building our container, and this container will be built within your host OS.
 
-The COMP 211 container contains all tools needed for the course and works the same on everyone's computer (regardless of OS, files, or settings on your host OS). There won't be any bugs like the above because Docker ensures that everyone uses the same "machine" (container).
+The COMP 211 container contains all tools needed for the course and works the same on everyone's computer (regardless of OS type, files, or settings on your host OS) because everyone will use the same image.
 
-#### Enter container
+### Enter container
 
-To reiterate part of the Canvas instructions, to enter the container, first ensure that Docker Desktop is running, and start it if not. You should see the blue Docker icon in your taskbar (Windows and macOS). If not, check Task Manager/Activity Monitor.
+After completing the setup instructions, these are the steps that need to be done each time you wish to enter the container.
 
-Then open a terminal, run `cd learncli211`, and run `./learncli.ps1` (Windows) or `./learncli.sh` (macOS).
-
-You are in the container (Linux) if your command-line prompt is `learncli$ `. Otherwise, you are in your host OS (likely Windows or macOS).
+1. Ensure that Docker Desktop is running, and start it if not. You should see the blue Docker icon in your taskbar (Windows and macOS). If not, check Task Manager/Activity Monitor.
+2. Open a terminal.
+3. Run `cd learncli211`.
+    - If you cloned the repo to a different path, `cd` into wherever your `learncli211` repo is located. If you don't know what this means (yet), ignore it.
+4. Run `./learncli.ps1` (Windows) or `./learncli.sh` (macOS).
+5. Verify that you are in the container (Linux) by checking that your command-line prompt is `learncli$ `. Otherwise, you are in your host OS (likely Windows or macOS).
 
 Exit the container by running the command `exit` or by pressing `Ctrl+D`.
 
-### Learn the CLI
+## Learn the CLI
 
-Read Chapters 1 and 2 of *Learn a Command-line Interface* by Kris Jordan: [The Sorcerer's Shell](https://uncch.instructure.com/users/9947/files/4534606?verifier=OtzqqS8AJ9vtBgYkQDnjzhdQCkb6fk4YT47bMMXA&wrap=1) and [Directories, Files, and Paths](https://uncch.instructure.com/users/9947/files/4534607?verifier=Ay7tjnpmx7Cdhg7TzNXg7zfPD6wbBhBJOy8NqWXK&wrap=1). In particular, in this lab, we will use content from the following sections: 1.1-1.2, 1.5, 1.11, 2.1-2.7, 2.9-2.13. This is not to say that the other sections are unimportant (all sections are useful, and some will be required knowledge for future labs), but the given sections are necessary to complete this lab.
+In [Background reading](#background-reading), read *Learn a Command-line Interface* by Kris Jordan.
 
-These readings will teach you everything you need to know about running commands and navigating directories in your Linux environment. Please practice running the commands in your new Linux environment! The shell will be your playground for the semester, so gain familiarity with it.
+### Mounted directory /mnt/learncli
+
+As mentioned in [Directories, Files, and Paths](https://uncch.instructure.com/users/9947/files/4534607?verifier=Ay7tjnpmx7Cdhg7TzNXg7zfPD6wbBhBJOy8NqWXK&wrap=1) (2.6), the container's filesystem is isolated from that of your host OS. Thus, any changes to files you make in the container's filesystem will be reverted when you exit and re-enter the container.
+
+However, the `/mnt/learncli` directory is different. This directory belongs to your host computer and is "**m**ou**nt**ed into" the container when you enter the container. Thus, you need to use this directory to share files between your host OS and the container. So when you're coding in the container, all code files need to be in `/mnt/learncli/workdir`.
+
+You can prove this to yourself by running `ls -a /mnt/learncli` in the container to list **a**ll files (including hidden ones) in `/mnt/learncli`.
+
+Then exit the container, and you'll be in your host OS's `learncli211` directory. Run `ls -a`, and you'll see that the files in the two directories are the same (because they're the same directory). Additionally, in this shared directory, you can add a new file in the container and see it in your host OS and vice versa.
+
+When you enter the container, your current working directory (cwd) will always initially be `/mnt/learncli/workdir`. Recall from [Directories, Files, and Paths](https://uncch.instructure.com/users/9947/files/4534607?verifier=Ay7tjnpmx7Cdhg7TzNXg7zfPD6wbBhBJOy8NqWXK&wrap=1) (2.3) that you can print your working directory with `pwd`.
 
 ### Learn vim
 
 Vim is a customizable text-editor program that is included in most Linux systems. It is designed to make editing text text very efficient, though it may not seem so at first. In part, this is because nearly all vim controls use the keyboard, and you do not have to use your mouse at all. Vim has a very high skill ceiling (much higher than normal editing controls) but a high skill floor (you will need to take some time to get used to it).
 
-For example, here are two vim demos showing useful capabilities that you cannot get out of normal text editing controls. You aren't expected to understand how to do the actions shown, but you should be able to see how the code is navigated/edited using only a few keystrokes compared to normal editing controls.
+For example, here are two vim demos that show useful capabilities you cannot get out of normal text editing controls. You aren't expected to understand how to do the actions shown, but you should be able to see how the code is navigated/edited using only a few keystrokes compared to normal editing controls.
 
 #### Vim demos
 
@@ -74,37 +113,48 @@ For example, here are two vim demos showing useful capabilities that you cannot 
 
 #### Vim tutorial
 
-Enter your Linux container (review [this](#enter-container) if you forgot how to do so or are unsure whether you are in it), and run the command `vimtutor`. This will use vim to open a tutorial document that explains how to use it.
+[Enter your Linux container](#enter-container), and run the command `vimtutor`. This will use vim to open a tutorial document that explains how to use it.
 
 For vim, we recommend having your right hand in home row position (index finger on `J`, middle finger on `K`, ring finger on `L`, and pinky on `;`), the same position that is used for touch-typing.
 
-Most likely, you will not remember everything from the tutorial. We recommend you just learn enough to be comfortable enough to complete Part 1 of the assignment in vim, then later you can go back to `vimtutor` or look at/search for guides to learn more as you go. For example, we strongly recommend this [vim lesson](https://missing.csail.mit.edu/2020/editors/) from MIT's [The Missing Semester](https://missing.csail.mit.edu/) course.
+Most likely, you will not remember everything from the tutorial. We recommend you just learn enough to be comfortable enough to complete Part 1 of the assignment in vim, then later you can go back to `vimtutor` or look at/search for guides to learn more as you go. For example, we strongly recommend the vim lesson given in [Background reading](#background-reading). In general, whenever something seems inefficient or you think "there must be a better way", there probably is, and you should try Googling it.
 
-As you begin to learn vim, you will edit slower than normal, of course. It should take a few weeks to a month for your vim editing speed to catch up to your normal editing speed. After that point, you will only improve, and you will eventually be able to edit at the speed at which you think.
+As you begin to learn vim, you will edit slower than normal, of course. It should take a few weeks to a month for your vim editing speed to catch up to your normal editing speed. This may seem like a while, but after that point, you will only improve, and you will eventually be able to edit at the speed at which you think.
 
-Beyond improving editing speed, you will need to use vim in later courses and in your career (especially in the domain of systems development) because you will run into situations in which an IDE is not available but vim is (such as in this Docker container).
+Beyond improving editing speed, you will need to use vim in later courses and in your career (especially in the domain of systems development) when you run into situations in which an IDE is not available but vim is (e.g., in this Docker container).
 
 <!-- TODO: maybe edit vimrc, document vimrc with instructions -->
 
-The vim in your Docker image has been customized for the C programming language and may look different from vim on your home computer. Specifically, to view the customizations, run `vim ~/.vimrc` in your container. The commands in this file are automatically run every time the container is started. The `rc` at the end of the file name stands for "run commands". Another example of such a file is `~/.bashrc`, which contains, on lines 101-112, the `echo` commands that display the "UNC CS" ASCII art on startup.
+<!-- The vim in your Docker image has been customized for the C programming language and may look different from vim on your home computer. Specifically, to view the customizations, run `vim ~/.vimrc` in your container. The commands in this file are automatically run every time the container is started. The `rc` at the end of the file name stands for "run commands". Another example of such a file is `~/.bashrc`, which contains, on lines 101-112, the `echo` commands that display the "UNC CS" ASCII art on startup. -->
 
-### Mounted directory /mnt/learncli
+#### Relative line numbers
 
-As mentioned in the reading (2.6), the container's filesystem is isolated from that of your host OS. Thus, any changes to files you make in the container's filesystem will be reverted when you exit and re-enter the container.
+In the above [demos](#vim-demos), you may have noticed a weird line numbering system called relative line numbering. This is the default setting in the container because, as you saw in `vimtutor` (2.5), many operators accept a count, such as `2dd` to delete two lines. Although omitted in the tutorial, another useful application is something like `4j` to move down 4 lines. These numbers are relative to the current line and are not absolute line numbers. So, relative line numbering is useful for these operations (see the demos). Consider that with absolute line numbers (only), if the current line is 897 and you wish to move down to line 912, you would have to compute `{912-897}j` = `15j`.
 
-However, the `/mnt/learncli` directory is different. This directory belongs to your host computer and is "**m**ou**nt**ed into" the container when you enter the container. Thus, you need to use this directory to share files between your host OS and the container. So when you're coding in the container, all code files need to be in `/mnt/learncli/workdir`.
+We encourage you to try this setting, and note that the absolute line number of the current line is still shown. If you dislike it, you can turn it off.
 
-You can prove this to yourself by running `ls -a /mnt/learncli` in the container to list **a**ll files (including hidden ones) in `/mnt/learncli`.
+#### Vim customization
 
-Then exit the container, and you'll be in your host OS's `learncli211` directory. Run `ls -a`, and you'll see that the files in the two directories are the same (because they're the same directory).
+As mentioned, vim is highly customizable. Specifically, vim looks for settings in a file named `.vimrc` in your home directory (`~`) (i.e., `~/.vimrc`). That file contains the line `set relativenumber`, which enables the above setting.
 
-When you enter the container, your current working directory (cwd) will always initially be `/mnt/learncli/workdir`. Recall from the reading (2.3) that you can print your working directory with `pwd`.
+To turn it off, comment that line out. However, recall from [earlier](#mounted-directory-mntlearncli) that changes to `~/.vimrc` won't persist. So, you must edit `/mnt/learncli/.vimrc` instead. When the container is entered, it automatically copies that file to `~/.vimrc`.
 
-### Set up SSH authentication
+#### File tree and EasyMotion
 
-Reading/writing to GitHub requires authentication, which needs to be set up in the container. Previously, you may have cloned URL's that begin with `https`, which requires a username/password, personal access token, or your web browser. This is insecure and inconvenient. We will use SSH authentication, a standard procedure that needs to be done only once. After this one-time procedure, every time you clone, you will only need to run `git clone <url>` and will not be prompted for a username/password or PAT.
+The bottom of `.vimrc` explains how to open a file tree (via the plugin [NERDTree](https://github.com/preservim/nerdtree)), open tabs/windows, and how to use [EasyMotion](https://github.com/easymotion/vim-easymotion) (first [vim demo](#vim-demos)).
 
-#### Generate SSH keys
+<p align="center">
+    <img src="https://i.imgur.com/KohWEi3.png">
+</p>
+
+<p align="center"><em>NERDTree and window splits</em></p>
+
+
+## Set up SSH authentication
+
+Reading/writing to GitHub requires authentication, which needs to be set up in the container. Previously, you may have cloned URL's that begin with `https`, which requires a username/password, personal access token (PAT), or your web browser. This is insecure and inconvenient. We will use SSH authentication, a standard procedure that needs to be done only once. After this one-time procedure, every time you clone, you will only need to run `git clone <SSH_url.git>` and will not be prompted for a username/password or PAT.
+
+### Generate SSH keys
 
 1. [Enter your container](#enter-container).
 2. Run `cd /mnt/learncli`.
@@ -138,26 +188,26 @@ The key's randomart image is:
 5. Print your SSH public key by running `cat .ssh/id_rsa.pub`. Copy the outputted text. To do so in Windows Terminal or the macOS terminal, highlight the text and press Ctrl+C or Cmd+C, respectively.
     - Your SSH private key is in `.ssh/id_rsa`. You may share your public key with anyone, but **never** share your private key. Doing so will allow anyone to impersonate you (i.e., read/write/delete your private repositories, commit under your name, etc.).
 
-#### Add SSH public key to GitHub
+### Add SSH public key to GitHub
 
 1. In your web browser, navigate to [GitHub](https://github.com).
 2. Click your profile picture in the top right corner.
 3. Click Settings > SSH and GPG keys > New SSH Key.
-4. In the "Key" section, paste the public key that you copied earlier.
+4. In the "Key" section, paste what you copied earlier in [step 5](#generate-ssh-keys) (the SSH public key).
 5. In the "Title" section, write any title, and click "Add SSH Key".
 
-#### Verify that SSH authentication works
+### Verify that SSH authentication works
 
 1. [Enter your container](#enter-container), if you are not already in it.
-2. Clone this [GitHub repository]() (`lab-00-your_GH_username`).
+2. Clone your Lab 0 [GitHub repository]() (`lab-00-your_GH_username`).
     1. Go to [this repository].
     2. Click the green <span style="color:#1cb139">Code</span> button.
     3. Select "SSH" (**not** HTTPS).
     4. Copy the URL.
-    5. In the container, run `git clone <url>`, where `<url>` is the URL you just copied that begins with `git@github.com`.
+    5. In the container, run `git clone <url>`, where `<url>` is the URL you just copied that begins with `git@github.com` and ends with `.git`.
     6. If you are prompted with "Are you sure you want to continue connecting (yes/no/[fingerprint])?", type `yes` and press Enter.
 
-If you get an error that looks like the following, then the [Set up SSH authentication](#set-up-ssh-authentication) steps were not done correctly.
+If you get an error that looks like the following, then the [Set up SSH authentication](#set-up-ssh-authentication) steps were not done correctly. Redo them.
 
 ```text
 git@github.com: Permission denied (publickey).
@@ -192,7 +242,8 @@ To do so,
 1. `cd` into `lab-00-your_GH_username`.
 2. Use `mkdir` to create a directory named `hello_world`.
 3. `cd` into `hello_world`.
-4. To verify that the steps were done correctly, you can use `pwd` to verify that your working directory is indeed `/mnt/learncli/workdir/lab-00-your_GH_username/hello_world`. You can also view the entire directory structure with the `tree` command shown above, e.g., `tree ../..` (relative path).
+4. To verify that the steps were done correctly, you can use `pwd` to verify that your working directory is indeed `/mnt/learncli/workdir/lab-00-your_GH_username/hello_world`.
+    - You can also view the entire directory structure with the `tree` command shown above, e.g., `tree ../..` (relative path).
 5. In `hello_world`, we need to create a `hello.c` program that prints some text. To create and edit this file in vim, run the command `vim hello.c`.
     - If the file does not already exist, vim will create it; otherwise, vim will edit it.
 
@@ -238,20 +289,34 @@ Fortunately, there are tools you can use to automatically format your code. One 
 
 We will use our custom `clang-format-all` command that formats all C files in a directory.
 
-Running this command with `-h` or `--help` prints the following syntax: `clang-format-all [-h] DIR...`. This command's expected argument(s) is a directory or directories, not individual file(s). If your working directory is still `hello_world`, you can run `clang-format-all ..` to format all files in your repository. Alternatively, you can use the absolute path anywhere, regardless of your working directory, i.e. `clang-format-all /mnt/learncli/workdir/lab-00-your_GH_username`. As mentioned in Sorcerer's Shell (2.9), if there is no output, then the command was successful.
+Running this command with `-h` or `--help` prints the following syntax: `clang-format-all [-h] DIR...`. This command's expected argument(s) is a directory or directories, not individual file(s). If your working directory is still `hello_world`, you can run `clang-format-all ..` to format all files in your repository. Alternatively, you can use the absolute path anywhere, regardless of your working directory, i.e. `clang-format-all /mnt/learncli/workdir/lab-00-your_GH_username`. As mentioned in [Directories, Files, and Paths](https://uncch.instructure.com/users/9947/files/4534607?verifier=Ay7tjnpmx7Cdhg7TzNXg7zfPD6wbBhBJOy8NqWXK&wrap=1) (2.9), if there is no output, then the command was successful.
 
 If this is not done (for this and future lab assignments), there will be a small deduction in points. The points are essentially free, so this is just to remind you that code style is important. We emphasize that formatting is a relatively small (and the most easily fixable) facet of code style but important nonetheless. You may read COMP 530's [Lab Style Guide](https://www.cs.unc.edu/~porter/courses/comp530/f24/style.html) for more facets of code style and examples of C code with good and bad style.
 
-## Git config name and email
+## Git configure name and email
 
-One last configuration step before submitting the assignment. Git has certain configuration values it relies on, e.g. your name and email, which are transcribed in git commit logs.
+Git has certain configuration values it relies on, e.g. your name and email, which are transcribed in git commit logs. If these are not set up, you will get an error message when you commit.
 
-If these are not set up, you will get an error message when you commit.
+```text
+Author identity unknown
 
-Normally, we would run `git config --global user.email "you@example.com"`, but this change would be cleared once you end your Docker session. Instead, you can edit the environment variables created once the container starts as follows:
+*** Please tell me who you are.
+
+Run
+
+  git config --global user.email "you@example.com"
+  git config --global user.name "Your Name"
+
+to set your account's default identity.
+Omit --global to set the identity only in this repository.
+
+fatal: unable to auto-detect email address (got 'root@07a5f55598d3.(none)')
+```
+
+Normally, we would follow the suggestion and run `git config --global user.email "you@example.com"`, but this change would be cleared once you start another Docker session. Instead, edit the environment variables created when the container starts as follows:
 
 1. [Enter your container](#enter-container), if you are not already in it.
-2. Use vim to edit a file named `.bash_profile`. Run `vim /mnt/learncli/.bash_profile`.
+2. Run `vim /mnt/learncli/.bash_profile`.
 3. Change the following lines from
 
 ```text
@@ -284,25 +349,23 @@ You should already be enrolled in the COMP 211 course on Gradescope. If you are 
 To submit your assignment, you must commit your work using git, then push to GitHub.
 
 1. `cd` to the base of the repository, which is `lab-00-your_GH_username`. To confirm that your working directory is correct, you can run `pwd`.
-2. (Optional) Run `git status` to display the state of the working directory and staging area. Some useful information here might be untracked files, files that have been modified but not staged, and files that have been staged (with `git add`) and are ready to be committed.
-3. Run `git add -A`. This adds all modified files to the staging area. This applies to all files in the git repository, regardless of your working directory.
-4. Run `git commit -m "Your Message Here"`. This creates a new commit based on the files in the staging area and associates the commit with a message. Instead of Your Message Here, you should write a meaningful but concise message about what changes you have made. Here are three good general rules.
-    1. You can actually have a subject line and, optionally, a body. For example, see [here](https://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html). Separate the subject and body with a blank line.
-    2. Limit the subject line to 50 characters.
-    3. Use the body to explain **what** and **why**, not **how**.
-        - Other developers (and you, once enough time has passed) can read the code changes to figure out "how". Additionally, for expressing how code works, English is often imprecise (i.e., can contradict the actual code logic).
-        - Whoever is reading the commit message is much more interested in what was changed and why rather than how it was done (implementation details).
-5. Run `git push`. This takes the commit that was made locally on your machine and "pushes" it to GitHub. Now, when you view this repository on GitHub, you should be able to see the changes you've made.
-6. Go to the COMP 211 course in Gradescope, and click on the assignment called **Lab 0**.
-7. Click on the option to **Submit Assignment**, and choose GitHub as the submission method. You may be prompted to sign in to your GitHub account to grant access to Gradescope. If this occurs, **make sure to grant access to the Comp211-SP24 organization**.
-8. You should see a list of your public repositories. Select the one named **lab-00-yourname** and submit it.
-9. Your assignment should be autograded within a few seconds and you will receive feedback.
-10. If you receive all the points, then you have completed this preliminary lab! Otherwise, you are free to keep pushing commits to your GitHub repository and submit for regrading up until the deadline of the lab.
-
-## Check your understanding
-
-The purpose of this lab is to make sure you have some basic familiarity with the tools of this course: your Ubuntu environment, vim, and git. You will earn full credit for this lab simply by submitting the short `hello.c` program, but it would be a good idea for you to spend some extra time learning the shell commands, vim keystrokes and understanding git. If you would like to learn more beyond what was included in the lab writeup, here are some additional resources created by Kris Jordan:
-
-* [vim Tutorial - A beginner's guide to vim, a powerful text editor with a grammar.](https://www.youtube.com/playlist?list=PLKUb7MEve0Tj3MLYDIyYpIZtnJehmlR0s)
-* [What is a version control system? What is git?](https://www.youtube.com/watch?v=h2xylPqXO8M&list=PLKUb7MEve0TjHQSKUWChAWyJPCpYMRovO&index=4)
-* [git Fundamentals - add, commit, branch, checkout, merge](https://www.youtube.com/watch?v=R8E29zB8tMc&list=PLKUb7MEve0TjHQSKUWChAWyJPCpYMRovO&index=5)
+2. (Optional) Run `git status` to display the state of the working directory and staging area.
+    - Some useful information here might be untracked files, files that have been modified but not staged, and files that have been staged (with `git add`) and are ready to be committed.
+3. Run `git add -A`.
+    - This adds all modified files to the staging area. This applies to all files in the git repository, regardless of your working directory.
+4. Run `git commit -m "Your Message Here"`.
+    - This creates a new commit based on the files in the staging area and associates the commit with a message. Instead of Your Message Here, you should write a meaningful but concise message about what changes you have made. Here are three good general rules:
+        1. You can actually have a subject line and, optionally, a body. For example, see [here](https://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html). Separate the subject and body with a blank line.
+        2. Limit the subject line to 50 characters.
+        3. Use the body to explain **what** and **why**, not **how**.
+            - Other developers (and you, once enough time has passed) can read the code changes to figure out "how". Additionally, for expressing code logic, English is often imprecise (i.e., can contradict the actual code logic).
+            - Whoever is reading the commit message is much more interested in what was changed and why rather than how it was done (implementation details).
+5. Run `git push`.
+    - This uploads commits made locally on your machine to the remote repository (on GitHub).
+    - After this is run, when you view this repository on GitHub, you should be able to see the changes you've made.
+6. Go to the COMP 211 course in Gradescope, and click on the assignment named **Lab 0**.
+7. Click on the option to **Submit Assignment**, and choose GitHub as the submission method.
+    - You may be prompted to sign in to your GitHub account to grant access to Gradescope. If this occurs, grant access to the Comp211-FA24 organization.
+8. You should see a list of your public repositories. Select the one named **lab-00-your_GH_username**, and submit it.
+9. Your assignment should be autograded within a few seconds, and you will receive feedback.
+10. If you receive all the points, then you have completed this lab! Otherwise, you are free to resubmit for regrading until the lab deadline.
