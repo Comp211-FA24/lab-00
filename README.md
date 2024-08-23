@@ -131,13 +131,13 @@ We encourage you to stick with this setting for a bit. Note that the absolute li
 
 #### Vim customization
 
-As mentioned, vim is highly customizable. Specifically, vim looks for settings in `~/.vimrc`. That file contains the line `set relativenumber`, which enables relative line numbering.
+As mentioned, vim is highly customizable. Specifically, vim looks for settings in `~/.vimrc` (`~` is your home directory). That file contains the line `set relativenumber`, which enables relative line numbering.
 
-To turn it off, simply comment that line out. However, recall from [earlier](#mounted-directory-mntlearncli) that in the container, changes to `~/.vimrc` won't persist. So, you must instead edit `/mnt/learncli/.vimrc`. When the container is entered, it automatically copies that file to `~/.vimrc`.
+To turn it off, simply comment that line out. However, recall from [earlier](#mounted-directory-mntlearncli) that in the container, changes to `~/.vimrc` won't persist. So, you must instead edit `/mnt/learncli/.vimrc`. When the container is entered, that file is automatically copied to `~/.vimrc`.
 
 #### File tree and EasyMotion
 
-The bottom of `.vimrc` explains how to open a file tree (via the plugin [NERDTree](https://github.com/preservim/nerdtree)), open tabs/windows, and how to use [EasyMotion](https://github.com/easymotion/vim-easymotion) (first [vim demo](#vim-demos)).
+The bottom of `~/.vimrc` explains how to open a file tree (via the plugin [NERDTree](https://github.com/preservim/nerdtree)), open tabs/windows, and how to use [EasyMotion](https://github.com/easymotion/vim-easymotion) (first [vim demo](#vim-demos)).
 
 <p align="center">
     <img src="https://i.imgur.com/KohWEi3.png">
@@ -147,7 +147,7 @@ The bottom of `.vimrc` explains how to open a file tree (via the plugin [NERDTre
 
 ## Final setup
 
-This section is separate from [Setup](#setup) above because if you do any of the steps below improperly, you now have knowledge of CLI and vim to detect and fix any issues.
+This section is separate from [Setup](#setup) above because if you do any of the steps below improperly, you now have enough knowledge of CLI and vim to detect and fix any issues.
 
 ### SSH authentication
 
@@ -186,7 +186,7 @@ The key's randomart image is:
 ```
 
 4. Run `source ~/.bashrc`. You should now see the UNC CS logo again and something like `Identity added: /root/.ssh/id_rsa (root@8de59c21d591)`.
-    - The output indicates that the new SSH key was successfully copied to `~/.ssh`.
+    - The output indicates that the new SSH keys were successfully copied to `~/.ssh`.
     - If you do not see that output, you did something incorrectly. Redo 1-3.
 5. Print your SSH public key by running `cat ~/.ssh/id_rsa.pub`. Copy the outputted text, which begins with `ssh-rsa` and ends with something like `root@8de59c21d591`.
     - To copy text in Windows Terminal or macOS Terminal, highlight the text and press Ctrl+C or Cmd+C, respectively.
