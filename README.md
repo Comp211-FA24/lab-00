@@ -157,7 +157,7 @@ Instead, we will use SSH authentication, a standard procedure that needs to be d
 
 #### Generate SSH keys
 
-1. [Enter your container](#enter-container).
+1. If you are not in the container, [enter the container](#enter-container).
 2. Run `cd /mnt/learncli`.
 3. Run `ssh-keygen`. Then type `.ssh/id_rsa` as the location to save the key. Then press enter twice for no passphrase.
 
@@ -185,11 +185,12 @@ The key's randomart image is:
 +----[SHA256]-----+
 ```
 
-4. Print your SSH public key by running `cat .ssh/id_rsa.pub`. Copy the outputted text, which begins with `ssh-rsa` and ends with something like `root@8de59c21d591`.
-    - To copy text in Windows Terminal or macOS Terminal, highlight the text and press Ctrl+C or Cmd+C, respectively.
-    - Your SSH private key is in `.ssh/id_rsa`. You may share your public key with anyone, but **never** share your private key. Doing so will allow anyone to impersonate you (i.e., read/write/delete your private repositories, commit under your name, etc.).
-5. Run `source ~/.bashrc`. You should now see the UNC CS logo again and something like `Identity added: /root/.ssh/id_rsa (root@8de59c21d591)`.
+4. Run `source ~/.bashrc`. You should now see the UNC CS logo again and something like `Identity added: /root/.ssh/id_rsa (root@8de59c21d591)`.
     - The output indicates that the new SSH key was successfully copied to `~/.ssh`.
+    - If you do not see that output, you did something incorrectly. Redo 1-3.
+5. Print your SSH public key by running `cat ~/.ssh/id_rsa.pub`. Copy the outputted text, which begins with `ssh-rsa` and ends with something like `root@8de59c21d591`.
+    - To copy text in Windows Terminal or macOS Terminal, highlight the text and press Ctrl+C or Cmd+C, respectively.
+    - Your SSH private key is in `~/.ssh/id_rsa`. You may share your public key with anyone, but **never** share your private key. Doing so will allow anyone to impersonate you (i.e., read/write/delete your private repositories, commit under your name, etc.).
 
 #### Add SSH public key to GitHub
 
@@ -201,7 +202,7 @@ The key's randomart image is:
 
 #### Verify that SSH authentication works
 
-1. In the container, run `cd /mnt/learncli/workdir`.
+1. **In the container**, run `cd /mnt/learncli/workdir`.
 2. Clone your Lab 0 GitHub repository.
     1. Go to [https://github.com/orgs/Comp211-FA24/repositories](https://github.com/orgs/Comp211-FA24/repositories).
     2. Click your Lab 0 repository.
