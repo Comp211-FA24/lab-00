@@ -185,21 +185,23 @@ The key's randomart image is:
 +----[SHA256]-----+
 ```
 
-4. Verify that the SSH keys were generated and named correctly by running `ls .ssh`. The output should include `id_rsa id_rsa.pub`.
-5. Print your SSH public key by running `cat .ssh/id_rsa.pub`. Copy the outputted text. To do so in Windows Terminal or the macOS terminal, highlight the text and press Ctrl+C or Cmd+C, respectively.
+4. Print your SSH public key by running `cat .ssh/id_rsa.pub`. Copy the outputted text, which begins with `ssh-rsa` and ends with something like `root@8de59c21d591`.
+    - To copy text in Windows Terminal or macOS Terminal, highlight the text and press Ctrl+C or Cmd+C, respectively.
     - Your SSH private key is in `.ssh/id_rsa`. You may share your public key with anyone, but **never** share your private key. Doing so will allow anyone to impersonate you (i.e., read/write/delete your private repositories, commit under your name, etc.).
+5. Run `source ~/.bashrc`. You should now see the UNC CS logo again and something like `Identity added: /root/.ssh/id_rsa (root@8de59c21d591)`.
+    - The output indicates that the new SSH key was successfully copied to `~/.ssh`.
 
 #### Add SSH public key to GitHub
 
 1. In your web browser, navigate to [GitHub](https://github.com).
 2. Click your profile picture in the top right corner.
 3. Click Settings > SSH and GPG keys > New SSH Key.
-4. In the "Key" section, paste what you copied earlier in [step 5](#generate-ssh-keys) (the SSH public key).
+4. In the "Key" section, paste what you copied [earlier](#generate-ssh-keys) (the SSH public key, which begins with `ssh-rsa` and ends with something like `root@8de59c21d591`).
 5. In the "Title" section, write any title, and click "Add SSH Key".
 
 #### Verify that SSH authentication works
 
-1. [Enter your container](#enter-container), if you are not already in it.
+1. In the container, run `cd /mnt/learncli/workdir`.
 2. Clone your Lab 0 GitHub repository.
     1. Go to [https://github.com/orgs/Comp211-FA24/repositories](https://github.com/orgs/Comp211-FA24/repositories).
     2. Click your Lab 0 repository.
