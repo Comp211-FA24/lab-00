@@ -91,9 +91,9 @@ Then exit the container, and you'll be in your host OS's `learncli211` directory
 
 ### Learn vim
 
-Vim is a customizable text-editor program that is included in most Linux systems. It is designed to make editing text very efficient, though it may not seem so at first. Vim has a very high skill ceiling (much higher than normal editing controls) but a high skill floor (you will need to take some time to get used to it).
+Vim is a customizable, modal text editor that is included in most Linux systems. It is designed to make editing text very efficient. Vim has a very high skill ceiling (much higher than normal editing controls) but a high skill floor (you will need to take some time to get used to it).
 
-For example, here are two vim demos that show useful capabilities you cannot get out of normal text editing controls. Notice how the code is navigated/edited using only a few keystrokes compared to normal editing controls.
+For example, here are two vim demos that show useful capabilities you cannot get out of normal text editing controls. Notice how the text is navigated/edited using only a few keystrokes compared to normal editing controls.
 
 #### Vim demos
 
@@ -101,13 +101,13 @@ For example, here are two vim demos that show useful capabilities you cannot get
     <img src="https://i.imgur.com/sDvPDR3.gif">
 </p>
 
-<p align="center"><em>Instantly jump cursor to any 2-letter sequence (here, <code><strong>su</strong>m</code>), then jump to starting line</em></p>
+<p align="center"><em>Instantly jump cursor to any 2-letter sequence (here, <code><strong>su</strong>m</code>, either occurrence), then jump to starting line</em></p>
 
 <p align="center">
     <img src="https://i.imgur.com/91nOisx.gif">
 </p>
 
-<p align="center"><em>Remove 2 parameters from <code>sum</code>, clear everything inside <code>main</code>'s <code>{ }</code>, and modify function bodies</code></em></p>
+<p align="center"><em>Remove 2 parameters from <code>sum</code> by deleting until <code>)</code> and clear inside <code>main</code>'s <code>{ }</code></em></p>
 
 #### Vim tutorial
 
