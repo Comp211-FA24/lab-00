@@ -18,15 +18,16 @@ In this lab, you'll set up the COMP 211 Linux (Ubuntu) environment on your compu
         - [Relative line numbering](#relative-line-numbering)
         - [Vim customization](#vim-customization)
         - [File tree and EasyMotion](#file-tree-and-easymotion)
-- [Set up SSH authentication](#set-up-ssh-authentication)
-    - [Generate SSH keys](#generate-ssh-keys)
-    - [Add SSH public key to GitHub](#add-ssh-public-key-to-github)
-    - [Verify that SSH authentication works](#verify-that-ssh-authentication-works)
+- [More setup](#more-setup)
+    - [SSH authentication](#ssh-authentication)
+        - [Generate SSH keys](#generate-ssh-keys)
+        - [Add SSH public key to GitHub](#add-ssh-public-key-to-github)
+        - [Verify that SSH authentication works](#verify-that-ssh-authentication-works)
+    - [Git configure name and email](#git-configure-name-and-email)
 - [Hello world](#hello-world)
     - [hello.c requirements](#helloc-requirements)
     - [Compile and execute](#compile-and-execute)
     - [Format your code](#format-your-code)
-- [Git configure name and email](#git-configure-name-and-email)
 - [Submit your assignment](#submit-your-assignment)
 
 </details>
@@ -147,11 +148,17 @@ The bottom of `.vimrc` explains how to open a file tree (via the plugin [NERDTre
 
 <p align="center"><em>NERDTree and window splits</em></p>
 
-## Set up SSH authentication
+## More setup
 
-Reading/writing to GitHub requires authentication, which needs to be set up in the container. Previously, you may have cloned URL's that begin with `https`, which requires a username/password, personal access token (PAT), or your web browser. This is insecure and inconvenient. We will use SSH authentication, a standard procedure that needs to be done only once. After this one-time procedure, every time you clone, you will only need to run `git clone <SSH_url.git>` and will not be prompted for a username/password or PAT.
+This section is separate from [Setup](#setup) above because if you do any of the steps below improperly, you now have knowledge of CLI and vim to detect and fix any issues.
 
-### Generate SSH keys
+### SSH authentication
+
+Reading/writing to GitHub requires authentication, which needs to be set up in the container. Previously, you may have cloned URL's that begin with `https`, which requires a username/password, personal access token (PAT), or your web browser. This is insecure and inconvenient.
+
+Instead, we will use SSH authentication, a standard procedure that needs to be done only once. After this one-time procedure, every time you clone with `git clone <SSH_url.git>`, it will simply work, and you will not be prompted for a username/password or PAT.
+
+#### Generate SSH keys
 
 1. [Enter your container](#enter-container).
 2. Run `cd /mnt/learncli`.
@@ -185,7 +192,7 @@ The key's randomart image is:
 5. Print your SSH public key by running `cat .ssh/id_rsa.pub`. Copy the outputted text. To do so in Windows Terminal or the macOS terminal, highlight the text and press Ctrl+C or Cmd+C, respectively.
     - Your SSH private key is in `.ssh/id_rsa`. You may share your public key with anyone, but **never** share your private key. Doing so will allow anyone to impersonate you (i.e., read/write/delete your private repositories, commit under your name, etc.).
 
-### Add SSH public key to GitHub
+#### Add SSH public key to GitHub
 
 1. In your web browser, navigate to [GitHub](https://github.com).
 2. Click your profile picture in the top right corner.
@@ -193,16 +200,18 @@ The key's randomart image is:
 4. In the "Key" section, paste what you copied earlier in [step 5](#generate-ssh-keys) (the SSH public key).
 5. In the "Title" section, write any title, and click "Add SSH Key".
 
-### Verify that SSH authentication works
+#### Verify that SSH authentication works
 
 1. [Enter your container](#enter-container), if you are not already in it.
-2. Clone your Lab 0 [GitHub repository]() (`lab-00-your_GH_username`).
-    1. Go to [this repository].
-    2. Click the green <span style="color:#1cb139">Code</span> button.
-    3. Select "SSH" (**not** HTTPS).
-    4. Copy the URL.
-    5. In the container, run `git clone <url>`, where `<url>` is the URL you just copied that begins with `git@github.com` and ends with `.git`.
-    6. If you are prompted with "Are you sure you want to continue connecting (yes/no/[fingerprint])?", type `yes` and press Enter.
+2. Clone your Lab 0 GitHub repository.
+    1. Go to [https://github.com/orgs/Comp211-FA24/repositories](https://github.com/orgs/Comp211-FA24/repositories).
+    2. Click your Lab 0 repository.
+    3. Click the green <span style="color:#1cb139">Code</span> button.
+    4. Select "SSH" (**not** HTTPS).
+    5. Copy the URL, which should look like `git@github.com:Comp211-FA24/lab-00-your_GH_username.git`.
+        - Prefix is not `https`.
+    6. In the container, run `git clone <url>`, where `<url>` is the URL you just copied.
+    7. If you are prompted with "Are you sure you want to continue connecting (yes/no/[fingerprint])?", type `yes` and press Enter.
 
 If you get an error that looks like the following, then the [Set up SSH authentication](#set-up-ssh-authentication) steps were not done correctly. Redo them.
 
@@ -216,83 +225,9 @@ and the repository exists.
 
 Otherwise, if no errors, then it was successful, and you can confirm by running `ls`. The output should include `lab-00-your_GH_username`.
 
-## Hello world
+### Git configure name and email
 
-The following steps involve sections 2.1-2.5 and 2.7 of the reading. If you have trouble with any of the following instructions (though they should be straightforward), refer to those sections.
-
-First, we will set up our directory structure. The goal is to make it look like this:
-
-```text
-learncli$ pwd
-/mnt/learncli/workdir
-learncli$ tree .
-.
-`-- lab-00-your_GH_username
-    `-- hello_world
-        `-- hello.c
-
-2 directories, 1 file
-```
-
-To do so,
-
-1. `cd` into `lab-00-your_GH_username`.
-2. Use `mkdir` to create a directory named `hello_world`.
-3. `cd` into `hello_world`.
-4. To verify that the steps were done correctly, you can use `pwd` to verify that your working directory is indeed `/mnt/learncli/workdir/lab-00-your_GH_username/hello_world`.
-    - You can also view the entire directory structure with the `tree` command shown above, e.g., `tree ../..` (relative path).
-5. In `hello_world`, we need to create a `hello.c` program that prints some text. To create and edit this file in vim, run the command `vim hello.c`.
-    - If the file does not already exist, vim will create it; otherwise, vim will edit it.
-
-### hello.c requirements
-
-A simple "Hello world" C program is given on [*The C Programming Language*](https://uncch.instructure.com/users/9947/files/4526296?verifier=bzWbUsKclOVAAJ7MfuwOyS5v8DDILep0R7HtGh7t&wrap=1) pg. 9. We'll slightly extend it.
-
-Your implementation should print `Hello, world.` on one line and `Welcome to C!` on another line. There should be a trailing newline at the end of the latter line as well. This is case, punctuation, and whitespace-sensitive.
-
-The program should work like so:
-
-```text
-learncli$ ./a.out
-Hello, world.
-Welcome to C!
-learncli$
-```
-
-The `main` function must be defined with a return type of `int`, a signed integer value. Specifically, it should return `EXIT_SUCCESS`. To return `EXIT_SUCCESS`, you need to import `stdlib.h`, the header file which defines this constant.
-
-### Compile and execute
-
-Compile and execute your program with the following commands:
-
-```sh
-gcc hello.c
-./a.out
-```
-
-[`gcc`](https://gcc.gnu.org/) is the GNU Compiler Collection. Here, we are using it to compile the C program into an executable file that is named `a.out` by default.
-
-Then, we use `./a.out` to run the executable.
-
-More details about `gcc` and the syntax for running executables will be discussed in future labs.
-
-Confirm that your program compiles without errors and that its output matches the expected output above before moving on.
-
-### Format your code
-
-Nothing is more contentious in programming than coding style. As you become a more senior programmer, others will expect you to follow good coding style. Your code should be neatly formatted (i.e., easy to read) and well-documented so that others can maintain code you wrote.
-
-Fortunately, there are tools you can use to automatically format your code. One popular tool is [`clang-format`](https://clang.llvm.org/docs/ClangFormat.html), which we'll use and is installed in the container.
-
-We will use our custom `clang-format-all` command that formats all C files in a directory.
-
-Running this command with `-h` or `--help` prints the following syntax: `clang-format-all [-h] DIR...`. This command's expected argument(s) is a directory or directories, not individual file(s). If your working directory is still `hello_world`, you can run `clang-format-all ..` to format all files in your repository. Alternatively, you can use the absolute path anywhere, regardless of your working directory, i.e. `clang-format-all /mnt/learncli/workdir/lab-00-your_GH_username`. As mentioned in [Directories, Files, and Paths](https://uncch.instructure.com/users/9947/files/4534607?verifier=Ay7tjnpmx7Cdhg7TzNXg7zfPD6wbBhBJOy8NqWXK&wrap=1) (2.9), if there is no output, then the command was successful.
-
-If this is not done (for this and future lab assignments), there will be a small deduction in points. The points are essentially free, so this is just to remind you that code style is important. We emphasize that formatting is a relatively small (and the most easily fixable) facet of code style but important nonetheless. You may read COMP 530's [Lab Style Guide](https://www.cs.unc.edu/~porter/courses/comp530/f24/style.html) for more facets of code style and examples of C code with good and bad style.
-
-## Git configure name and email
-
-Git has certain configuration values it relies on, e.g. your name and email, which are transcribed in git commit logs. If these are not set up, you will get an error message when you commit.
+Git has certain configuration values it relies on, e.g. your name and email, which are transcribed in git commit logs. If these are not set up, you will get an error message when you commit:
 
 ```text
 Author identity unknown
@@ -337,21 +272,96 @@ but with your own name and email, of course.
 4. Save the file.
 5. Restart the container.
 
+## Hello world
+
+The following steps involve [Directories, Files, and Paths](https://uncch.instructure.com/users/9947/files/4534607?verifier=Ay7tjnpmx7Cdhg7TzNXg7zfPD6wbBhBJOy8NqWXK&wrap=1) 2.1-2.5 and 2.7. If you have trouble with any of the following instructions (though they should be straightforward), refer to those sections.
+
+First, we will set up our directory structure. The goal is to make it look like this:
+
+```text
+learncli$ pwd
+/mnt/learncli/workdir
+learncli$ tree .
+.
+`-- lab-00-your_GH_username
+    `-- hello_world
+        `-- hello.c
+
+2 directories, 1 file
+```
+
+To do so,
+
+1. `cd` into `lab-00-your_GH_username`.
+2. Use `mkdir` to create a directory named `hello_world`.
+3. `cd` into `hello_world`.
+4. To verify that 1-3 were done correctly, you can use `pwd` to verify that your working directory is indeed `/mnt/learncli/workdir/lab-00-your_GH_username/hello_world`.
+    - You can also view the entire directory structure with the `tree` command shown above, e.g., `tree ../..` (relative path).
+5. To create and edit the `hello.c` file at the path shown above, run `vim hello.c` (relative path).
+    - If the file does not already exist, vim will create it; otherwise, vim will edit it.
+
+### hello.c requirements
+
+A simple "Hello world" C program is given on [*The C Programming Language*](https://uncch.instructure.com/users/9947/files/4526296?verifier=bzWbUsKclOVAAJ7MfuwOyS5v8DDILep0R7HtGh7t&wrap=1) pg. 9. We'll slightly extend it.
+
+Your implementation should print `Hello, world.` on one line and `Welcome to C!` on another line. There should be a trailing newline at the end of the latter line as well. This is case, punctuation, and whitespace-sensitive.
+
+The program should work like so:
+
+```text
+learncli$ ./a.out
+Hello, world.
+Welcome to C!
+learncli$
+```
+
+The `main` function must be defined with a return type of `int`, a signed integer value. Specifically, it should return `EXIT_SUCCESS`. To return `EXIT_SUCCESS`, you need to import `stdlib.h`, the header file which defines this constant.
+
+### Compile and execute
+
+Compile and execute your program with the following commands:
+
+```sh
+gcc hello.c
+./a.out
+```
+
+[`gcc`](https://gcc.gnu.org/) is the GNU Compiler Collection. Here, we are using it to compile the C program into an executable file that is named `a.out` by default.
+
+Then, we use `./a.out` to run the executable.
+
+More details about `gcc` and the syntax for running executables will be discussed in future labs.
+
+Verify that your program compiles without errors and that its output matches the expected output above before moving on.
+
+### Format your code
+
+Nothing is more contentious in programming than coding style. As you become a more senior programmer, others will expect you to follow good coding style. Your code should be neatly formatted (i.e., easy to read) and well-documented so that others can maintain code you wrote.
+
+Fortunately, there are tools you can use to automatically format your code. One popular tool is [`clang-format`](https://clang.llvm.org/docs/ClangFormat.html), which we'll use and is installed in the container.
+
+We will use our custom `clang-format-all` command that formats all C files in a directory.
+
+Running this command with `-h` or `--help` prints the following syntax: `clang-format-all [-h] DIR...`. This command's expected argument(s) is a directory or directories, not individual file(s).
+
+If your working directory is still `hello_world`, you can run `clang-format-all ..` to format all files in your repository. Alternatively, you can use the absolute path anywhere, regardless of your working directory, i.e. `clang-format-all /mnt/learncli/workdir/lab-00-your_GH_username`. As mentioned in [Directories, Files, and Paths](https://uncch.instructure.com/users/9947/files/4534607?verifier=Ay7tjnpmx7Cdhg7TzNXg7zfPD6wbBhBJOy8NqWXK&wrap=1) (2.9), if there is no output, then the command was successful.
+
+If this is not done (for this and future lab assignments), there will be a small deduction in points. The points are essentially free, so this is just to remind you that code style is important. We emphasize that formatting is a relatively small (and the most easily fixable) facet of code style but important nonetheless. You may read COMP 530's [Lab Style Guide](https://www.cs.unc.edu/~porter/courses/comp530/f24/style.html) for more facets of code style and examples of C code with good and bad style.
+
 ## Submit your assignment
 
 Assignment submissions will be made through [Gradescope](https://www.gradescope.com).
 
-You should already be enrolled in the COMP 211 course on Gradescope. If you are not, please self-enroll with the entry code given on the Canvas home page. If you're unable to self-enroll, please contact your cohort leader(s), and we'll manually add you.
+You should already be enrolled in the COMP 211 course on Gradescope. If you are not, self-enroll with the entry code given on the Canvas home page. If you're unable to self-enroll, contact your cohort leader(s), and we'll manually add you.
 
 To submit your assignment, you must commit your work using git, then push to GitHub.
 
-1. `cd` to the base of the repository, which is `lab-00-your_GH_username`.
-    - To confirm that your working directory is correct, you can run `pwd`.
+1. `cd` to the base of your repository, which is `lab-00-your_GH_username`.
 2. (Optional) Run `git status` to display the state of the working directory and staging area.
     - Some useful information here: files that have been staged (with `git add`) and are ready to be committed, untracked files, and files that have been modified but not staged.
 3. Run `git add -A`.
     - `git add` adds modified files to the staging area.
-    - `-A` makes it apply to all files in the git repository, regardless of your working directory.
+    - `-A` makes it add all files in the git repository, regardless of your working directory.
 4. Run `git commit -m "Your Message Here"`.
     - This creates a new commit based on the files in the staging area and associates the commit with a message.
     - Instead of Your Message Here, you should write a meaningful but concise message about what changes you have made. Here are three good general rules:
@@ -359,7 +369,8 @@ To submit your assignment, you must commit your work using git, then push to Git
         2. Limit the subject line to 50 characters.
         3. Use the body to explain **what** and **why**, not **how**.
             - Other developers (and you, once enough time has passed) can read the code changes to figure out "how". Additionally, for expressing code logic, English is often imprecise (i.e., can contradict the actual code logic).
-            - Whoever is reading the commit message is much more interested in what was changed and why rather than how it was done (implementation details).
+            - Whoever is reading the commit message is probably much more interested in what was changed and why rather than how it was done (implementation details).
+    - If this command fails with the error message `Author identity unknown... fatal: unable to auto-detect email address... `, redo [Git configure name and email](#git-configure-name-and-email).
 5. Run `git push`.
     - This uploads commits made locally on your machine to the remote repository (on GitHub).
     - After this is run, when you view this repository on GitHub, you should be able to see the changes you've made.
