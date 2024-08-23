@@ -170,7 +170,7 @@ Enter same passphrase again:
 Your identification has been saved in .ssh/id_rsa
 Your public key has been saved in .ssh/id_rsa.pub
 The key fingerprint is:
-SHA256:O6RZZK526gtjhEEwc+wVuBUAhbFdXKGSlZyc2NWhl08 root@712d7c13a534
+SHA256:O6RZZK526gtjhEEwc+wVuBUAhbFdXKGSlZyc2NWhl08 root@8de59c21d591
 The key's randomart image is:
 +---[RSA 3072]----+
 |*B=O=O+o..       |
