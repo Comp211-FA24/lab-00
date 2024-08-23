@@ -213,7 +213,7 @@ The key's randomart image is:
     6. In the container, run `git clone <url>`, where `<url>` is the URL you just copied.
     7. If you are prompted with "Are you sure you want to continue connecting (yes/no/[fingerprint])?", type `yes` and press Enter.
 
-If you get an error that looks like the following, then the [Set up SSH authentication](#set-up-ssh-authentication) steps were not done correctly. Redo them.
+If you get an error that looks like the following, then the [SSH authentication](#ssh-authentication) steps were not done correctly. Redo them.
 
 ```text
 git@github.com: Permission denied (publickey).
