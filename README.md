@@ -41,12 +41,11 @@ In this lab, you'll set up the COMP 211 Linux (Ubuntu) environment on your compu
     - In particular, in this lab, we will use content from the following sections: 1.1-1.2, 1.5, 1.11, 2.1-2.7, 2.9-2.13.
         - All sections are useful, and some will be required knowledge for future labs, but the given sections are necessary to complete this lab.
         - In addition to reading, you should also practice running the commands in your new Linux environment! The shell will be your playground for the entire semester, so gain familiarity with it.
-2. Optional but highly recommended: [The Missing Semester of Your CS Education](https://missing.csail.mit.edu/). In particular, their [vim lesson](https://missing.csail.mit.edu/2020/editors/).
-    - Read the vim lesson after or during [Learn vim](#learn-vim).
-    - Lessons 1-6 (excluding 4, which is Data Wrangling) are highly relevant for COMP 211.
-        - Some content from lesson 1 will be used in the next lab.
-    - These lessons are highly recommended because they will be useful for the entire semester and beyond, in future classes and your career.
-    - The COMP 211 labs (especially this one) will cover some of the same topics, such as the shell, CLI, vim, git, and gdb, but you are encouraged to learn more via this resource. Consider referring to it throughout the semester. <!-- TODO: delete resources under 3? -->
+2. Optional but highly recommended: [vim lesson](https://missing.csail.mit.edu/2020/editors/) from MIT's [The Missing Semester of Your CS Education](https://missing.csail.mit.edu/) (notes and videos).
+    - Read/watch the vim lesson during or after [Learn vim](#learn-vim).
+    - In general, lessons 1-6 (excluding 4, which is Data Wrangling) of The Missing Semester are highly relevant for COMP 211.
+    - This resource is highly recommended because its content will be useful for the entire semester and beyond, in future classes and your career.
+    - The COMP 211 labs cover important parts of some of the same topics, such as the shell, CLI, vim, git, and gdb, but you are encouraged to learn more in-depth via this resource. Consider referring to it throughout the semester. <!-- TODO: delete resources under 3? -->
 3. Optional resources from Kris Jordan
     - [vim Tutorial - A beginner's guide to vim, a powerful text editor with a grammar.](https://www.youtube.com/playlist?list=PLKUb7MEve0Tj3MLYDIyYpIZtnJehmlR0s)
     - [What is a version control system? What is git?](https://www.youtube.com/watch?v=h2xylPqXO8M&list=PLKUb7MEve0TjHQSKUWChAWyJPCpYMRovO&index=4)
@@ -58,7 +57,7 @@ In this lab, you'll set up the COMP 211 Linux (Ubuntu) environment on your compu
 
 To complete the labs for this course, you need to use a Linux environment. If you haven't already, carefully follow the instructions on the [Linux Programming Environment](https://uncch.instructure.com/courses/48862/pages/linux-programming-environment) page to install Docker and the COMP 211 Docker container on your computer.
 
-To summarize Docker's functionality and why we're using it, a common problem for programmers is that code can work on one computer but not another. Docker solves this problem by "shipping your computer." More accurately, you will pull the COMP 211 Docker image that contains instructions for building our container, and this container will be built within your host OS.
+To summarize Docker's functionality and why we're using it, a common problem with code is that code can work on one computer but not another. Docker solves this problem by "shipping your computer." More accurately, you will pull the COMP 211 Docker image, which contains instructions for building our container, and this container will be built within your host OS.
 
 The container contains all the tools you'll need and works the same on everyone's computer (regardless of OS type, files, or settings on your host OS) because everyone will use the same image.
 
@@ -77,7 +76,7 @@ Exit the container by running `exit` or by pressing `Ctrl+D`.
 
 ## Learn the CLI
 
-In [Background reading](#background-reading), read *Learn a Command-line Interface* by Kris Jordan.
+In [Background reading](#background-reading), read at least the given sections of *Learn a Command-line Interface* by Kris Jordan.
 
 ### Mounted directory /mnt/learncli
 
