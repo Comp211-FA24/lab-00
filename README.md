@@ -203,6 +203,7 @@ The key's randomart image is:
 2. Clone your Lab 0 GitHub repository.
     1. Go to [https://github.com/orgs/Comp211-FA24/repositories](https://github.com/orgs/Comp211-FA24/repositories).
     2. Click your Lab 0 repository.
+        - You must be logged in to see it.
     3. Click the green <span style="color:#1cb139">Code</span> button.
     4. Select "SSH" (**not** HTTPS).
     5. Copy the URL, which should look like `git@github.com:Comp211-FA24/lab-00-your_GH_username.git`.
