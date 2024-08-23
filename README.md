@@ -133,7 +133,11 @@ We encourage you to stick with this setting for a bit. Note that the absolute li
 
 As mentioned, vim is highly customizable. Specifically, vim looks for settings in `~/.vimrc` (`~` is your home directory). That file contains the line `set relativenumber`, which enables relative line numbering.
 
-To turn it off, simply comment that line out. However, recall from [earlier](#mounted-directory-mntlearncli) that in the container, changes to `~/.vimrc` won't persist. So, you must instead edit `/mnt/learncli/.vimrc`. When the container is entered, that file is automatically copied to `~/.vimrc`.
+To turn it off, simply comment that line out. However, recall from [earlier](#mounted-directory-mntlearncli) that in the container, changes to `~/.vimrc` won't persist. So, for your changes to persist, you should instead edit `/mnt/learncli/.vimrc`. When the container is entered, that file is automatically copied to `~/.vimrc`.
+
+First, check if `/mnt/learncli/.vimrc` exists with `ls -a /mnt/learncli`. If it doesn't exist, this is because the file was added as of 8/23/24. In that case, your container has an up-to-date copy, so run `cp ~/.vimrc /mnt/learncli/.vimrc`.
+
+Then, run `vim /mnt/learncli/.vimrc` to edit it. After saving, to allow vim to discover the changes, you can either copy that file to `~/.vimrc` or restart your container.
 
 #### File tree and EasyMotion
 
