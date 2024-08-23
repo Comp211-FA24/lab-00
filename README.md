@@ -18,7 +18,7 @@ In this lab, you'll set up the COMP 211 Linux (Ubuntu) environment on your compu
         - [Relative line numbering](#relative-line-numbering)
         - [Vim customization](#vim-customization)
         - [File tree and EasyMotion](#file-tree-and-easymotion)
-- [More setup](#more-setup)
+- [Final setup](#final-setup)
     - [SSH authentication](#ssh-authentication)
         - [Generate SSH keys](#generate-ssh-keys)
         - [Add SSH public key to GitHub](#add-ssh-public-key-to-github)
@@ -39,10 +39,10 @@ In this lab, you'll set up the COMP 211 Linux (Ubuntu) environment on your compu
     - [The Sorcerer's Shell](https://uncch.instructure.com/users/9947/files/4534606?verifier=OtzqqS8AJ9vtBgYkQDnjzhdQCkb6fk4YT47bMMXA&wrap=1)
     - [Directories, Files, and Paths](https://uncch.instructure.com/users/9947/files/4534607?verifier=Ay7tjnpmx7Cdhg7TzNXg7zfPD6wbBhBJOy8NqWXK&wrap=1)
     - In particular, in this lab, we will use content from the following sections: 1.1-1.2, 1.5, 1.11, 2.1-2.7, 2.9-2.13.
-        - This doesn't mean the other sections are unimportant (all sections are useful, and some will be required knowledge for future labs), but the given sections are necessary to complete this lab.
-        - These readings will teach you everything you need to know about running commands and navigating directories in your Linux environment. However, in addition to reading, you should also practice running the given commands in your new Linux environment! The shell will be your playground for the entire semester, so gain familiarity with it.
+        - All sections are useful, and some will be required knowledge for future labs, but the given sections are necessary to complete this lab.
+        - In addition to reading, you should also practice running the commands in your new Linux environment! The shell will be your playground for the entire semester, so gain familiarity with it.
 2. Optional but highly recommended: [The Missing Semester of Your CS Education](https://missing.csail.mit.edu/). In particular, their [vim lesson](https://missing.csail.mit.edu/2020/editors/).
-    - Read the vim lesson **after** or during [Learn vim](#learn-vim).
+    - Read the vim lesson after or during [Learn vim](#learn-vim).
     - Lessons 1-6 (excluding 4, which is Data Wrangling) of the course are highly relevant for this course.
         - Lesson 1 will be used in the next lab.
         - Lesson 10 (Potpourri) content regarding Docker and GitHub is tangentially relevant.
@@ -90,11 +90,11 @@ You can prove this to yourself by running `ls -a /mnt/learncli` in the container
 
 Then exit the container, and you'll be in your host OS's `learncli211` directory. Run `ls -a`, and you'll see that the files in the two directories are the same (because they're the same directory). Additionally, in this shared directory, you can add a new file in the container and see it in your host OS and vice versa.
 
-When you enter the container, your current working directory (cwd) will always initially be `/mnt/learncli/workdir`. Recall from [Directories, Files, and Paths](https://uncch.instructure.com/users/9947/files/4534607?verifier=Ay7tjnpmx7Cdhg7TzNXg7zfPD6wbBhBJOy8NqWXK&wrap=1) (2.3) that you can print your working directory with `pwd`.
+When you enter the container, your working directory will always initially be `/mnt/learncli/workdir`. Recall from [Directories, Files, and Paths](https://uncch.instructure.com/users/9947/files/4534607?verifier=Ay7tjnpmx7Cdhg7TzNXg7zfPD6wbBhBJOy8NqWXK&wrap=1) (2.3) that you can print your working directory with `pwd`.
 
 ### Learn vim
 
-Vim is a customizable text-editor program that is included in most Linux systems. It is designed to make editing text text very efficient, though it may not seem so at first. In part, this is because nearly all vim controls use the keyboard, and you do not have to use your mouse at all. Vim has a very high skill ceiling (much higher than normal editing controls) but a high skill floor (you will need to take some time to get used to it).
+Vim is a customizable text-editor program that is included in most Linux systems. It is designed to make editing text very efficient, though it may not seem so at first. Vim has a very high skill ceiling (much higher than normal editing controls) but a high skill floor (you will need to take some time to get used to it).
 
 For example, here are two vim demos that show useful capabilities you cannot get out of normal text editing controls. You aren't expected to understand how to do the actions shown, but you should be able to see how the code is navigated/edited using only a few keystrokes compared to normal editing controls.
 
@@ -118,15 +118,15 @@ For example, here are two vim demos that show useful capabilities you cannot get
 
 For vim, we recommend having your right hand in home row position (index finger on `J`, middle finger on `K`, ring finger on `L`, and pinky on `;`), the same position that is used for touch-typing.
 
-Most likely, you will not remember everything from the tutorial. We recommend you just learn enough to be comfortable enough to complete Part 1 of the assignment in vim, then later you can go back to `vimtutor` or look at/search for guides to learn more as you go. For example, we strongly recommend the vim lesson given in [Background reading](#background-reading). In general, whenever something seems inefficient or you think "there must be a better way", there probably is, and you should try Googling it.
+Most likely, you will not remember everything from the tutorial. For now, we recommend you just learn enough to be comfortable enough to complete this lab assignment. Later, you can learn as you go by reviewing `vimtutor` or searching for guides. We strongly recommend the vim lesson given in [Background reading](#background-reading). In general, whenever something seems inefficient or you think "there must be a better way", there probably is, and you should try Googling it.
 
 As you begin to learn vim, you will edit slower than normal, of course. It should take a few weeks to a month for your vim editing speed to catch up to your normal editing speed. This may seem like a while, but after that point, you will only improve, and you will eventually be able to edit at the speed at which you think.
 
-Beyond improving editing speed, you will need to use vim in later courses and in your career (especially in the domain of systems development) when you run into situations in which an IDE is not available but vim is (e.g., in this Docker container).
+Beyond improving editing speed, you will need to use vim in later courses and in your career (especially when in the domain of systems development) when you run into situations in which an IDE is not available but vim is, such as in this Docker container.
 
 #### Relative line numbering
 
-In the above [demos](#vim-demos), you may have noticed a weird line numbering system called relative line numbering. This is the default setting in the container because, as you saw in `vimtutor` (2.5), many operators accept a count, such as `2dd` to delete two lines. Although omitted in the tutorial, another useful application is something like `4j` to move down 4 lines. These numbers are relative to the current line and are not absolute line numbers. So, relative line numbering is useful for these operations (see the demos).
+In the above [demos](#vim-demos), you may have noticed a weird line numbering system. This is called relative line numbering, which is the default setting in the container because, as you saw in `vimtutor` (2.5), many operators accept a count, such as `2dd` to delete two lines. Although omitted in the tutorial, another useful application is something like `4j` to move down 4 lines. These numbers are relative to the current line and are not absolute line numbers. So, relative line numbering is useful for these operations (see the demos).
 
 For example, consider that with absolute line numbers (only), if the current line is 897 and you wish to move down to line 912, you would have to compute `{912-897}j` = `15j`. With relative line numbers, you would simply see line 912 labeled as 15.
 
@@ -134,9 +134,9 @@ We encourage you to try this setting, and note that the absolute line number of 
 
 #### Vim customization
 
-As mentioned, vim is highly customizable. Specifically, vim looks for settings in a file named `.vimrc` in your home directory (`~`) (i.e., `~/.vimrc`). That file contains the line `set relativenumber`, which enables the above setting.
+As mentioned, vim is highly customizable. Specifically, vim looks for settings in `~/.vimrc`. That file contains the line `set relativenumber`, which enables the above setting.
 
-To turn off relative line numbering, comment that line out. However, recall from [earlier](#mounted-directory-mntlearncli) that changes to `~/.vimrc` won't persist. So, you must edit `/mnt/learncli/.vimrc` instead. When the container is entered, it automatically copies that file to `~/.vimrc`.
+To turn off relative line numbering, simply comment that line out. However, recall from [earlier](#mounted-directory-mntlearncli) that changes to `~/.vimrc` won't persist. So, you must instead edit `/mnt/learncli/.vimrc`. When the container is entered, it automatically copies that file to `~/.vimrc`.
 
 #### File tree and EasyMotion
 
@@ -148,7 +148,7 @@ The bottom of `.vimrc` explains how to open a file tree (via the plugin [NERDTre
 
 <p align="center"><em>NERDTree and window splits</em></p>
 
-## More setup
+## Final setup
 
 This section is separate from [Setup](#setup) above because if you do any of the steps below improperly, you now have knowledge of CLI and vim to detect and fix any issues.
 
@@ -315,7 +315,7 @@ Welcome to C!
 learncli$
 ```
 
-The `main` function must be defined with a return type of `int`, a signed integer value. Specifically, it should return `EXIT_SUCCESS`. To return `EXIT_SUCCESS`, you need to import `stdlib.h`, the header file which defines this constant.
+The `main` function must be defined with a return type of `int`, a signed integer value. It should return `EXIT_SUCCESS`. To return `EXIT_SUCCESS`, you need to import `stdlib.h`, the header file which defines this constant.
 
 ### Compile and execute
 
