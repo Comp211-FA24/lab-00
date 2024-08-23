@@ -43,9 +43,8 @@ In this lab, you'll set up the COMP 211 Linux (Ubuntu) environment on your compu
         - In addition to reading, you should also practice running the commands in your new Linux environment! The shell will be your playground for the entire semester, so gain familiarity with it.
 2. Optional but highly recommended: [The Missing Semester of Your CS Education](https://missing.csail.mit.edu/). In particular, their [vim lesson](https://missing.csail.mit.edu/2020/editors/).
     - Read the vim lesson after or during [Learn vim](#learn-vim).
-    - Lessons 1-6 (excluding 4, which is Data Wrangling) of the course are highly relevant for this course.
-        - Lesson 1 will be used in the next lab.
-        - Lesson 10 (Potpourri) content regarding Docker and GitHub is tangentially relevant.
+    - Lessons 1-6 (excluding 4, which is Data Wrangling) are highly relevant for COMP 211.
+        - Some content from lesson 1 will be used in the next lab.
     - These lessons are highly recommended because they will be useful for the entire semester and beyond, in future classes and your career.
     - The COMP 211 labs (especially this one) will cover some of the same topics, such as the shell, CLI, vim, git, and gdb, but you are encouraged to learn more via this resource. Consider referring to it throughout the semester. <!-- TODO: delete resources under 3? -->
 3. Optional resources from Kris Jordan
@@ -61,20 +60,20 @@ To complete the labs for this course, you need to use a Linux environment. If yo
 
 To summarize Docker's functionality and why we're using it, a common problem for programmers is that code can work on one computer but not another. Docker solves this problem by "shipping your computer." More accurately, you will pull the COMP 211 Docker image that contains instructions for building our container, and this container will be built within your host OS.
 
-The COMP 211 container contains all tools needed for the course and works the same on everyone's computer (regardless of OS type, files, or settings on your host OS) because everyone will use the same image.
+The container contains all the tools you'll need and works the same on everyone's computer (regardless of OS type, files, or settings on your host OS) because everyone will use the same image.
 
 ### Enter container
 
-After completing the setup instructions, these are the steps that need to be done each time you wish to enter the container.
+After completing the setup instructions, these are the steps that need to be done each time you want to enter the container.
 
-1. Ensure that Docker Desktop is running, and start it if not. You should see the blue Docker icon in your taskbar (Windows and macOS). If not, check Task Manager/Activity Monitor.
+1. Start Docker Desktop if it's not already running. You should see the blue Docker icon in your taskbar (Windows and macOS). If not, check Task Manager/Activity Monitor.
 2. Open a terminal.
 3. Run `cd learncli211`.
-    - If you cloned the repo to a different path, `cd` into wherever your `learncli211` repo is located. If you don't know what this means (yet), ignore it.
+    - If you cloned the repo to a different path, `cd` into wherever your `learncli211` repo is located. If you don't know what this means (yet), ignore this.
 4. Run `./learncli.ps1` (Windows) or `./learncli.sh` (macOS).
 5. Verify that you are in the container (Linux) by checking that your command-line prompt is `learncli$ `. Otherwise, you are in your host OS (likely Windows or macOS).
 
-Exit the container by running the command `exit` or by pressing `Ctrl+D`.
+Exit the container by running `exit` or by pressing `Ctrl+D`.
 
 ## Learn the CLI
 
@@ -84,19 +83,17 @@ In [Background reading](#background-reading), read *Learn a Command-line Interfa
 
 As mentioned in [Directories, Files, and Paths](https://uncch.instructure.com/users/9947/files/4534607?verifier=Ay7tjnpmx7Cdhg7TzNXg7zfPD6wbBhBJOy8NqWXK&wrap=1) (2.6), the container's filesystem is isolated from that of your host OS. Thus, any changes to files you make in the container's filesystem will be reverted when you exit and re-enter the container.
 
-However, the `/mnt/learncli` directory is different. This directory belongs to your host computer and is "**m**ou**nt**ed into" the container when you enter the container. Thus, you need to use this directory to share files between your host OS and the container. So when you're coding in the container, all code files need to be in `/mnt/learncli/workdir`.
+However, `/mnt/learncli` is different. This directory belongs to your host computer and is "**m**ou**nt**ed into" the container when you enter the container. Thus, you need to use this directory to share files between your host OS and the container. So when you're coding in the container, all code files need to be in `/mnt/learncli/workdir`.
 
 You can prove this to yourself by running `ls -a /mnt/learncli` in the container to list **a**ll files (including hidden ones) in `/mnt/learncli`.
 
 Then exit the container, and you'll be in your host OS's `learncli211` directory. Run `ls -a`, and you'll see that the files in the two directories are the same (because they're the same directory). Additionally, in this shared directory, you can add a new file in the container and see it in your host OS and vice versa.
 
-When you enter the container, your working directory will always initially be `/mnt/learncli/workdir`. Recall from [Directories, Files, and Paths](https://uncch.instructure.com/users/9947/files/4534607?verifier=Ay7tjnpmx7Cdhg7TzNXg7zfPD6wbBhBJOy8NqWXK&wrap=1) (2.3) that you can print your working directory with `pwd`.
-
 ### Learn vim
 
 Vim is a customizable text-editor program that is included in most Linux systems. It is designed to make editing text very efficient, though it may not seem so at first. Vim has a very high skill ceiling (much higher than normal editing controls) but a high skill floor (you will need to take some time to get used to it).
 
-For example, here are two vim demos that show useful capabilities you cannot get out of normal text editing controls. You aren't expected to understand how to do the actions shown, but you should be able to see how the code is navigated/edited using only a few keystrokes compared to normal editing controls.
+For example, here are two vim demos that show useful capabilities you cannot get out of normal text editing controls. Notice how the code is navigated/edited using only a few keystrokes compared to normal editing controls.
 
 #### Vim demos
 
@@ -114,7 +111,7 @@ For example, here are two vim demos that show useful capabilities you cannot get
 
 #### Vim tutorial
 
-[Enter your Linux container](#enter-container), and run the command `vimtutor`. This will use vim to open a tutorial document that explains how to use it.
+[Enter your Linux container](#enter-container), and run the command `vimtutor`. This will use vim to open a tutorial document that explains how to use it. It will be black-and-white and not have line numbers - this is normal.
 
 For vim, we recommend having your right hand in home row position (index finger on `J`, middle finger on `K`, ring finger on `L`, and pinky on `;`), the same position that is used for touch-typing.
 
@@ -126,17 +123,17 @@ Beyond improving editing speed, you will need to use vim in later courses and in
 
 #### Relative line numbering
 
-In the above [demos](#vim-demos), you may have noticed a weird line numbering system. This is called relative line numbering, which is the default setting in the container because, as you saw in `vimtutor` (2.5), many operators accept a count, such as `2dd` to delete two lines. Although omitted in the tutorial, another useful application is something like `4j` to move down 4 lines. These numbers are relative to the current line and are not absolute line numbers. So, relative line numbering is useful for these operations (see the demos).
+In the above [demos](#vim-demos), you may have noticed a weird line numbering system. This is called relative line numbering, which is the default setting in the container because, as you saw in `vimtutor` (2.5), many operators accept a count, such as `2dd` to delete two lines. Although omitted in the tutorial, another useful application is something like `4j` to move down 4 lines (i.e., you can instantly move to anywhere on the screen). For these operators, the numbers are relative to the current line and are not absolute line numbers. So, relative line numbering is useful for these operations (see the demos).
 
 For example, consider that with absolute line numbers (only), if the current line is 897 and you wish to move down to line 912, you would have to compute `{912-897}j` = `15j`. With relative line numbers, you would simply see line 912 labeled as 15.
 
-We encourage you to try this setting, and note that the absolute line number of the current line is still shown. If you dislike this setting, you can turn it off.
+We encourage you to stick with this setting for a bit. Note that the absolute line number of the current line is still shown. If you dislike this setting, you can turn it off.
 
 #### Vim customization
 
-As mentioned, vim is highly customizable. Specifically, vim looks for settings in `~/.vimrc`. That file contains the line `set relativenumber`, which enables the above setting.
+As mentioned, vim is highly customizable. Specifically, vim looks for settings in `~/.vimrc`. That file contains the line `set relativenumber`, which enables relative line numbering.
 
-To turn off relative line numbering, simply comment that line out. However, recall from [earlier](#mounted-directory-mntlearncli) that changes to `~/.vimrc` won't persist. So, you must instead edit `/mnt/learncli/.vimrc`. When the container is entered, it automatically copies that file to `~/.vimrc`.
+To turn it off, simply comment that line out. However, recall from [earlier](#mounted-directory-mntlearncli) that in the container, changes to `~/.vimrc` won't persist. So, you must instead edit `/mnt/learncli/.vimrc`. When the container is entered, it automatically copies that file to `~/.vimrc`.
 
 #### File tree and EasyMotion
 
@@ -154,7 +151,7 @@ This section is separate from [Setup](#setup) above because if you do any of the
 
 ### SSH authentication
 
-Reading/writing to GitHub requires authentication, which needs to be set up in the container. Previously, you may have cloned URL's that begin with `https`, which requires a username/password, personal access token (PAT), or your web browser. This is insecure and inconvenient.
+Reading/writing to GitHub requires authentication, which needs to be set up in the container. Previously, you may have cloned URL's that begin with `https`, which requires a username/password, personal access token (PAT), or your web browser. This is insecure and inconvenient (i.e., will probably cause problems later).
 
 Instead, we will use SSH authentication, a standard procedure that needs to be done only once. After this one-time procedure, every time you clone with `git clone <SSH_url.git>`, it will simply work, and you will not be prompted for a username/password or PAT.
 
@@ -223,7 +220,7 @@ Please make sure you have the correct access rights
 and the repository exists.
 ```
 
-Otherwise, if no errors, then it was successful, and you can confirm by running `ls`. The output should include `lab-00-your_GH_username`.
+Otherwise, it was successful, and you can confirm by running `ls`. The output should include `lab-00-your_GH_username`.
 
 ### Git configure name and email
 
@@ -326,9 +323,7 @@ gcc hello.c
 ./a.out
 ```
 
-[`gcc`](https://gcc.gnu.org/) is the GNU Compiler Collection. Here, we are using it to compile the C program into an executable file that is named `a.out` by default.
-
-Then, we use `./a.out` to run the executable.
+[`gcc`](https://gcc.gnu.org/) is the GNU Compiler Collection. Here, we are using it to compile the C program into an executable file that is named `a.out` by default. Then, we use `./a.out` to run the executable.
 
 More details about `gcc` and the syntax for running executables will be discussed in future labs.
 
