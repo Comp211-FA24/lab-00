@@ -159,7 +159,7 @@ Instead, we will use SSH authentication, a standard procedure that needs to be d
 
 1. If you are not in the container, [enter the container](#enter-container).
 2. Run `cd /mnt/learncli`.
-3. Run `ssh-keygen`. Then type `.ssh/id_rsa` as the location to save the key. Then press enter twice for no passphrase.
+3. Run `ssh-keygen`. Then **type** `.ssh/id_rsa` **as the location to save the key**. Then press enter twice for no passphrase.
 
 ```text
 learncli$ ssh-keygen
@@ -190,11 +190,12 @@ The key's randomart image is:
     - If you do not see that output, you did something incorrectly. Redo 1-3.
 5. Print your SSH public key by running `cat ~/.ssh/id_rsa.pub`. Copy the outputted text, which begins with `ssh-rsa` and ends with something like `root@8de59c21d591`.
     - To copy text in Windows Terminal or macOS Terminal, highlight the text and press Ctrl+C or Cmd+C, respectively.
-    - Your SSH private key is in `~/.ssh/id_rsa`. You may share your public key with anyone, but **never** share your private key. Doing so will allow anyone to impersonate you (i.e., read/write/delete your private repositories, commit under your name, etc.).
+    - You may share your public key with anyone (that's what the public key is for), but **never** share your private key, which is at `~/.ssh/id_rsa`. Anyone with your private key can impersonate you (i.e., read/write/delete your private repositories, commit under your name, etc.).
 
 #### Add SSH public key to GitHub
 
 1. In your web browser, navigate to [GitHub](https://github.com).
+    - If you are somehow not signed in, sign in.
 2. Click your profile picture in the top right corner.
 3. Click Settings > SSH and GPG keys > New SSH Key.
 4. In the "Key" section, paste what you copied [earlier](#generate-ssh-keys) (the SSH public key, which begins with `ssh-rsa` and ends with something like `root@8de59c21d591`).
@@ -206,7 +207,6 @@ The key's randomart image is:
 2. Clone your Lab 0 GitHub repository.
     1. Go to [https://github.com/orgs/Comp211-FA24/repositories](https://github.com/orgs/Comp211-FA24/repositories).
     2. Click your Lab 0 repository.
-        - You must be logged in to see it.
     3. Click the green <span style="color:#1cb139">Code</span> button.
     4. Select "SSH" (**not** HTTPS).
     5. Copy the URL, which should look like `git@github.com:Comp211-FA24/lab-00-your_GH_username.git`.
