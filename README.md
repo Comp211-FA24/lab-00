@@ -1,7 +1,7 @@
 <!-- omit in toc -->
 # Lab 0
 
-In this lab, you'll set up the COMP 211 Linux (Ubuntu) environment on your computer, learn how to use the command-line interface (CLI) and vim, and code a simple "Hello world" program in C.
+In this lab, you'll set up the COMP 211 Linux (Ubuntu) environment on your computer, learn how to use the command-line interface (CLI) and Vim, and code a simple "Hello world" program in C.
 
 <details open>
     <summary>Contents</summary>
@@ -12,11 +12,11 @@ In this lab, you'll set up the COMP 211 Linux (Ubuntu) environment on your compu
     - [Start container](#start-container)
 - [Learn the CLI](#learn-the-cli)
     - [Mounted directory /mnt/learncli](#mounted-directory-mntlearncli)
-    - [Learn vim](#learn-vim)
-        - [Vim demos](#vim-demos)
-        - [Vim tutorial](#vim-tutorial)
+    - [Learn Vim](#learn-vim)
+        - [Demos](#demos)
+        - [Tutorial](#tutorial)
         - [Relative line numbering](#relative-line-numbering)
-        - [Vim customization](#vim-customization)
+        - [Customization](#customization)
         - [File tree and EasyMotion](#file-tree-and-easymotion)
 - [Final setup](#final-setup)
     - [SSH authentication](#ssh-authentication)
@@ -41,11 +41,11 @@ In this lab, you'll set up the COMP 211 Linux (Ubuntu) environment on your compu
     - In particular, in this lab, we will use content from the following sections: 1.1-1.2, 1.5, 1.11, 2.1-2.7, 2.9-2.13.
         - All sections are useful, and some will be required knowledge for future labs, but the given sections are necessary to complete this lab.
         - In addition to reading, you should also practice running the commands in your new Linux environment! The shell will be your playground for the entire semester, so gain familiarity with it.
-2. Optional but highly recommended: [vim lesson](https://missing.csail.mit.edu/2020/editors/) from MIT's [The Missing Semester of Your CS Education](https://missing.csail.mit.edu/) (notes and videos).
-    - Read/watch the vim lesson **after** [Learn vim](#learn-vim).
-    - In addition to the vim lesson, the entire resource is highly recommended because its content will be useful for the entire semester and beyond, in future classes and your career.
+2. Optional but highly recommended: [Vim lesson](https://missing.csail.mit.edu/2020/editors/) from MIT's [The Missing Semester of Your CS Education](https://missing.csail.mit.edu/) (notes and videos).
+    - Read/watch the Vim lesson **after** [Learn Vim](#learn-vim).
+    - In addition to the Vim lesson, the entire resource is highly recommended because its content will be useful for the entire semester and beyond, in future classes and your career.
         - In general, lessons 1-6 (excluding 4, which is Data Wrangling) of The Missing Semester are highly relevant for COMP 211.
-        - The COMP 211 labs cover important parts of some of the same topics, such as the shell, CLI, vim, git, and gdb, but you are encouraged to learn more in-depth via this resource. Consider referring to it throughout the semester. <!-- TODO: delete resources under 3? -->
+        - The COMP 211 labs cover important parts of some of the same topics, such as the shell, CLI, Vim, git, and gdb, but you are encouraged to learn more in-depth via this resource. Consider referring to it throughout the semester. <!-- TODO: delete resources under 3? -->
 3. Optional resources from Kris Jordan
     - [vim Tutorial - A beginner's guide to vim, a powerful text editor with a grammar.](https://www.youtube.com/playlist?list=PLKUb7MEve0Tj3MLYDIyYpIZtnJehmlR0s)
     - [What is a version control system? What is git?](https://www.youtube.com/watch?v=h2xylPqXO8M&list=PLKUb7MEve0TjHQSKUWChAWyJPCpYMRovO&index=4)
@@ -90,13 +90,13 @@ If you want to prove to yourself that `/mnt/learncli` in the container and `lear
 
 Then exit the container, and you'll be in your host OS's `learncli211` directory. Run `ls -a` (macOS) or `ls -Force` (Windows PowerShell, not Command Prompt), and you'll see that the files in the two directories are the same (because they're the same directory).
 
-### Learn vim
+### Learn Vim
 
 Vim is a customizable, modal text editor that is included in most Linux systems. It is designed to make editing text very efficient. Vim has an exceptionally high skill ceiling (infinitely higher than normal editing controls) but a high skill floor (you will need to take some time to get used to it).
 
-For example, here are two vim demos that show useful capabilities you cannot get out of normal text editing controls. The captions explain what is happening in the demos. Notice how the text is navigated/edited using only a few keystrokes compared to normal editing controls.
+For example, here are two Vim demos that show useful capabilities you cannot get out of normal text editing controls. The captions explain what is happening in the demos. Notice how the text is navigated/edited using only a few keystrokes compared to normal editing controls.
 
-#### Vim demos
+#### Demos
 
 <p align="center">
     <img src="https://i.imgur.com/sDvPDR3.gif">
@@ -112,21 +112,21 @@ For example, here are two vim demos that show useful capabilities you cannot get
 
 There are many more features we could show, but we hope these two demos have piqued your interest.
 
-#### Vim tutorial
+#### Tutorial
 
-If the container is not already running, [start the container](#start-container), and run the command `vimtutor`. This will use vim to open a tutorial document that explains how to use it. It is normal for it to be black-and-white and not have line numbers, unlike the demos above.
+If the container is not already running, [start the container](#start-container), and run the command `vimtutor`. This will use Vim to open a tutorial document that explains how to use it. It is normal for it to be black-and-white and not have line numbers, unlike the demos above.
 
-For vim, we recommend having your right hand in home row position (index finger on `J`, middle finger on `K`, ring finger on `L`, and pinky on `;`), the same position that is used for touch-typing.
+For Vim, we recommend having your right hand in home row position (index finger on `J`, middle finger on `K`, ring finger on `L`, and pinky on `;`), the same position that is used for touch-typing.
 
-Most likely, you will not remember everything from the tutorial. For now, we recommend you learn enough to be comfortable enough to complete this lab assignment. Later, you can learn as you go by reviewing `vimtutor` or searching for guides. We strongly recommend the vim lesson given in [Background reading](#background-reading). In general, whenever something seems inefficient or you think "there must be a better way", there probably is, and you should try Googling it.
+Most likely, you will not remember everything from the tutorial. For now, we recommend you learn enough to be comfortable enough to complete this lab assignment. Later, you can learn as you go by reviewing `vimtutor` or searching for guides. We strongly recommend the Vim lesson given in [Background reading](#background-reading). In general, whenever something seems inefficient or you think "there must be a better way", there probably is, and you should try Googling it.
 
-As you begin to learn vim, you will edit slower than normal, of course. It will probably take a month or two of regular usage (i.e., using vim for the labs in this course should suffice) for your vim editing speed to match your normal editing speed. It could take just a few weeks if you use vim in places other than just this course. This may seem like a while, but after that point, you will only improve, and you will eventually be able to edit at the speed at which you think.
+As you begin to learn Vim, you will edit slower than normal, of course. It will probably take a month or two of regular usage (i.e., using Vim for the labs in this course should suffice) for your Vim editing speed to match your normal editing speed. It would take less time if you use Vim in places other than just this course. This may seem like a while, but after that point, you will only improve, and you will eventually be able to edit at the speed at which you think.
 
-Beyond improving editing speed, you will need to use vim in later courses and in your career when you run into situations in which an IDE is not available but vim is, such as in this Docker container or in the domain of systems development. There are plenty of other such situations.
+Beyond improving editing speed, you will need to use Vim in later courses and in your career when you run into situations in which an IDE is not available but Vim is, such as in this Docker container or in the domain of systems development. There are plenty of other such situations.
 
 #### Relative line numbering
 
-In the above [demos](#vim-demos), you may have noticed a weird line numbering system. This is called relative line numbering, which is the default setting in the container because, as you saw in `vimtutor` (2.5), many operators accept a count, such as `2dd` (delete two lines). Although omitted in the tutorial, another useful application is something like `4j` to move the cursor down 4 lines (i.e., you can instantly jump the cursor to any line on the screen). In these examples, 2 and 4 are relative to the current line.
+In the above [demos](#demos), you may have noticed a weird line numbering system. This is called relative line numbering, which is the default setting in the container because, as you saw in `vimtutor` (2.5), many operators accept a count, such as `2dd` (delete two lines). Although omitted in the tutorial, another useful application is something like `4j` to move the cursor down 4 lines (i.e., you can instantly jump the cursor to any line on the screen). In these examples, 2 and 4 are relative to the current line.
 
 There are many common operators for which the number is relative to the current line and is not an absolute line number, and relative line numbering is useful for these operators.
 
@@ -138,11 +138,11 @@ Note that the absolute line number of the current line is still shown, and you c
 
 We encourage you to stick with this setting for a bit, but if you dislike it, you can turn it off.
 
-#### Vim customization
+#### Customization
 
-As mentioned, vim is highly customizable. Specifically, vim looks for settings in `~/.vimrc` (`~` is your home directory). That file contains the line `set relativenumber`, which enables relative line numbering.
+As mentioned, Vim is highly customizable. Specifically, Vim looks for settings in `~/.vimrc` (`~` is your home directory). That file contains the line `set relativenumber`, which enables relative line numbering.
 
-To turn it off, simply comment that line out. However, recall from [earlier](#mounted-directory-mntlearncli) that in the container, changes to `~/.vimrc` will be reverted when you restart the container. For your changes to persist, you need to edit `/mnt/learncli/.vimrc`. To allow vim to discover that file, when the container is started, that file is automatically copied to `~/.vimrc`.
+To turn it off, simply comment that line out. However, recall from [earlier](#mounted-directory-mntlearncli) that in the container, changes to `~/.vimrc` will be reverted when you restart the container. For your changes to persist, you need to edit `/mnt/learncli/.vimrc`. To allow Vim to discover that file, when the container is started, that file is automatically copied to `~/.vimrc`.
 
 First, check if `/mnt/learncli/.vimrc` exists with `ls -a /mnt/learncli`. If it doesn't exist, this is because the file was added as of 8/25/24. In that case, your container has an up-to-date copy, so run `cp ~/.vimrc /mnt/learncli/.vimrc`.
 
@@ -150,7 +150,7 @@ Then, run `vim /mnt/learncli/.vimrc` to edit it. Save the file and exit. Then, t
 
 #### File tree and EasyMotion
 
-The bottom of `~/.vimrc` explains how to open a file tree (via the plugin [NERDTree](https://github.com/preservim/nerdtree)), open tabs/windows, and how to use [EasyMotion](https://github.com/easymotion/vim-easymotion) (first [vim demo](#vim-demos)).
+The bottom of `~/.vimrc` explains how to open a file tree (via the plugin [NERDTree](https://github.com/preservim/nerdtree)), open tabs/windows, and how to use [EasyMotion](https://github.com/easymotion/vim-easymotion) (first [Vim demo](#demos)).
 
 <p align="center">
     <img src="https://i.imgur.com/KohWEi3.png">
@@ -160,7 +160,7 @@ The bottom of `~/.vimrc` explains how to open a file tree (via the plugin [NERDT
 
 ## Final setup
 
-This section is separate from [Setup](#setup) above because if you do any of the steps below improperly, you now have enough knowledge of CLI and vim to detect and fix any issues.
+This section is separate from [Setup](#setup) above because if you do any of the steps below improperly, you now have enough knowledge of CLI and Vim to detect and fix any issues.
 
 ### SSH authentication
 
@@ -310,10 +310,9 @@ To do so,
 2. Use `mkdir` to make a directory named `hello_world`.
 3. `cd` into `hello_world`.
 4. To verify that 1-3 were done correctly, you can use `pwd` to verify that your working directory is indeed `/mnt/learncli/workdir/lab-00-your_GH_username/hello_world`.
-    - You can also view the entire directory structure with the `tree` command shown above, e.g., `tree ../..`
-    <!-- - Note: In these instructions, we have used only absolute paths so far to prevent user errors since absolute paths work from anywhere. However, since relative paths are shorter, these are more commonly used when typing commands. -->
+    - You can also view the structure of the entire repository with the `tree` command shown above, e.g., `tree ../..`
 5. To create and edit the `hello.c` file at the path shown above, run `vim hello.c`.
-    - If the file does not already exist, vim will create it; otherwise, vim will edit it.
+    - If the file does not already exist, Vim will create it; otherwise, Vim will edit it.
 
 ### hello.c requirements
 
