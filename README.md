@@ -170,7 +170,7 @@ Instead, we will use SSH authentication, a standard procedure that needs to be d
 
 #### Generate SSH keys
 
-1. If the container is not already running, [start the container](#start-container). This steps should be done **in the container**.
+1. If the container is not already running, [start the container](#start-container). These steps should be done **in the container**.
 2. Run `cd /mnt/learncli`.
 3. Run `ssh-keygen`. Then **type** `.ssh/id_rsa` **as the location to save the key**. Then press enter twice for no passphrase.
 
