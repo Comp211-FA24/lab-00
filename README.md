@@ -9,7 +9,7 @@ In this lab, you'll set up the COMP 211 Linux (Ubuntu) environment on your compu
 - [Background reading](#background-reading)
 - [Setup](#setup)
     - [Install Docker container](#install-docker-container)
-    - [Enter container](#enter-container)
+    - [Start container](#start-container)
 - [Learn the CLI](#learn-the-cli)
     - [Mounted directory /mnt/learncli](#mounted-directory-mntlearncli)
     - [Learn vim](#learn-vim)
@@ -61,9 +61,9 @@ To summarize Docker's functionality and why we're using it, a common problem wit
 
 The container contains all the tools you'll need and works exactly the same on everyone's computer (regardless of OS type, files, or settings on your host OS) because everyone will use the same image.
 
-### Enter container
+### Start container
 
-After completing the setup instructions, these are the steps that need to be done each time you want to enter the container.
+After completing the setup instructions, these are the steps that need to be done each time you want to start the container.
 
 1. Start Docker Desktop if it's not already running. You should see the blue Docker icon in your taskbar (Windows and macOS). If not, check Task Manager/Activity Monitor.
 2. Open a terminal.
@@ -80,11 +80,11 @@ In [Background reading](#background-reading), read at least the given sections o
 
 ### Mounted directory /mnt/learncli
 
-To reiterate an important part of [Directories, Files, and Paths](https://uncch.instructure.com/users/9947/files/4534607?verifier=Ay7tjnpmx7Cdhg7TzNXg7zfPD6wbBhBJOy8NqWXK&wrap=1) (2.6), the container's filesystem is isolated from that of your host OS. Thus, any changes to files you make in the container's filesystem will be reverted when you re-enter the container. Although this sounds annoying, one benefit is that if you mess anything up, you can simply exit and re-enter the container to start fresh.
+To reiterate an important part of [Directories, Files, and Paths](https://uncch.instructure.com/users/9947/files/4534607?verifier=Ay7tjnpmx7Cdhg7TzNXg7zfPD6wbBhBJOy8NqWXK&wrap=1) (2.6), the container's filesystem is isolated from that of your host OS. Thus, any changes to files you make in the container's filesystem will be reverted when you restart the container. Although this may sounds annoying, one benefit of containers is that if you break something in the environment, you can simply restart the container to start fresh.
 
-However, `/mnt/learncli` is different. This directory belongs to your host computer and is "**m**ou**nt**ed into" the container when you enter the container. Thus, you need to use this directory to share files between your host OS and the container.
+However, `/mnt/learncli` is different. This directory belongs to your host computer and is "**m**ou**nt**ed into" the container when you start the container. Thus, you need to use this directory to share files between your host OS and the container.
 
-So, when you're coding in the container, all code files need to be in `/mnt/learncli`, or they'll be deleted. The good news is that when you enter the container, your working directory will always initially be `/mnt/learncli/workdir`, and you should put your code files there.
+So, when you're coding in the container, all code files need to be in `/mnt/learncli`, or they'll be deleted. The good news is that when you start the container, your working directory will always initially be `/mnt/learncli/workdir`, and you should put your code files there.
 
 If you want to prove to yourself that `/mnt/learncli` in the container and `learncli211` in your host OS are the same, you can run `ls -a /mnt/learncli` in the container to list **a**ll files (including hidden ones) in `/mnt/learncli`.
 
@@ -114,7 +114,7 @@ There are many more features we could show, but we hope these two demos have piq
 
 #### Vim tutorial
 
-[Enter your Linux container](#enter-container), and run the command `vimtutor`. This will use vim to open a tutorial document that explains how to use it. It is normal for it to be black-and-white and not have line numbers, unlike the demos above.
+If the container is not already running, [start the container](#start-container), and run the command `vimtutor`. This will use vim to open a tutorial document that explains how to use it. It is normal for it to be black-and-white and not have line numbers, unlike the demos above.
 
 For vim, we recommend having your right hand in home row position (index finger on `J`, middle finger on `K`, ring finger on `L`, and pinky on `;`), the same position that is used for touch-typing.
 
@@ -138,7 +138,7 @@ We encourage you to stick with this setting. Note that the absolute line number 
 
 As mentioned, vim is highly customizable. Specifically, vim looks for settings in `~/.vimrc` (`~` is your home directory). That file contains the line `set relativenumber`, which enables relative line numbering.
 
-To turn it off, simply comment that line out. However, recall from [earlier](#mounted-directory-mntlearncli) that in the container, changes to `~/.vimrc` will be reverted when you re-enter the container. So, for your changes to persist, you need to edit `/mnt/learncli/.vimrc`. To allow vim to discover that file, when the container is entered, that file is automatically copied to `~/.vimrc`.
+To turn it off, simply comment that line out. However, recall from [earlier](#mounted-directory-mntlearncli) that in the container, changes to `~/.vimrc` will be reverted when you restart the container. So, for your changes to persist, you need to edit `/mnt/learncli/.vimrc`. To allow vim to discover that file, when the container is started, that file is automatically copied to `~/.vimrc`.
 
 First, check if `/mnt/learncli/.vimrc` exists with `ls -a /mnt/learncli`. If it doesn't exist, this is because the file was added as of 8/25/24. In that case, your container has an up-to-date copy, so run `cp ~/.vimrc /mnt/learncli/.vimrc`.
 
@@ -166,7 +166,7 @@ Instead, we will use SSH authentication, a standard procedure that needs to be d
 
 #### Generate SSH keys
 
-1. If you are not in the container, [enter the container](#enter-container).
+1. If the container is not already running, [start the container](#start-container).
 2. Run `cd /mnt/learncli`.
 3. Run `ssh-keygen`. Then **type** `.ssh/id_rsa` **as the location to save the key**. Then press enter twice for no passphrase.
 
@@ -255,9 +255,9 @@ Omit --global to set the identity only in this repository.
 fatal: unable to auto-detect email address (got 'root@07a5f55598d3.(none)')
 ```
 
-Normally, we would follow the suggestion to `git config --global user.email "you@example.com"`, but this change would be cleared when you re-enter the container. Instead, edit the environment variables created when the container starts as follows:
+Normally, we would follow the suggestion to `git config --global user.email "you@example.com"`, but this change would be cleared when you restart the container. Instead, edit the environment variables created when the container starts as follows:
 
-1. [Enter your container](#enter-container), if you are not already in it.
+1. If the container is not already running, [start the container](#start-container).
 2. Run `vim /mnt/learncli/.bash_profile`.
 3. Change the following lines from
 
