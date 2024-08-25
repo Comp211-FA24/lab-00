@@ -261,9 +261,8 @@ fatal: unable to auto-detect email address (got 'root@07a5f55598d3.(none)')
 
 Normally, we would follow the suggestion to `git config --global user.email "you@example.com"`, but this change would be cleared when you restart the container. Instead, edit the environment variables created when the container starts as follows:
 
-1. If the container is not already running, [start the container](#start-container).
-2. Run `vim /mnt/learncli/.bash_profile`.
-3. Change the following lines from
+1. **In the container**, run `vim /mnt/learncli/.bash_profile`.
+2. Change the following lines from
 
 ```text
 #export GIT_AUTHOR_NAME=""
@@ -283,8 +282,8 @@ export GIT_COMMITTER_EMAIL="ramzs@live.unc.edu"
 
 but with your own name and email, of course.
 
-4. Save the file.
-5. [Restart the container](#start-container).
+3. Save the file.
+4. [Restart the container](#start-container).
 
 ## Hello world
 
