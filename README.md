@@ -203,7 +203,7 @@ The key's randomart image is:
     - If you do not see that output, you did something incorrectly. Redo 1-3.
 5. Print your SSH public key by running `cat ~/.ssh/id_rsa.pub`. Copy the outputted text, which begins with `ssh-rsa` and ends with something like `root@8de59c21d591`.
     - To copy text in Windows Terminal or macOS Terminal, highlight the text and press Ctrl+C or Cmd+C, respectively.
-    - You may share your public key with anyone (that's what the public key is for), but **never** share your private key, which is at `~/.ssh/id_rsa`. Anyone with your private key can impersonate you (e.g., on GitHub, read/write/delete your private repositories, commit using your name, etc.) on any service where your public key is registered.
+    - You may share your public key with anyone (that's what the public key is for), but **never** share your private key, which is at `~/.ssh/id_rsa`. Anyone with your private key can impersonate you (e.g., read/write/delete your private GitHub repositories, commit using your name, etc.) on any service where your public key is registered.
 
 #### Add SSH public key to GitHub
 
