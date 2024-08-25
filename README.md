@@ -65,7 +65,7 @@ The container contains all the tools you'll need and works exactly the same on e
 
 After completing the setup instructions, these are the steps that need to be done each time you want to start the container.
 
-1. Start Docker Desktop if it's not already running. You should see the blue Docker icon in your taskbar (Windows and macOS). If not, check Task Manager/Activity Monitor.
+1. Check if Docker is running. You should see the blue Docker icon in your taskbar (Windows and macOS). If not, check Task Manager/Activity Monitor. If Docker is not running, start it.
 2. Open a terminal.
 3. Run `cd learncli211`.
     - If you cloned the repo to a different path, `cd` into wherever your `learncli211` repo is located. If you don't know what this means (yet), ignore this.
@@ -110,7 +110,7 @@ For example, here are two vim demos that show useful capabilities you cannot get
 
 <p align="center"><em>Remove 2 parameters from <code>sum</code> by deleting until <code>)</code> (displayed as Shift + 0) and clear inside <code>main</code>'s <code>{ }</code></em></p>
 
-There are many more features we could show, but we hope these two demos have piqued your interest and that you now want to learn vim.
+There are many more features we could show, but we hope these two demos have piqued your interest.
 
 #### Vim tutorial
 
@@ -120,7 +120,7 @@ For vim, we recommend having your right hand in home row position (index finger 
 
 Most likely, you will not remember everything from the tutorial. For now, we recommend you learn enough to be comfortable enough to complete this lab assignment. Later, you can learn as you go by reviewing `vimtutor` or searching for guides. We strongly recommend the vim lesson given in [Background reading](#background-reading). In general, whenever something seems inefficient or you think "there must be a better way", there probably is, and you should try Googling it.
 
-As you begin to learn vim, you will edit slower than normal, of course. It should take a few weeks to a month for your vim editing speed to catch up to your normal editing speed. This may seem like a while, but after that point (i.e., a very long time), you will only improve, and you will eventually be able to edit at the speed at which you think.
+As you begin to learn vim, you will edit slower than normal, of course. It will probably take a month or two of regular usage (i.e., using vim for the labs in this course should suffice) for your vim editing speed to match your normal editing speed. It could take just a few weeks if you use vim in places other than just this course. This may seem like a while, but after that point, you will only improve, and you will eventually be able to edit at the speed at which you think.
 
 Beyond improving editing speed, you will need to use vim in later courses and in your career when you run into situations in which an IDE is not available but vim is, such as in this Docker container or in the domain of systems development. There are plenty of other such situations.
 
@@ -130,15 +130,19 @@ In the above [demos](#vim-demos), you may have noticed a weird line numbering sy
 
 There are many common operators for which the number is relative to the current line and is not an absolute line number, and relative line numbering is useful for these operators.
 
-For example, consider that with absolute line numbers (only), if the current line is 897 and you wish to move down to line 912, you would have to compute `{912-897}j` = `15j`. With relative line numbers, you would see line 912 labeled as 15, so you would simply type `15j`. For visual examples, see the demos (where `4j` is typed).
+For example, consider that with absolute line numbers (only), if the current line is 897 and you want to move down to line 912, you would type `{912-897}j` = `15j`. With relative line numbers, you would see line 912 labeled as 15, so you would simply type `15j`. For visual examples, see the demos (where `4j` is typed).
 
-We encourage you to stick with this setting. Note that the absolute line number of the current line is still shown, and you can jump to any absolute line using `{line}G`. If you dislike this setting, you can turn it off.
+Note that the absolute line number of the current line is still shown, and you can still jump to any absolute line using `{line}G` [^relative].
+
+[^relative]: `{line}G` can be used to jump with absolute line numbering, but this uses more keystrokes. Also, when jumping, you usually want to jump to a line close to the current line.
+
+We encourage you to stick with this setting for a bit, but if you dislike it, you can turn it off.
 
 #### Vim customization
 
 As mentioned, vim is highly customizable. Specifically, vim looks for settings in `~/.vimrc` (`~` is your home directory). That file contains the line `set relativenumber`, which enables relative line numbering.
 
-To turn it off, simply comment that line out. However, recall from [earlier](#mounted-directory-mntlearncli) that in the container, changes to `~/.vimrc` will be reverted when you restart the container. So, for your changes to persist, you need to edit `/mnt/learncli/.vimrc`. To allow vim to discover that file, when the container is started, that file is automatically copied to `~/.vimrc`.
+To turn it off, simply comment that line out. However, recall from [earlier](#mounted-directory-mntlearncli) that in the container, changes to `~/.vimrc` will be reverted when you restart the container. For your changes to persist, you need to edit `/mnt/learncli/.vimrc`. To allow vim to discover that file, when the container is started, that file is automatically copied to `~/.vimrc`.
 
 First, check if `/mnt/learncli/.vimrc` exists with `ls -a /mnt/learncli`. If it doesn't exist, this is because the file was added as of 8/25/24. In that case, your container has an up-to-date copy, so run `cp ~/.vimrc /mnt/learncli/.vimrc`.
 
@@ -166,7 +170,7 @@ Instead, we will use SSH authentication, a standard procedure that needs to be d
 
 #### Generate SSH keys
 
-1. If the container is not already running, [start the container](#start-container).
+1. If the container is not already running, [start the container](#start-container). This steps should be done **in the container**.
 2. Run `cd /mnt/learncli`.
 3. Run `ssh-keygen`. Then **type** `.ssh/id_rsa` **as the location to save the key**. Then press enter twice for no passphrase.
 
