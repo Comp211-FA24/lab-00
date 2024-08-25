@@ -88,7 +88,7 @@ So, when you're coding in the container, all code files need to be in `/mnt/lear
 
 If you want to prove to yourself that `/mnt/learncli` in the container and `learncli211` in your host OS are the same, you can run `ls -a /mnt/learncli` in the container to list **a**ll files (including hidden ones) in `/mnt/learncli`.
 
-Then exit the container, and you'll be in your host OS's `learncli211` directory. Run `ls -a` (macOS) or `ls -Force` (Windows PowerShell, not Command Prompt), and you'll see that the files in the two directories are the same (because they're the same directory).
+Then exit the container by pressing Ctrl + D, and you'll be in your host OS's `learncli211` directory. Run `ls -a` (macOS) or `ls -Force` (Windows PowerShell, not Command Prompt), and you'll see that the files in the two directories are the same (because they're the same directory).
 
 ### Learn Vim
 
