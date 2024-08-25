@@ -284,7 +284,7 @@ export GIT_COMMITTER_EMAIL="ramzs@live.unc.edu"
 but with your own name and email, of course.
 
 4. Save the file.
-5. Restart the container.
+5. [Restart the container](#start-container).
 
 ## Hello world
 
@@ -379,12 +379,9 @@ To submit your assignment, you must commit your work using git, then push to Git
     - `-A` makes it add all files in the git repository, regardless of your working directory.
 4. Run `git commit -m "Your Message Here"`.
     - This creates a new commit based on the files in the staging area and associates the commit with a message.
-    - Instead of Your Message Here, you should write a meaningful but concise message about what changes you have made. Here are three good general rules:
-        1. You can actually have a subject line and, optionally, a body. For example, see [here](https://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html). Separate the subject and body with a blank line.
-        2. Limit the subject line to 50 characters.
-        3. Use the body to explain **what** and **why**, not **how**.
-            - Other developers (and you, once enough time has passed) can read the code changes to figure out "how". Additionally, for expressing code logic, English is often imprecise (i.e., can contradict the actual code logic).
-            - Whoever is reading the commit message is probably much more interested in what was changed and why rather than how it was done (implementation details).
+    - Instead of Your Message Here, you should write a meaningful but concise message about what changes you have made. A good general rule is to use the body to explain **what** and **why**, not **how**.
+        - Other developers (and you, once enough time has passed) can read the code changes to figure out "how". Additionally, for expressing code logic, English is often imprecise (i.e., can contradict the actual code logic).
+        - Whoever is reading the commit message is probably much more interested in what was changed and why rather than how it was done (implementation details).
     - If this command fails with the error message `Author identity unknown... fatal: unable to auto-detect email address... `, do [Git configure name and email](#git-configure-name-and-email), and remember to restart the container.
 5. Run `git push`.
     - This uploads commits made locally on your machine to the remote repository (on GitHub).
