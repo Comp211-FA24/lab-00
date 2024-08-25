@@ -355,7 +355,7 @@ Fortunately, there are tools you can use to automatically format your code. One 
 
 We will use our custom `clang-format-all` command that formats all C files in a directory.
 
-Running this command with `-h` or `--help` prints the following syntax: `clang-format-all [-h] DIR...`. This command's expected argument(s) is a directory or directories, not individual file(s).
+Running this command with `-h` or `--help` prints its expected syntax: `clang-format-all [-h] DIR...`. This command's expected argument(s) is a directory or directories, not individual file(s).
 
 For example, assuming your working directory is still `hello_world`, `clang-format-all .` would format all C files in `.` (current directory), which is just `hello.c`. `clang-format-all ..` would format all C files in your repository. Of course, absolute paths can also be used.
 
