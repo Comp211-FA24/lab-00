@@ -69,15 +69,15 @@ In [Background reading](#background-reading), read at least the given sections o
 
 ### Mounted directory /mnt/learncli
 
-To reiterate an important part of [Directories, Files, and Paths](https://uncch.instructure.com/users/9947/files/4534607?verifier=Ay7tjnpmx7Cdhg7TzNXg7zfPD6wbBhBJOy8NqWXK&wrap=1) (2.6) that we'll use soon, the container's filesystem is isolated from that of your host OS. Thus, any changes to files you make in the container's filesystem will be reverted when you restart the container. Although this may sound annoying, one benefit of containers is that if you break something in the environment, you can simply restart the container to start fresh.
+To reiterate an important but easy-to-miss part of [Directories, Files, and Paths](https://uncch.instructure.com/users/9947/files/4534607?verifier=Ay7tjnpmx7Cdhg7TzNXg7zfPD6wbBhBJOy8NqWXK&wrap=1) (2.6) that we'll use soon, the container's filesystem is isolated from that of your host OS. Thus, any changes to files you make in the container's filesystem will be reverted when you restart the container. Although this may sound annoying, one benefit of containers is that if you break something in the container, you can simply restart the container to start fresh.
 
 However, `/mnt/learncli` is different. This directory belongs to your host computer and is "**m**ou**nt**ed into" the container when you start the container. Thus, you need to use this directory to share files between your host OS and the container.
 
-So, when you're coding in the container, all code files need to be in `/mnt/learncli`, or they'll be deleted. The good news is that when you start the container, your working directory will always initially be `/mnt/learncli/workdir`, and you should put your code files there.
+So, when you're coding in the container, all code files need to be in `/mnt/learncli` or its subdirectories, or they'll be deleted. The good news is that when you start the container, your working directory will always initially be `/mnt/learncli/workdir`, and you should put your code files there.
 
-If you want to prove to yourself that `/mnt/learncli` in the container and `learncli211` in your host OS are the same, you can run `ls -a /mnt/learncli` in the container to list **a**ll files (including hidden ones) in `/mnt/learncli`.
+To prove to yourself that the directories `/mnt/learncli` in the container and `learncli211` in your host OS are the same, you can run `ls -a /mnt/learncli` in the container to list **a**ll files (including hidden ones) in that directory.
 
-Then exit the container by pressing Ctrl + D, and you'll be in your host OS's `learncli211` directory. Run `ls -a` (macOS) or `ls -Force` (Windows PowerShell, not Command Prompt), and you'll see that the files in the two directories are the same (because they're the same directory).
+Then exit the container by running `exit` or by pressing Ctrl + D, and you'll be in your host OS's `learncli211` directory. Run `ls -a` (macOS) or `ls -Force` (Windows PowerShell, not Command Prompt), and you'll see that the files in the two directories are the same (because they're the same directory).
 
 ### Learn Vim
 

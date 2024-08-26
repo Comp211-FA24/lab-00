@@ -1,4 +1,4 @@
-# gitignore file specifies intentionally untracked files that Git should ignore
+# .gitignore file specifies intentionally untracked files that Git should ignore
 # https://github.com/github/gitignore?tab=readme-ov-file#a-collection-of-gitignore-templates
 
 # IDE
