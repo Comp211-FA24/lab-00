@@ -57,9 +57,9 @@ In this lab, you'll set up the COMP 211 Linux (Ubuntu) environment on your compu
 
 To complete the labs for this course, you need to use a Linux environment. If you haven't already, carefully follow the instructions on the [Linux Programming Environment](https://uncch.instructure.com/courses/48862/pages/linux-programming-environment) page to install Docker and the COMP 211 Docker container on your computer.
 
-To summarize Docker's functionality and why we're using it, a common problem with code is that code can work on one computer but not another. Docker solves this problem by "shipping your computer." More accurately, you will pull the COMP 211 Docker image, which contains instructions for building our container, and this container will be built within your host OS.
+To summarize Docker's functionality and why we're using it, a common problem with code is that code can work on one computer but not another. Docker solves this problem by "shipping your computer." More accurately, you will pull the COMP 211 Docker image, which contains instructions for building our container, and this container will be built within your host OS (likely Windows or macOS).
 
-The container contains all the tools you'll need and works exactly the same on everyone's computer (regardless of OS type, files, or settings on your host OS) because everyone will use the same image.
+The container contains all the tools you'll need this semester and works exactly the same on everyone's computer (regardless of OS type, files, or settings on your host OS) because everyone will use the same image.
 
 ### Start container
 
@@ -80,7 +80,7 @@ In [Background reading](#background-reading), read at least the given sections o
 
 ### Mounted directory /mnt/learncli
 
-To reiterate an important part of [Directories, Files, and Paths](https://uncch.instructure.com/users/9947/files/4534607?verifier=Ay7tjnpmx7Cdhg7TzNXg7zfPD6wbBhBJOy8NqWXK&wrap=1) (2.6), the container's filesystem is isolated from that of your host OS. Thus, any changes to files you make in the container's filesystem will be reverted when you restart the container. Although this may sounds annoying, one benefit of containers is that if you break something in the environment, you can simply restart the container to start fresh.
+To reiterate an important part of [Directories, Files, and Paths](https://uncch.instructure.com/users/9947/files/4534607?verifier=Ay7tjnpmx7Cdhg7TzNXg7zfPD6wbBhBJOy8NqWXK&wrap=1) (2.6) that we'll use soon, the container's filesystem is isolated from that of your host OS. Thus, any changes to files you make in the container's filesystem will be reverted when you restart the container. Although this may sounds annoying, one benefit of containers is that if you break something in the environment, you can simply restart the container to start fresh.
 
 However, `/mnt/learncli` is different. This directory belongs to your host computer and is "**m**ou**nt**ed into" the container when you start the container. Thus, you need to use this directory to share files between your host OS and the container.
 
@@ -118,9 +118,9 @@ If the container is not already running, [start the container](#start-container)
 
 For Vim, we recommend having your right hand in home row position (index finger on `J`, middle finger on `K`, ring finger on `L`, and pinky on `;`), the same position that is used for touch-typing.
 
-Most likely, you will not remember everything from the tutorial. For now, we recommend you learn enough to be comfortable enough to complete this lab assignment. Later, you can learn as you go by reviewing `vimtutor` or searching for guides. We strongly recommend the Vim lesson given in [Background reading](#background-reading). In general, whenever something seems inefficient or you think "there must be a better way", there probably is, and you should try Googling it.
+Most likely, you will not remember everything from the tutorial. For now, we recommend you learn enough to be comfortable enough to complete this lab assignment. Later, you can learn as you go by reviewing `vimtutor` or searching for guides. For example, we strongly recommend the Vim lesson given in [Background reading](#background-reading). In general, whenever something seems inefficient or you think "there must be a better way", there probably is, and you should try Googling it.
 
-As you begin to learn Vim, you will edit slower than normal, of course. It will probably take a month or two of regular usage (i.e., using Vim for the labs in this course should suffice) for your Vim editing speed to match your normal editing speed. It would take less time if you use Vim in places other than just this course. This may seem like a while, but after that point, you will only improve, and you will eventually be able to edit at the speed at which you think.
+As you begin to learn Vim, you will edit slower than normal, of course. It will probably take a month or two of regular usage (i.e., using Vim for the labs in this course should suffice) for your Vim editing speed to match your normal editing speed. This may seem like a while, but after that point, you will only improve, and you will eventually be able to edit at the speed at which you think.
 
 Beyond improving editing speed, you will need to use Vim in later courses and in your career when you run into situations in which an IDE is not available but Vim is, such as in this Docker container or in the domain of systems development. There are plenty of other such situations.
 
@@ -128,7 +128,7 @@ Beyond improving editing speed, you will need to use Vim in later courses and in
 
 In the above [demos](#demos), you may have noticed a weird line numbering system. This is called relative line numbering, which is the default setting in the container because, as you saw in `vimtutor` (2.5), many operators accept a count, such as `2dd` (delete two lines). Although omitted in the tutorial, another useful application is something like `4j` to move the cursor down 4 lines (i.e., you can instantly jump the cursor to any line on the screen). In these examples, 2 and 4 are relative to the current line.
 
-There are many common operators for which the number is relative to the current line and is not an absolute line number, and relative line numbering is useful for these operators.
+There are many common operators for which the number is relative to the current line, and relative line numbering is useful for these operators.
 
 For example, consider that with absolute line numbers (only), if the current line is 897 and you want to move down to line 912, you would type `{912-897}j` = `15j`. With relative line numbers, you would see line 912 labeled as 15, so you would simply type `15j`. For visual examples, see the demos (where `4j` is typed).
 
