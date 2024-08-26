@@ -6,29 +6,24 @@ In this lab, you'll set up the COMP 211 Linux (Ubuntu) environment on your compu
 <details open>
     <summary>Contents</summary>
 
-- [Background reading](#background-reading)
-- [Setup](#setup)
-    - [Install Docker container](#install-docker-container)
-    - [Start container](#start-container)
-- [Learn the CLI](#learn-the-cli)
-    - [Mounted directory /mnt/learncli](#mounted-directory-mntlearncli)
-    - [Learn Vim](#learn-vim)
-        - [Demos](#demos)
-        - [Tutorial](#tutorial)
-        - [Relative line numbering](#relative-line-numbering)
-        - [Customization](#customization)
-        - [File tree and EasyMotion](#file-tree-and-easymotion)
-- [Final setup](#final-setup)
-    - [SSH authentication](#ssh-authentication)
-        - [Generate SSH keys](#generate-ssh-keys)
-        - [Add SSH public key to GitHub](#add-ssh-public-key-to-github)
-        - [Verify that SSH authentication works](#verify-that-ssh-authentication-works)
-    - [Git configure name and email](#git-configure-name-and-email)
-- [Hello world](#hello-world)
-    - [hello.c requirements](#helloc-requirements)
-    - [Compile and execute](#compile-and-execute)
-    - [Format your code](#format-your-code)
-- [Submit your assignment](#submit-your-assignment)
+- [To reiterate an important part of Directories, Files, and Paths (2.6) that we'll use soon, the container's filesystem is isolated from that of your host OS. Thus, any changes to files you make in the container's filesystem will be reverted when you restart the container. Although this may sounds annoying, one benefit of containers is that if you break something in the environment, you can simply restart the container to start fresh.](#to-reiterate-an-important-part-of-directories-files-and-paths-26-that-well-use-soon-the-containers-filesystem-is-isolated-from-that-of-your-host-os-thus-any-changes-to-files-you-make-in-the-containers-filesystem-will-be-reverted-when-you-restart-the-container-although-this-may-sounds-annoying-one-benefit-of-containers-is-that-if-you-break-something-in-the-environment-you-can-simply-restart-the-container-to-start-fresh)
+        - [Learn Vim](#learn-vim)
+            - [Demos](#demos)
+            - [Tutorial](#tutorial)
+            - [Relative line numbering](#relative-line-numbering)
+            - [Customization](#customization)
+            - [File tree and EasyMotion](#file-tree-and-easymotion)
+    - [Final setup](#final-setup)
+        - [SSH authentication](#ssh-authentication)
+            - [Generate SSH keys](#generate-ssh-keys)
+            - [Add SSH public key to GitHub](#add-ssh-public-key-to-github)
+            - [Verify that SSH authentication works](#verify-that-ssh-authentication-works)
+        - [Git configure name and email](#git-configure-name-and-email)
+    - [Hello world](#hello-world)
+        - [hello.c requirements](#helloc-requirements)
+        - [Compile and execute](#compile-and-execute)
+        - [Format your code](#format-your-code)
+    - [Submit your assignment](#submit-your-assignment)
 
 </details>
 
@@ -53,9 +48,9 @@ In this lab, you'll set up the COMP 211 Linux (Ubuntu) environment on your compu
 
 ## Setup
 
-### Install Docker container
+### Install Docker and COMP 211 container
 
-To complete the labs for this course, you need to use a Linux environment. If you haven't already, carefully follow the instructions on the [Linux Programming Environment](https://uncch.instructure.com/courses/48862/pages/linux-programming-environment) page to install Docker and the COMP 211 Docker container on your computer.
+To complete the labs for this course, you need to use a Linux environment. If you haven't already, carefully follow the instructions on the Linux Programming Environment page ([section 1](https://uncch.instructure.com/courses/65069/pages/linux-programming-environment), [section 2](https://uncch.instructure.com/courses/65074/pages/linux-programming-environment)) to install Docker and the COMP 211 Docker container on your computer.
 
 To summarize Docker's functionality and why we're using it, a common problem with code is that code can work on one computer but not another. Docker solves this problem by "shipping your computer." More accurately, you will pull the COMP 211 Docker image, which contains instructions for building our container, and this container will be built within your host OS (likely Windows or macOS).
 
@@ -63,16 +58,9 @@ The container contains all the tools you'll need this semester and works exactly
 
 ### Start container
 
-After completing the setup instructions, these are the steps that need to be done each time you want to start the container.
+After completing the setup instructions, note that there are a few steps that must be done each time you want to start the container.
 
-1. Check if Docker is running. You should see the blue Docker icon in your taskbar (Windows and macOS). If not, check Task Manager/Activity Monitor. If Docker is not running, start it.
-2. Open a terminal.
-3. Run `cd learncli211`.
-    - If you cloned the repo to a different path, `cd` into wherever your `learncli211` repo is located. If you don't know what this means (yet), ignore this.
-4. Run `./learncli.ps1` (Windows) or `./learncli.sh` (macOS).
-5. Verify that you are in the container (Linux) by checking that your command-line prompt is `learncli$ `. Otherwise, you are in your host OS (likely Windows or macOS).
-
-Exit the container by running `exit` or by pressing `Ctrl+D`.
+In the above page, search (Ctrl + F or Cmd + F) for the text "start the container".
 
 ## Learn the CLI
 
@@ -80,7 +68,7 @@ In [Background reading](#background-reading), read at least the given sections o
 
 ### Mounted directory /mnt/learncli
 
-To reiterate an important part of [Directories, Files, and Paths](https://uncch.instructure.com/users/9947/files/4534607?verifier=Ay7tjnpmx7Cdhg7TzNXg7zfPD6wbBhBJOy8NqWXK&wrap=1) (2.6) that we'll use soon, the container's filesystem is isolated from that of your host OS. Thus, any changes to files you make in the container's filesystem will be reverted when you restart the container. Although this may sounds annoying, one benefit of containers is that if you break something in the environment, you can simply restart the container to start fresh.
+To reiterate an important part of [Directories, Files, and Paths](https://uncch.instructure.com/users/9947/files/4534607?verifier=Ay7tjnpmx7Cdhg7TzNXg7zfPD6wbBhBJOy8NqWXK&wrap=1) (2.6) that we'll use soon, the container's filesystem is isolated from that of your host OS. Thus, any changes to files you make in the container's filesystem will be reverted when you restart the container. Although this may sound annoying, one benefit of containers is that if you break something in the environment, you can simply restart the container to start fresh.
 
 However, `/mnt/learncli` is different. This directory belongs to your host computer and is "**m**ou**nt**ed into" the container when you start the container. Thus, you need to use this directory to share files between your host OS and the container.
 
@@ -140,13 +128,9 @@ We encourage you to stick with this setting for a bit, but if you dislike it, yo
 
 #### Customization
 
-As mentioned, Vim is highly customizable. Specifically, Vim looks for settings in `~/.vimrc` (`~` is your home directory). That file contains the line `set relativenumber`, which enables relative line numbering.
+As mentioned, Vim is highly customizable. Specifically, Vim looks for settings in `~/.vimrc` (`~` is your home directory). That file contains the line `set relativenumber`, which enables relative line numbering. To turn it off, simply comment that line out.
 
-To turn it off, simply comment that line out. However, recall from [earlier](#mounted-directory-mntlearncli) that in the container, changes to `~/.vimrc` will be reverted when you restart the container. For your changes to persist, you need to edit `/mnt/learncli/.vimrc`. To allow Vim to discover that file, when the container is started, that file is automatically copied to `~/.vimrc`.
-
-First, check if `/mnt/learncli/.vimrc` exists with `ls -a /mnt/learncli`. If it doesn't exist, this is because the file was added as of 8/25/24. In that case, your container has an up-to-date copy, so run `cp ~/.vimrc /mnt/learncli/.vimrc`.
-
-Then, run `vim /mnt/learncli/.vimrc` to edit it. Save the file and exit. Then, to apply the changes, you can either copy that file to `~/.vimrc` or restart your container.
+However, recall from [earlier](#mounted-directory-mntlearncli) that in the container, changes to `~/.vimrc` will be reverted when you restart the container. See the comments at the top of `~/.vimrc` for how to make changes permanent.
 
 #### File tree and EasyMotion
 
