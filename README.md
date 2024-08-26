@@ -6,24 +6,29 @@ In this lab, you'll set up the COMP 211 Linux (Ubuntu) environment on your compu
 <details open>
     <summary>Contents</summary>
 
-- [To reiterate an important part of Directories, Files, and Paths (2.6) that we'll use soon, the container's filesystem is isolated from that of your host OS. Thus, any changes to files you make in the container's filesystem will be reverted when you restart the container. Although this may sounds annoying, one benefit of containers is that if you break something in the environment, you can simply restart the container to start fresh.](#to-reiterate-an-important-part-of-directories-files-and-paths-26-that-well-use-soon-the-containers-filesystem-is-isolated-from-that-of-your-host-os-thus-any-changes-to-files-you-make-in-the-containers-filesystem-will-be-reverted-when-you-restart-the-container-although-this-may-sounds-annoying-one-benefit-of-containers-is-that-if-you-break-something-in-the-environment-you-can-simply-restart-the-container-to-start-fresh)
-        - [Learn Vim](#learn-vim)
-            - [Demos](#demos)
-            - [Tutorial](#tutorial)
-            - [Relative line numbering](#relative-line-numbering)
-            - [Customization](#customization)
-            - [File tree and EasyMotion](#file-tree-and-easymotion)
-    - [Final setup](#final-setup)
-        - [SSH authentication](#ssh-authentication)
-            - [Generate SSH keys](#generate-ssh-keys)
-            - [Add SSH public key to GitHub](#add-ssh-public-key-to-github)
-            - [Verify that SSH authentication works](#verify-that-ssh-authentication-works)
-        - [Git configure name and email](#git-configure-name-and-email)
-    - [Hello world](#hello-world)
-        - [hello.c requirements](#helloc-requirements)
-        - [Compile and execute](#compile-and-execute)
-        - [Format your code](#format-your-code)
-    - [Submit your assignment](#submit-your-assignment)
+- [Background reading](#background-reading)
+- [Setup](#setup)
+    - [Install Docker and COMP 211 container](#install-docker-and-comp-211-container)
+    - [Start container](#start-container)
+- [Learn the CLI](#learn-the-cli)
+    - [Mounted directory /mnt/learncli](#mounted-directory-mntlearncli)
+    - [Learn Vim](#learn-vim)
+        - [Demos](#demos)
+        - [Tutorial](#tutorial)
+        - [Relative line numbering](#relative-line-numbering)
+        - [Customization](#customization)
+        - [File tree and EasyMotion](#file-tree-and-easymotion)
+- [Final setup](#final-setup)
+    - [SSH authentication](#ssh-authentication)
+        - [Generate SSH keys](#generate-ssh-keys)
+        - [Add SSH public key to GitHub](#add-ssh-public-key-to-github)
+        - [Verify that SSH authentication works](#verify-that-ssh-authentication-works)
+    - [Git configure name and email](#git-configure-name-and-email)
+- [Hello world](#hello-world)
+    - [hello.c requirements](#helloc-requirements)
+    - [Compile and execute](#compile-and-execute)
+    - [Format your code](#format-your-code)
+- [Submit your assignment](#submit-your-assignment)
 
 </details>
 
@@ -128,7 +133,9 @@ We encourage you to stick with this setting for a bit, but if you dislike it, yo
 
 #### Customization
 
-As mentioned, Vim is highly customizable. Specifically, Vim looks for settings in `~/.vimrc` (`~` is your home directory). That file contains the line `set relativenumber`, which enables relative line numbering. To turn it off, simply comment that line out.
+As mentioned, Vim is highly customizable. Specifically, Vim looks for settings in `~/.vimrc` (`~` is your home directory). You can edit this file by running `vim ~/.vimrc`.
+
+The file contains the line `set relativenumber`, which enables relative line numbering. To turn it off, simply comment that line out.
 
 However, recall from [earlier](#mounted-directory-mntlearncli) that in the container, changes to `~/.vimrc` will be reverted when you restart the container. See the comments at the top of `~/.vimrc` for how to make changes permanent.
 
