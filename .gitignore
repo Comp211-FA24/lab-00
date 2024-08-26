@@ -7,4 +7,7 @@
 
 # IDE
 .idea
+.vscode
 
+# vim
+*.swp
