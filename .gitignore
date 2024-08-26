@@ -1,13 +1,30 @@
-# Build files
-*.o
-*.out
-
-# macOS
-.DS_Store
+# gitignore file specifies intentionally untracked files that Git should ignore
+# https://github.com/github/gitignore?tab=readme-ov-file#a-collection-of-gitignore-templates
 
 # IDE
 .idea
 .vscode
 
-# vim
+# macOS
+.DS_Store
+
+# Editor backup files
+*~
+
+# Vim
 *.swp
+
+# Object files
+*.o
+
+# Shared objects (inc. Windows DLLs)
+*.dll
+*.so
+*.so.*
+
+# Executables
+*.exe
+*.out
+
+# Debug files
+*.dSYM/
