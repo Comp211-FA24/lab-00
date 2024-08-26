@@ -34,7 +34,7 @@ In this lab, you'll set up the COMP 211 Linux (Ubuntu) environment on your compu
 
 ## Background reading
 
-1. Required: *Learn a Command-line Interface* by Kris Jordan
+1. Required: *Learn a Command-line Interface* by Kris Jordan (from the schedule)
     - Read **after** [Setup](#setup).
     - [The Sorcerer's Shell](https://uncch.instructure.com/users/9947/files/4534606?verifier=OtzqqS8AJ9vtBgYkQDnjzhdQCkb6fk4YT47bMMXA&wrap=1)
     - [Directories, Files, and Paths](https://uncch.instructure.com/users/9947/files/4534607?verifier=Ay7tjnpmx7Cdhg7TzNXg7zfPD6wbBhBJOy8NqWXK&wrap=1)
@@ -45,11 +45,7 @@ In this lab, you'll set up the COMP 211 Linux (Ubuntu) environment on your compu
     - Read/watch the Vim lesson **after** [Learn Vim](#learn-vim).
     - In addition to the Vim lesson, the entire resource is highly recommended because its content will be useful for the entire semester and beyond, in future classes and your career.
         - In general, lessons 1-6 (excluding 4, which is Data Wrangling) of The Missing Semester are highly relevant for COMP 211.
-        - The COMP 211 labs cover important parts of some of the same topics, such as the shell, CLI, Vim, git, and gdb, but you are encouraged to learn more in-depth via this resource. Consider referring to it throughout the semester. <!-- TODO: delete resources under 3? -->
-3. Optional resources from Kris Jordan
-    - [vim Tutorial - A beginner's guide to vim, a powerful text editor with a grammar.](https://www.youtube.com/playlist?list=PLKUb7MEve0Tj3MLYDIyYpIZtnJehmlR0s)
-    - [What is a version control system? What is git?](https://www.youtube.com/watch?v=h2xylPqXO8M&list=PLKUb7MEve0TjHQSKUWChAWyJPCpYMRovO&index=4)
-    - [git Fundamentals - add, commit, branch, checkout, merge](https://www.youtube.com/watch?v=R8E29zB8tMc&list=PLKUb7MEve0TjHQSKUWChAWyJPCpYMRovO&index=5)
+        - The COMP 211 labs cover important parts of some of the same topics, such as the shell, CLI, Vim, git, and gdb, but you are encouraged to learn more in-depth via this resource. Consider referring to it throughout the semester.
 
 ## Setup
 
