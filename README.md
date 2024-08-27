@@ -6,11 +6,11 @@ In this lab, you'll set up the COMP 211 Linux (Ubuntu) environment on your compu
 <details open>
     <summary>Contents</summary>
 
-- [Background reading](#background-reading)
 - [Setup](#setup)
     - [Install Docker and COMP 211 container](#install-docker-and-comp-211-container)
     - [Start container](#start-container)
 - [Learn the CLI](#learn-the-cli)
+    - [Background reading](#background-reading)
     - [Mounted directory /mnt/learncli](#mounted-directory-mntlearncli)
     - [Learn Vim](#learn-vim)
         - [Demos](#demos)
@@ -32,30 +32,13 @@ In this lab, you'll set up the COMP 211 Linux (Ubuntu) environment on your compu
 
 </details>
 
-## Background reading
-
-1. Required: *Learn a Command-line Interface* by Kris Jordan (from the schedule)
-    - Read **after** [Setup](#setup).
-    - [The Sorcerer's Shell](https://uncch.instructure.com/users/9947/files/4534606?verifier=OtzqqS8AJ9vtBgYkQDnjzhdQCkb6fk4YT47bMMXA&wrap=1)
-    - [Directories, Files, and Paths](https://uncch.instructure.com/users/9947/files/4534607?verifier=Ay7tjnpmx7Cdhg7TzNXg7zfPD6wbBhBJOy8NqWXK&wrap=1)
-    - In particular, in this lab, we will use content from the following sections: 1.1-1.2, 1.5, 1.11, 2.1-2.7, 2.9-2.13.
-        - All sections are useful, and some will be required knowledge for future labs, but the given sections are necessary to complete this lab.
-        - In addition to reading, you should also practice running the commands in your new Linux environment! The shell will be your playground for the entire semester, so gain familiarity with it.
-2. Optional but highly recommended: [Vim lesson](https://missing.csail.mit.edu/2020/editors/) from MIT's [The Missing Semester of Your CS Education](https://missing.csail.mit.edu/) (notes and videos).
-    - Read/watch the Vim lesson **after** [Learn Vim](#learn-vim).
-    - In addition to the Vim lesson, the entire resource is highly recommended because its content will be useful for the entire semester and beyond, in future classes and your career.
-        - In general, lessons 1-6 (excluding 4, which is Data Wrangling) of The Missing Semester are highly relevant for COMP 211.
-        - The COMP 211 labs cover important parts of some of the same topics, such as the shell, CLI, Vim, git, and gdb, but you are encouraged to learn more in-depth via this resource. Consider referring to it throughout the semester.
-
 ## Setup
 
 ### Install Docker and COMP 211 container
 
 To complete the labs for this course, you need to use a Linux environment. If you haven't already, carefully follow the instructions on the Linux Programming Environment page ([section 1](https://uncch.instructure.com/courses/65069/pages/linux-programming-environment), [section 2](https://uncch.instructure.com/courses/65074/pages/linux-programming-environment)) to install Docker and the COMP 211 Docker container on your computer.
 
-To summarize Docker's functionality and why we're using it, a common problem with code is that code can work on one computer but not another. Docker solves this problem by "shipping your computer." More accurately, you will pull the COMP 211 Docker image, which contains instructions for building our container, and this container will be built within your host OS (likely Windows or macOS).
-
-The container contains all the tools you'll need this semester and works exactly the same on everyone's computer (regardless of OS type, files, or settings on your host OS) because everyone will use the same image.
+In short, the container contains all the programming deveopment tools you'll need this semester and works exactly the same on everyone's computer (regardless of OS type, files, or settings on your host OS).
 
 ### Start container
 
@@ -65,7 +48,19 @@ In the above page, search (Ctrl + F or Cmd + F) for the text "start the containe
 
 ## Learn the CLI
 
-In [Background reading](#background-reading), read at least the given sections of *Learn a Command-line Interface* by Kris Jordan.
+### Background reading
+
+1. Required (from the schedule):
+    - [Basic shell commands](https://uncch.instructure.com/users/9947/files/4534606?verifier=OtzqqS8AJ9vtBgYkQDnjzhdQCkb6fk4YT47bMMXA&wrap=1)
+    - [Directories, Files, and Paths](https://uncch.instructure.com/users/9947/files/4534607?verifier=Ay7tjnpmx7Cdhg7TzNXg7zfPD6wbBhBJOy8NqWXK&wrap=1)
+    - In particular, in this lab, we will use content from the following sections: 1.1-1.2, 1.5, 1.11, 2.1-2.7, 2.9-2.13.
+        - All sections are useful, and some will be required knowledge for future labs, but the given sections are necessary to complete this lab.
+        - In addition to reading, you should also practice running the commands in your new Linux environment! The shell will be your playground for the entire semester, so gain familiarity with it.
+2. Optional but highly recommended: [Vim lesson](https://missing.csail.mit.edu/2020/editors/) from MIT's [The Missing Semester of Your CS Education](https://missing.csail.mit.edu/) (notes and videos).
+    - Read/watch the Vim lesson **after** [Learn Vim](#learn-vim).
+    - In addition to the Vim lesson, the entire resource is highly recommended because its content will be useful for the entire semester and beyond, in future classes and your career.
+        - In general, lessons 1-6 (excluding 4, which is Data Wrangling) of The Missing Semester are highly relevant for COMP 211.
+        - The COMP 211 labs cover important parts of some of the same topics, such as the shell, CLI, Vim, git, and gdb, but you are encouraged to learn more in-depth via this resource. Consider referring to it throughout the semester.
 
 ### Mounted directory /mnt/learncli
 
