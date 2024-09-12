@@ -7,27 +7,27 @@ In this lab, you'll set up the COMP 211 Linux (Ubuntu) environment on your compu
     <summary>Contents</summary>
 
 - [Setup](#setup)
-    - [Install Docker and COMP 211 container](#install-docker-and-comp-211-container)
-    - [Start container](#start-container)
+  - [Install Docker and COMP 211 container](#install-docker-and-comp-211-container)
+  - [Start container](#start-container)
 - [Learn the CLI](#learn-the-cli)
-    - [Background reading](#background-reading)
-    - [Mounted directory /mnt/learncli](#mounted-directory-mntlearncli)
-    - [Learn Vim](#learn-vim)
-        - [Demos](#demos)
-        - [Tutorial](#tutorial)
-        - [Relative line numbering](#relative-line-numbering)
-        - [Customization](#customization)
-        - [File tree and EasyMotion](#file-tree-and-easymotion)
+  - [Background reading](#background-reading)
+  - [Mounted directory /mnt/learncli](#mounted-directory-mntlearncli)
+  - [Learn Vim](#learn-vim)
+    - [Demos](#demos)
+    - [Tutorial](#tutorial)
+    - [Relative line numbering](#relative-line-numbering)
+    - [Customization](#customization)
+    - [File tree and EasyMotion](#file-tree-and-easymotion)
 - [Final setup](#final-setup)
-    - [SSH authentication](#ssh-authentication)
-        - [Generate SSH keys](#generate-ssh-keys)
-        - [Add SSH public key to GitHub](#add-ssh-public-key-to-github)
-        - [Verify that SSH authentication works](#verify-that-ssh-authentication-works)
-    - [Git configure name and email](#git-configure-name-and-email)
+  - [SSH authentication](#ssh-authentication)
+    - [Generate SSH keys](#generate-ssh-keys)
+    - [Add SSH public key to GitHub](#add-ssh-public-key-to-github)
+    - [Verify that SSH authentication works](#verify-that-ssh-authentication-works)
+  - [Git configure name and email](#git-configure-name-and-email)
 - [Hello world](#hello-world)
-    - [hello.c requirements](#helloc-requirements)
-    - [Compile and execute](#compile-and-execute)
-    - [Format your code](#format-your-code)
+  - [hello.c requirements](#helloc-requirements)
+  - [Compile and execute](#compile-and-execute)
+  - [Format your code](#format-your-code)
 - [Submit your assignment](#submit-your-assignment)
 
 </details>
@@ -353,16 +353,16 @@ To submit your assignment, you must commit your work using git, then push to Git
 1. `cd` to the base of your repository, which is `lab-00-your_GH_username`.
 2. (Optional) Run `git status` to confirm that our next commit will have the files we expect.
     - `git status` displays the state of the working directory and the staging area.
-    - Some useful information here: files that have been staged (with `git add`) and are ready to be committed, untracked files, and files that have been modified but not staged.
+    - Some useful information here: files that have been staged (with `git add`) and are ready to be committed, untracked files, files that have been modified but not staged, and branch.
 3. Run `git add -A`.
     - `git add` adds modified files to the staging area.
     - `-A` makes it add all files in the git repository, regardless of your working directory.
 4. Run `git commit -m "Your Message Here"`.
     - This creates a new commit based on the files in the staging area and associates the commit with a message.
-    - Instead of Your Message Here, you should write a meaningful but concise message about what changes you have made. A good general rule is to use the body to explain **what** and **why**, not **how**.
+    - Instead of Your Message Here, you should write a meaningful but concise message about what changes you have made. A good general rule is to explain **what** and **why**, not **how**.
         - Other developers (and you, once enough time has passed) can read the code changes to figure out "how". Additionally, for expressing code logic, English is often imprecise (i.e., can contradict the actual code logic).
         - Whoever is reading the commit message is probably much more interested in what was changed and why rather than how it was done (implementation details).
-    - If this command fails with the error message `Author identity unknown... fatal: unable to auto-detect email address... `, do [Git configure name and email](#git-configure-name-and-email), and remember to restart the container.
+    - If this command fails with the error message `Author identity unknown... fatal: unable to auto-detect email address...`, do [Git configure name and email](#git-configure-name-and-email), and remember to restart the container.
 5. Run `git push`.
     - This uploads commits made locally on your machine to the remote repository (on GitHub).
     - After this is run, when you view this repository on GitHub, you should be able to see the changes you've made.
