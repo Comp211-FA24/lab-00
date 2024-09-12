@@ -5,7 +5,7 @@ CFLAGS=-g
 all: hello
 
 hello:
-	$(CC) $(CFLAGS) hello_world/hello.c -o hello_world/hello
+	$(CC) $(CFLAGS) hello_world/hello.c -o hello
 
 clean:
-	rm hello_world/hello
+	rm -f hello
