@@ -1,6 +1,12 @@
 # .gitignore file specifies intentionally untracked files that Git should ignore
 # https://github.com/github/gitignore?tab=readme-ov-file#a-collection-of-gitignore-templates
 
+# Executables
+hello
+hello_world/hello
+*.exe
+*.out
+
 # IDE
 .idea
 .vscode
@@ -13,6 +19,7 @@
 
 # Vim
 *.swp
+*.swo
 
 # Object files
 *.o
@@ -21,10 +28,7 @@
 *.dll
 *.so
 *.so.*
-
-# Executables
-*.exe
-*.out
+*.a
 
 # Debug files
 *.dSYM/
