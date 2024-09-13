@@ -2,6 +2,8 @@ CC=gcc
 # Do not use Wall and Werror flags because students are not told about these in the lab
 CFLAGS=-g
 
+.PHONY: all
+
 all: hello
 
 hello:
